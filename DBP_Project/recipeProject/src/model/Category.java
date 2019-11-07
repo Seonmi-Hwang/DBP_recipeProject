@@ -10,7 +10,12 @@ public class Category {
 		this.category_id = category_id;
 		this.cname = cname;
 	}
-
+	
+	public void update(Category upcategory) {
+		this.category_id = upcategory.category_id;
+		this.cname = upcategory.cname;
+	}
+	
 	public int getCategory_id() {
 		return category_id;
 	}
@@ -29,7 +34,7 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return "Category [category_id=" + category_id + ", cname=" + cname;
+		return "Category [category_id=" + category_id + ", cname=" + cname + "]";
 	}
 
 }
