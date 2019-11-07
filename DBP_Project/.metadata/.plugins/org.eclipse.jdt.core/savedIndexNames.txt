@@ -1,3 +1,7 @@
 INDEX VERSION 1.131+C:\github\DBP_recipeProject\DBP_Project\.metadata\.plugins\org.eclipse.jdt.core
 1192391973.index
+<<<<<<< HEAD
 878720587.index
+=======
+3017952843.index
+>>>>>>> be4e9792f99dc60771563ab78976210541ccb400
