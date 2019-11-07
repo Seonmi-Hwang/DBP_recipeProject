@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
 <entry loc="C:\Program Files\Java\jre1.8.0_171" stamp="1528899263666"/>
 </dirs>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dirs>
+    <entry loc="C:\Program Files\Java\jre-9.0.4" stamp="1521460270435"/>
+    <entry loc="C:\Program Files\Java\jre-9" stamp="1507811581275"/>
+    <entry loc="C:\Program Files\Java\jre1.8.0_171" stamp="1528899263666"/>
+</dirs>
+>>>>>>> branch 'master' of https://github.com/Seonmi-Hwang/DBP_recipeProject.git
