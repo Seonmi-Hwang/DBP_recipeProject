@@ -1,13 +1,13 @@
-INSERT INTO member VALUES (mid_sequence.nextval, '123@dongduk.com', 123, '¾ç°»ÀÌ');
-INSERT INTO member VALUES (mid_sequence.nextval, '234@dongduk.com', 234, '¾ç°»ÀÌ');
-INSERT INTO member VALUES (mid_sequence.nextval, '345@dongduk.com', 345, '³ªÃÊ');
-INSERT INTO member VALUES (mid_sequence.nextval, '456@dongduk.com', 456, 'µµÅä');
-INSERT INTO member VALUES (mid_sequence.nextval, '567@dongduk.com', 567, 'ÈÄÅ©');
+INSERT INTO member VALUES (mid_sequence.nextval, '123@dongduk.com', 123, 'ì–‘ê°±ì´');
+INSERT INTO member VALUES (mid_sequence.nextval, '234@dongduk.com', 234, 'ì–‘ê°±ì´');
+INSERT INTO member VALUES (mid_sequence.nextval, '345@dongduk.com', 345, 'ë‚˜ì´ˆ');
+INSERT INTO member VALUES (mid_sequence.nextval, '456@dongduk.com', 456, 'ë„í† ');
+INSERT INTO member VALUES (mid_sequence.nextval, '567@dongduk.com', 567, 'í›„í¬');
 
 
-INSERT INTO ingredient_info VALUES (iid_sequence.nextval, '°è¶õ·ù', '°è¶õ');
-INSERT INTO ingredient_info VALUES (iid_sequence.nextval, '»§·ù', '½Ä»§');
-INSERT INTO ingredient_info VALUES (iid_sequence.nextval, 'Ã¤¼Ò·ù', '¿ÀÀÌ');
+INSERT INTO ingredient_info VALUES (iid_sequence.nextval, 'ê³„ë€ë¥˜', 'ê³„ë€');
+INSERT INTO ingredient_info VALUES (iid_sequence.nextval, 'ë¹µë¥˜', 'ì‹ë¹µ');
+INSERT INTO ingredient_info VALUES (iid_sequence.nextval, 'ì±„ì†Œë¥˜', 'ì˜¤ì´');
 
 
 INSERT INTO prefer_ingredient VALUES (1, 1000, 'T');
@@ -19,36 +19,37 @@ INSERT INTO category VALUES (20, 'sns');
 INSERT INTO category VALUES (30, 'myOwn');
 
 
---1. °è¶õ»§ (recipe_id SEQUENCE ÇÊ¿ä)
+--1. ê³„ë€ë¹µ (recipe_id SEQUENCE í•„ìš”)
 INSERT INTO recipe_info VALUES(rid_sequence.nextval, 10, 'eggBread', 15, null, 0);
---2. °£Àå°è¶õ¹ä
+--2. ê°„ì¥ê³„ë€ë°¥
 INSERT INTO recipe_info VALUES(rid_sequence.nextval, 10, 'soybeanPasteEggRice', 10, null, 0);
---3. Â¥ÆÄ±¸¸®
+--3. ì§œíŒŒêµ¬ë¦¬
 INSERT INTO recipe_info VALUES(rid_sequence.nextval, 20, 'zzapaguri', 5, null, 0);
---4. Àü³²Ä£Åä½ºÆ®
+--4. ì „ë‚¨ì¹œí† ìŠ¤íŠ¸
 INSERT INTO recipe_info VALUES(rid_sequence.nextval, 20, 'exboyToast', 10, null, 0);
---5. ½¦ÇÏÅä½ºÆ®
+--5. ì‰í•˜í† ìŠ¤íŠ¸
 INSERT INTO recipe_info VALUES(rid_sequence.nextval, 30, 'shareHouseToast', 10, null, 0);
 
 
-INSERT INTO ingredient VALUES(1000, 100, '2Á¶°¢');
-INSERT INTO ingredient VALUES(1001, 100, '2¾Ë');
-INSERT INTO ingredient VALUES(1001, 101, '1¾Ë');
+INSERT INTO ingredient VALUES(1000, 100, '2ì¡°ê°');
+INSERT INTO ingredient VALUES(1001, 100, '2ì•Œ');
+INSERT INTO ingredient VALUES(1001, 101, '1ì•Œ');
 
 
-INSERT INTO recipe_procedure VALUES(100, 1, '¹Ğ°¡·ç¿¡ ¿ìÀ¯¸¦ º×´Â´Ù', null);
-INSERT INTO recipe_procedure VALUES(100, 2, '¼¯´Â´Ù', null);
-INSERT INTO recipe_procedure VALUES(100, 3, '¹İÁ×¿¡ °è¶õÀ» ³Ö´Â´Ù', null);
-INSERT INTO recipe_procedure VALUES(100, 4, '¿Àºì¿¡ ±Á´Â´Ù', null);
-INSERT INTO recipe_procedure VALUES(101, 1, '¹äÀ» Áş´Â´Ù', null);
+INSERT INTO recipe_procedure VALUES(100, 1, 'ë°€ê°€ë£¨ì— ìš°ìœ ë¥¼ ë¶“ëŠ”ë‹¤', null);
+INSERT INTO recipe_procedure VALUES(100, 2, 'ì„ëŠ”ë‹¤', null);
+INSERT INTO recipe_procedure VALUES(100, 3, 'ë°˜ì£½ì— ê³„ë€ì„ ë„£ëŠ”ë‹¤', null);
+INSERT INTO recipe_procedure VALUES(100, 4, 'ì˜¤ë¸ì— êµ½ëŠ”ë‹¤', null);
+INSERT INTO recipe_procedure VALUES(101, 1, 'ë°¥ì„ ì§“ëŠ”ë‹¤', null);
 
 
 INSERT INTO users_recipe VALUES (1, 104, to_date('11-07-2019','mm-dd-yyyy'));
 
+						 
+COMMIT;
 
 
-
--- ¾Æ·¡´Â sequence¸¦ ½Ç¼öÇßÀ» °æ¿ì ½ÇÇàÇÏ´Â SQLÀÌ´Ù.
+-- ì•„ë˜ëŠ” sequenceë¥¼ ì‹¤ìˆ˜í–ˆì„ ê²½ìš° ì‹¤í–‰í•˜ëŠ” SQLì´ë‹¤.
 
 DROP SEQUENCE iid_sequence;
 
@@ -74,7 +75,7 @@ CREATE SEQUENCE rid_sequence
 	INCREMENT BY 1
 	START WITH 100;
     
--- ¾Æ·¡´Â Å×ÀÌºíÀ» ½Ç¼öÇßÀ» °æ¿ì ½ÇÇàÇÏ´Â SQLÀÌ´Ù.
+-- ì•„ë˜ëŠ” í…Œì´ë¸”ì„ ì‹¤ìˆ˜í–ˆì„ ê²½ìš° ì‹¤í–‰í•˜ëŠ” SQLì´ë‹¤.
     
 DROP TABLE prefer_ingrdient CASCADE CONSTRAINTS PURGE;    
 
