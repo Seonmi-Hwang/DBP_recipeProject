@@ -40,7 +40,7 @@ DROP TABLE member CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE category
 (
-	category_id          CHAR(18) NOT NULL ,
+	category_id          NUMBER NOT NULL ,
 	cname                CHAR(18) NOT NULL 
 );
 
@@ -53,8 +53,8 @@ ALTER TABLE category
 CREATE TABLE ingredient_info
 (
 	ingredient_id        NUMBER NOT NULL ,
-	icategory            CHAR(18) NULL ,
-	iname                CHAR(18) NULL 
+	iname                CHAR(18) NULL ,
+	icategory            CHAR(18) NULL 
 );
 
 CREATE UNIQUE INDEX XPKingredients_info ON ingredient_info
@@ -68,7 +68,7 @@ CREATE TABLE member
 	member_id            NUMBER NOT NULL ,
 	mname                CHAR(18) NOT NULL ,
 	pw                   CHAR(18) NOT NULL ,
-	email_id             VARCHAR2(40) NOT NULL  CONSTRAINT  emailCheck CHECK (email_id like '%_@_%._%')
+	email_id             VARCHAR2(40) NOT NULL  CONSTRAINT  emailCheck CHECK (email_id like '_%@_%._%')
 );
 
 CREATE UNIQUE INDEX XPKmembers ON member
@@ -93,10 +93,10 @@ ALTER TABLE prefer_ingrdient
 CREATE TABLE recipe_info
 (
 	recipe_id            NUMBER NOT NULL ,
-	category_id          CHAR(18) NOT NULL ,
+	category_id          NUMBER NOT NULL ,
 	rname                VARCHAR2(30) NOT NULL ,
 	time                 NUMBER DEFAULT  0  NULL ,
-	result_img           VARCHAR2(100) NULL ,
+	result_img           VARCHAR2(500) NULL ,
 	hits                 NUMBER DEFAULT  0  NULL 
 );
 
@@ -108,21 +108,21 @@ ALTER TABLE recipe_info
 
 CREATE TABLE ingredient
 (
-	ingredient_id        NUMBER NOT NULL ,
 	recipe_id            NUMBER NOT NULL ,
+	ingredient_id        NUMBER NOT NULL ,
 	quantity             VARCHAR2(10) NULL 
 );
 
 CREATE UNIQUE INDEX XPKingredients ON ingredient
-(ingredient_id   ASC,recipe_id   ASC);
+(recipe_id   ASC,ingredient_id   ASC);
 
 ALTER TABLE ingredient
-	ADD CONSTRAINT  XPKingredients PRIMARY KEY (ingredient_id,recipe_id);
+	ADD CONSTRAINT  XPKingredients PRIMARY KEY (recipe_id,ingredient_id);
 
 CREATE TABLE users_recipe
 (
-	member_id            NUMBER NOT NULL ,
 	recipe_id            NUMBER NOT NULL ,
+	member_id            NUMBER NOT NULL ,
 	createdDate          DATE NULL 
 );
 
