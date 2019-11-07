@@ -32,7 +32,7 @@ DROP TABLE recipe_info CASCADE CONSTRAINTS PURGE;
 
 DROP TABLE category CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE prefer_ingrdient CASCADE CONSTRAINTS PURGE;
+DROP TABLE prefer_ingredient CASCADE CONSTRAINTS PURGE;
 
 DROP TABLE ingredient_info CASCADE CONSTRAINTS PURGE;
 
@@ -77,7 +77,7 @@ CREATE UNIQUE INDEX XPKmembers ON member
 ALTER TABLE member
 	ADD CONSTRAINT  XPKmembers PRIMARY KEY (member_id);
 
-CREATE TABLE prefer_ingrdient
+CREATE TABLE prefer_ingredient
 (
 	member_id            NUMBER NOT NULL ,
 	ingredient_id        NUMBER NOT NULL ,
