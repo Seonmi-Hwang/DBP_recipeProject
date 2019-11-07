@@ -53,8 +53,8 @@ ALTER TABLE category
 CREATE TABLE ingredient_info
 (
 	ingredient_id        NUMBER NOT NULL ,
-	iname                CHAR(18) NULL ,
-	icategory            CHAR(18) NULL 
+	icategory            CHAR(18) NULL ,
+	iname                CHAR(18) NULL 
 );
 
 CREATE UNIQUE INDEX XPKingredients_info ON ingredient_info
@@ -66,8 +66,8 @@ ALTER TABLE ingredient_info
 CREATE TABLE member
 (
 	member_id            NUMBER NOT NULL ,
-	pw                   CHAR(18) NOT NULL ,
 	mname                CHAR(18) NOT NULL ,
+	pw                   CHAR(18) NOT NULL ,
 	email_id             VARCHAR2(40) NOT NULL  CONSTRAINT  emailCheck CHECK (email_id like '%_@_%._%')
 );
 
@@ -80,8 +80,8 @@ ALTER TABLE member
 CREATE TABLE prefer_ingrdient
 (
 	member_id            NUMBER NOT NULL ,
-	prefer               CHAR(1) NOT NULL ,
-	ingredient_id        NUMBER NOT NULL 
+	ingredient_id        NUMBER NOT NULL ,
+	prefer               CHAR(1) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKprefer_ingrdients ON prefer_ingrdient
@@ -92,12 +92,12 @@ ALTER TABLE prefer_ingrdient
 
 CREATE TABLE recipe_info
 (
+	recipe_id            NUMBER NOT NULL ,
+	category_id          CHAR(18) NOT NULL ,
 	rname                VARCHAR2(30) NOT NULL ,
 	time                 NUMBER DEFAULT  0  NULL ,
-	hits                 NUMBER DEFAULT  0  NULL ,
-	category_id          CHAR(18) NOT NULL ,
-	recipe_id            NUMBER NOT NULL ,
-	result_img           VARCHAR2(100) NULL 
+	result_img           VARCHAR2(100) NULL ,
+	hits                 NUMBER DEFAULT  0  NULL 
 );
 
 CREATE UNIQUE INDEX XPKrecipes_info ON recipe_info
@@ -134,10 +134,10 @@ ALTER TABLE users_recipe
 
 CREATE TABLE recipe_procedure
 (
+	recipe_id            NUMBER NOT NULL ,
 	proc_id              NUMBER NOT NULL ,
 	text                 CHAR(18) NOT NULL ,
-	img_url              VARCHAR2(100) NULL ,
-	recipe_id            NUMBER NOT NULL 
+	img_url              VARCHAR2(100) NULL
 );
 
 CREATE UNIQUE INDEX XPKrecipe_procedure ON recipe_procedure
