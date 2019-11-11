@@ -2,7 +2,7 @@ DROP SEQUENCE iid_sequence;
 
 CREATE SEQUENCE iid_sequence
 	INCREMENT BY 1
-	START WITH 1;
+	START WITH 1000;
 
 DROP SEQUENCE mid_sequence;
 
@@ -20,7 +20,7 @@ DROP SEQUENCE rid_sequence;
 
 CREATE SEQUENCE rid_sequence
 	INCREMENT BY 1
-	START WITH 1;
+	START WITH 100;
 
 DROP TABLE ingredient CASCADE CONSTRAINTS PURGE;
 
@@ -32,7 +32,7 @@ DROP TABLE recipe_info CASCADE CONSTRAINTS PURGE;
 
 DROP TABLE category CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE prefer_ingrdient CASCADE CONSTRAINTS PURGE;
+DROP TABLE prefer_ingredient CASCADE CONSTRAINTS PURGE;
 
 DROP TABLE ingredient_info CASCADE CONSTRAINTS PURGE;
 
@@ -68,7 +68,7 @@ CREATE TABLE member
 	member_id            NUMBER NOT NULL ,
 	mname                CHAR(18) NOT NULL ,
 	pw                   CHAR(18) NOT NULL ,
-	email_id             VARCHAR2(40) NOT NULL  CONSTRAINT  emailCheck CHECK (email_id like '%_@_%._%')
+	email_id             VARCHAR2(40) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKmembers ON member
@@ -77,7 +77,7 @@ CREATE UNIQUE INDEX XPKmembers ON member
 ALTER TABLE member
 	ADD CONSTRAINT  XPKmembers PRIMARY KEY (member_id);
 
-CREATE TABLE prefer_ingrdient
+CREATE TABLE prefer_ingredient
 (
 	member_id            NUMBER NOT NULL ,
 	ingredient_id        NUMBER NOT NULL ,
