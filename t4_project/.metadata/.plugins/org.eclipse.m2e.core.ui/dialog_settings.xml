@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="com.team4.recipe_project"/>
+		</list>
+		<list key="name">
+			<item value="Recipe Project"/>
+		</list>
+		<list key="artifactId">
+			<item value="recipe_project"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+</section>

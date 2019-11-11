@@ -1,0 +1,54 @@
+2019-11-11 17:51:43,339 [Worker-2: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-11-11 17:55:15,132 [ModalContext] WARN  o.e.m.j.i.JavaProjectConversionParticipant - recipe_project has multiple source entries, this is not supported yet
+2019-11-11 17:55:19,504 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.team4.recipe_project:recipe_project:0.0.1-SNAPSHOT @ C:\Users\hsm35\Desktop\t4_project\recipe_project\pom.xml.
+2019-11-11 17:55:23,270 [Worker-10: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:23,273 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:55:23,277 [Worker-10: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:23,279 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:55:23,363 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /recipe_project/src
+2019-11-11 17:55:23,365 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /recipe_project/src/test/java because it overlaps with /recipe_project/src
+2019-11-11 17:55:26,239 [Worker-12: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:26,242 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:55:26,243 [Worker-12: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:26,245 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:55:27,042 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2019-11-11 17:55:28,155 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.team4.recipe_project:recipe_project:0.0.1-SNAPSHOT @ C:\Users\hsm35\Desktop\t4_project\recipe_project\pom.xml.
+2019-11-11 17:55:30,019 [Worker-15: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:30,022 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:55:30,024 [Worker-15: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:30,026 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:55:30,027 [Worker-15: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of recipe_project
+2019-11-11 17:55:30,029 [Worker-15: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for recipe_project
+2019-11-11 17:55:30,037 [Worker-15: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.apache.maven.plugins:maven-clean-plugin:jar:2.5 is missing, no dependency information available
+2019-11-11 17:55:30,120 [Worker-15: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:30,199 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /recipe_project/src
+2019-11-11 17:55:30,200 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /recipe_project/src/test/java because it overlaps with /recipe_project/src
+2019-11-11 17:55:31,168 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for recipe_project
+2019-11-11 17:55:31,227 [Worker-6: Enabling Maven Dependency Management] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 4 sec
+2019-11-11 17:55:31,351 [Worker-10: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:31,353 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:55:31,354 [Worker-10: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:55:31,356 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:55:31,356 [Worker-10: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of recipe_project
+2019-11-11 17:55:31,357 [Worker-10: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for recipe_project
+2019-11-11 17:55:31,365 [Worker-10: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:57:45,288 [Worker-1: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.team4.recipe_project:recipe_project:0.0.1-SNAPSHOT @ C:\Users\hsm35\Desktop\t4_project\recipe_project\pom.xml.
+2019-11-11 17:57:47,082 [Worker-1: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:57:47,084 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:57:47,087 [Worker-1: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:57:47,089 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:57:47,090 [Worker-1: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of recipe_project
+2019-11-11 17:57:47,090 [Worker-1: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for recipe_project
+2019-11-11 17:57:47,098 [Worker-1: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:59:18,382 [Worker-9: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:59:18,384 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:59:18,386 [Worker-9: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:59:18,390 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 17:59:23,698 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:59:23,700 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 17:59:23,703 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 17:59:23,704 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
+2019-11-11 18:00:04,008 [Worker-18: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 18:00:04,010 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\main\resources
+2019-11-11 18:00:04,013 [Worker-18: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-11 18:00:04,014 [Worker-18: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\hsm35\Desktop\t4_project\recipe_project\src\test\resources
