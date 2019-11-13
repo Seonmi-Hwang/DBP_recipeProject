@@ -9,7 +9,11 @@ public class Member {
 	public Member() {}
 	
 	public Member(int member_id, String email_id, String pw, String mname) {
+		this(email_id, pw, mname);
 		this.member_id = member_id;
+	}
+	
+	public Member(String email_id, String pw, String mname) {
 		this.email_id = email_id;
 		this.pw = pw;
 		this.mname = mname;
