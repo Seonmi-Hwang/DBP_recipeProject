@@ -1272,3 +1272,7 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2019-11-13 20:11:48,187 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\DBP\DBP_recipeProject\t4_project\recipe_project\src\main\resources
 2019-11-13 20:11:48,189 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
 2019-11-13 20:11:48,190 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\DBP\DBP_recipeProject\t4_project\recipe_project\src\test\resources
+2019-11-13 20:22:37,382 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-13 20:22:37,384 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\DBP\DBP_recipeProject\t4_project\recipe_project\src\main\resources
+2019-11-13 20:22:37,385 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-11-13 20:22:37,386 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\DBP\DBP_recipeProject\t4_project\recipe_project\src\test\resources
