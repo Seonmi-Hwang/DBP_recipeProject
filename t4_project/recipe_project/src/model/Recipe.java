@@ -18,15 +18,6 @@ public class Recipe {
 		this.result_img = result_img;
 		this.hits = hits;
 	}
-	
-	public void update(Recipe uprecipe) {
-		this.recipe_id = uprecipe.recipe_id;
-		this.category_id = uprecipe.category_id;
-		this.rname = uprecipe.rname;
-		this.time = uprecipe.time;
-		this.result_img = uprecipe.result_img;
-		this.hits = uprecipe.hits;
-	}
 
 	public int getRecipe_id() {
 		return recipe_id;
