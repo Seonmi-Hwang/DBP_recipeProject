@@ -135,17 +135,17 @@ public class IngredientDAO {
 	}
 	
 	//찾기
-	public Ingredient findIngredient(int ingreId,int recipId) throws SQLException {
+	public Ingredient findIngredient(int recipId) throws SQLException {
         String sql = "SELECT ii.icategory AS category, ii.iname AS name, i.quantity AS quant"
         			+ "FROM Ingredient i, ingredient_info ii "
-        			+ "WHERE i.ingredient_id=ii.ingredient_id and i.ingredient_id=? and i.recipe_id=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingreId, recipId});	// JDBCUtil에 query문과 매개 변수 설정
+        			+ "WHERE i.ingredient_id=ii.ingredient_id and i.recipe_id=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipId});	// JDBCUtil에 query문과 매개 변수 설정
 		Ingredient ingre = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
 				ingre = new Ingredient(		// Ingredient 객체를 생성하여 커뮤니티 정보를 저장
-					ingreId,
+					rs.getInt("ingredient_id"),
 					recipId,
 					rs.getString("quant"),
 					rs.getString("category"),
@@ -245,5 +245,5 @@ public class IngredientDAO {
 		}
 		return null;
 	}
-	
 }
+
