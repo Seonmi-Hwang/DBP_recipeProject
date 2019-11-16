@@ -10,10 +10,11 @@ public class Recipe {
 	private String result_img;
 	private int hits;
 	private List<Procedure> procedure;
+	private List<String> ingredients;
 	
 	public Recipe() {}
 	
-	public Recipe (int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure) {
+	public Recipe (int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients) {
 		this.recipe_id = recipe_id;
 		this.category_id = category_id;
 		this.rname = rname;
@@ -21,6 +22,7 @@ public class Recipe {
 		this.result_img = result_img;
 		this.hits = hits;
 		this.procedure = procedure;
+		this.ingredients = ingredients;
 	}
 
 	public int getRecipe_id() {
@@ -79,6 +81,14 @@ public class Recipe {
 		this.procedure = procedure;
 	}
 
+	public List<String> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<String> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", category_id=" + category_id + ", rname=" + rname + ", time="

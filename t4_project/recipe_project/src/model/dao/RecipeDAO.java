@@ -89,42 +89,17 @@ private JDBCUtil jdbcUtil = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 레시피 정보 발견
-				Recipe recipe = new Recipe (		// User 객체를 생성하여 학생 정보를 저장
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 레시피 정보를 저장
 					recipeId,
 					rs.getInt("category_id"),
 					rs.getString("rname"),
 					rs.getString("time"),
 					rs.getString("result_img"),
 					rs.getInt("hits"),
-					null);
+					getProcedures(recipeId),
+					getIngredientsName(recipeId));
 				return recipe;
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return null;
-	}
-
-	// 해당 레시피의 순서들을 가져오는 메소드 
-	public List<Procedure> getProcedures(int recipeId) {
-        String sql = "SELECT proc_id, text, img_url " // recipe_procedure
-    			+ "FROM recipe_procedure "
-    			+ "WHERE recipe_id=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});	// JDBCUtil에 query문과 매개 변수 설정
-	
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			List<Procedure> procList = new ArrayList<Procedure>();	// procedure의 리스트 생성
-			while (rs.next()) {					// procedure 발견
-				Procedure procedure = new Procedure (
-					rs.getInt("proc_id"),
-					rs.getString("text"),
-					rs.getString("img_url"));
-					procList.add(procedure);
-			}
-			return procList;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -145,14 +120,16 @@ private JDBCUtil jdbcUtil = null;
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 			List<Recipe> recipeList = new ArrayList<Recipe>();	// Recipe들의 리스트 생성
 			while (rs.next()) {
+				int recipeId = rs.getInt("recipe_id");
 				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 recipe 정보를 저장
-					rs.getInt("recipe_id"),
+					recipeId,
 					rs.getInt("category_id"),
 					rs.getString("rname"),
 					rs.getString("time"),
 					rs.getString("result_img"),
 					rs.getInt("hits"),
-					null);	
+					null,
+					getIngredientsName(recipeId));	
 				recipeList.add(recipe);				// List에  Recipe 객체 저장
 			}		
 			return recipeList;					
@@ -198,8 +175,54 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 
-
+	// 해당 레시피의 순서들을 가져오는 메소드 
+	public List<Procedure> getProcedures(int recipeId) {
+        String sql = "SELECT proc_id, text, img_url " // recipe_procedure
+    			+ "FROM recipe_procedure "
+    			+ "WHERE recipe_id=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});	// JDBCUtil에 query문과 매개 변수 설정
 	
-	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			List<Procedure> procList = new ArrayList<Procedure>();	// procedure의 리스트 생성
+			while (rs.next()) {					// procedure 발견
+				Procedure procedure = new Procedure (
+					rs.getInt("proc_id"),
+					rs.getString("text"),
+					rs.getString("img_url"));
+					procList.add(procedure);
+			}
+			return procList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+		
+	public List<String> getIngredientsName(int recipeId) {
+        String sql = "SELECT iname, quantity "
+				+ "FROM ingredient igre, ingredients_info info"
+				+ "WHERE igre.ingredient_id = info.ingredient_id "
+				+ "AND recipe_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<String> ingredientList = new ArrayList<String>();
+			while (rs.next()) {
+				String ingredient = rs.getString("iname") + rs.getString("quantity");						
+				ingredientList.add(ingredient);
+			}		
+			return ingredientList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 	
 }
