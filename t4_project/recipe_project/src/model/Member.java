@@ -58,6 +58,14 @@ public class Member {
 		this.mname = mname;
 	}
 
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		boolean result = pw.trim().equals(password);
+		return result;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

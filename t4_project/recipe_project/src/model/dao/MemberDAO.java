@@ -18,7 +18,7 @@ private JDBCUtil jdbcUtil = null;
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
 	public int create(Member member) throws SQLException {
-		String sql = "INSERT INTO USERINFO VALUES (mid_sequence.nextval, ?, ?, ?)";		
+		String sql = "INSERT INTO member VALUES (mid_sequence.nextval, ?, ?, ?)";		
 		Object[] param = new Object[] { member.getMname(), member.getPw(), member.getEmail_id()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
@@ -39,8 +39,8 @@ private JDBCUtil jdbcUtil = null;
 	 * 기존의 사용자 정보를 수정.
 	 */
 	public int update(Member member) throws SQLException {
-		String sql = "UPDATE USERINFO "
-					+ "SET pw=?, mname=?" //member_id는 기본적으로 부여되는거라 수정 불가. email_id는 아이디 값이라 변경할 수 없음 따라서 두개밖에 없음
+		String sql = "UPDATE member "
+					+ "SET pw=?, mname=? " //member_id는 기본적으로 부여되는거라 수정 불가. email_id는 아이디 값이라 변경할 수 없음 따라서 두개밖에 없음
 					+ "WHERE email_id=?";
 		Object[] param = new Object[] {member.getMember_id(), member.getPw(), member.getMname(), member.getEmail_id()}; 
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
@@ -63,7 +63,7 @@ private JDBCUtil jdbcUtil = null;
 	 * 사용자 ID에 해당하는 사용자를 삭제.
 	 */
 	public int remove(String email_id) throws SQLException {
-		String sql = "DELETE FROM USERINFO WHERE email_id=?";		
+		String sql = "DELETE FROM member WHERE email_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
@@ -84,9 +84,9 @@ private JDBCUtil jdbcUtil = null;
 	 * 주어진 사용자 ID에 해당하는 사용자 정보를 데이터베이스에서 찾아 Member 도메인 클래스에 
 	 * 저장하여 반환.
 	 */
-	public Member findUser(String email_id) throws SQLException {
-        String sql = "SELECT pw, mname" //pw를 전달해도 되는지는 의문
-        			+ "FROM member"
+	public Member findMember(String email_id) throws SQLException {
+        String sql = "SELECT member_id, pw, mname " //pw를 전달해도 되는지는 의문
+        			+ "FROM member "
         			+ "WHERE email_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 query문과 매개 변수 설정
 
@@ -94,9 +94,10 @@ private JDBCUtil jdbcUtil = null;
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
 				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
+					rs.getInt("member_id"),
 					email_id,
 					rs.getString("pw"),
-					rs.getString("name"));
+					rs.getString("mname"));
 				return member;
 			}
 		} catch (Exception ex) {
@@ -110,9 +111,9 @@ private JDBCUtil jdbcUtil = null;
 	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
-	public List<Member> findUserList() throws SQLException {
-        String sql = "SELECT member_id, email_id, pw, mname" 
-        		   + "FROM member"
+	public List<Member> findMemberList() throws SQLException {
+        String sql = "SELECT member_id, email_id, pw, mname " 
+        		   + "FROM member "
         		   + "ORDER BY member_id";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
@@ -141,9 +142,9 @@ private JDBCUtil jdbcUtil = null;
 	 * 전체 사용자 정보를 검색한 후 현재 페이지와 페이지당 출력할 사용자 수를 이용하여
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
-	public List<Member> findUserList(int currentPage, int countPerPage) throws SQLException {
-		String sql = "SELECT pw, mname" //pw를 전달해도 되는지는 의문
-    			+ "FROM member"
+	public List<Member> findMemberList(int currentPage, int countPerPage) throws SQLException {
+		String sql = "SELECT pw, mname " //pw를 전달해도 되는지는 의문
+    			+ "FROM member "
     			+ "WHERE email_id=? "; 
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
@@ -175,8 +176,8 @@ private JDBCUtil jdbcUtil = null;
 	/**
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
-	public boolean existingUser(String email_id) throws SQLException {
-		String sql = "SELECT count(*) FROM USERINFO WHERE email_id=?";      
+	public boolean existingMember(String email_id) throws SQLException {
+		String sql = "SELECT count(*) FROM member WHERE email_id=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
