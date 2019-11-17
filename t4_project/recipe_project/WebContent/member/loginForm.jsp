@@ -31,7 +31,7 @@ function userCreate(targetUri) {
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <br>
 <!-- login form  -->
-<form name="form" method="POST" action="<c:url value='/user/login' />">
+<form name="form" method="POST" action="<c:url value='/member/login' />">
   <table style="width:100%">
 	<tr>
 	  <td width="20"></td>
@@ -50,13 +50,13 @@ function userCreate(targetUri) {
 	  	  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">사용자 ID</td>
 			<td width="250" bgcolor="ffffff" style="padding-left:10">
-				<input type="text" style="width:240" name="userId">
+				<input type="text" style="width:240" name="email_id">
 			</td>
 		  </tr>
 	  	  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">비밀번호</td>
 			<td width="250" bgcolor="ffffff" style="padding-left:10">
-				<input type="password" style="width:240" name="password">
+				<input type="password" style="width:240" name="pw">
 			</td>
 		  </tr>
 	    </table>
@@ -65,7 +65,7 @@ function userCreate(targetUri) {
 		  <tr>
 			<td align=left>
 			<input type="button" value="로그인" onClick="login()"> &nbsp;
-			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/register/form' />')">
+			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/member/register/form' />')">
 			</td>						
 		  </tr>
 	    </table>
