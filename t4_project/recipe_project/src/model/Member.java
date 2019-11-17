@@ -62,7 +62,7 @@ public class Member {
 		if (password == null) {
 			return false;
 		}
-		boolean result = pw.trim().equals(password);
+		boolean result = pw.equals(password);
 		return result;
 	}
 	

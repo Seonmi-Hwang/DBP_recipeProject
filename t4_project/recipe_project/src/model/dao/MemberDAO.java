@@ -108,30 +108,6 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
-	public Member findMember(int member_id) throws SQLException {
-        String sql = "SELECT email_id, pw, mname " //pw를 전달해도 되는지는 의문
-        			+ "FROM member "
-        			+ "WHERE member_id=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {member_id});	// JDBCUtil에 query문과 매개 변수 설정
-
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {						// 학생 정보 발견
-				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
-					member_id,
-					rs.getString("email_id"),
-					rs.getString("pw"),
-					rs.getString("mname"));
-				return member;
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return null;
-	}
-
 	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */

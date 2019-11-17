@@ -8,11 +8,6 @@
 <title>사용자 정보 수정</title>
 <script>
 function memberModify() {
-	if (form.email_id.value == "") {
-		alert("email(ID)을 입력하십시오.");
-		form.email_id.focus();
-		return false;
-	} 
 	if (form.pw.value == "") {
 		alert("비밀번호를 입력하십시오.");
 		form.pw.focus();

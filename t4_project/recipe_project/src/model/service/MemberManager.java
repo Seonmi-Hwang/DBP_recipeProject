@@ -53,16 +53,6 @@ public class MemberManager {
 		}		
 		return member;
 	}
-	
-	public Member findMember(int memberId)
-			throws SQLException, MemberNotFoundException {
-			Member member = memberDAO.findMember(memberId);
-			
-			if (member == null) {
-				throw new MemberNotFoundException(memberId + "는 존재하지 않는 아이디입니다.");
-			}		
-			return member;
-		}
 
 	public List<Member> findMemberList() throws SQLException {
 			return memberDAO.findMemberList();

@@ -29,7 +29,7 @@ function memberRemove() {
 	  	  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">ID</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${member.member_id} <%-- <%=user.getPhone()%> --%>
+				${member.member_id}
 			</td>
 		  </tr>
 	  	  <tr>

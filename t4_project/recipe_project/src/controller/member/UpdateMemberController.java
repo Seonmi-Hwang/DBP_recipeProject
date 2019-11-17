@@ -44,7 +44,7 @@ public class UpdateMemberController implements Controller {
     	
     	// POST request (회원정보가 parameter로 전송됨)
     	Member updateMember = new Member(
-    		request.getParameter("email_Id"),
+    		request.getParameter("email_id"),
     		request.getParameter("pw"),
     		request.getParameter("mname"));
 
