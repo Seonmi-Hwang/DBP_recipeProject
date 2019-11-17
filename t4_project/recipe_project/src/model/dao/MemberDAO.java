@@ -39,8 +39,8 @@ private JDBCUtil jdbcUtil = null;
 	 * 기존의 사용자 정보를 수정.
 	 */
 	public int update(Member member) throws SQLException {
-		String sql = "UPDATE member"
-					+ "SET pw=?, mname=?" //member_id는 기본적으로 부여되는거라 수정 불가. email_id는 아이디 값이라 변경할 수 없음 따라서 두개밖에 없음
+		String sql = "UPDATE member "
+					+ "SET pw=?, mname=? " //member_id는 기본적으로 부여되는거라 수정 불가. email_id는 아이디 값이라 변경할 수 없음 따라서 두개밖에 없음
 					+ "WHERE email_id=?";
 		Object[] param = new Object[] {member.getMember_id(), member.getPw(), member.getMname(), member.getEmail_id()}; 
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
@@ -85,8 +85,8 @@ private JDBCUtil jdbcUtil = null;
 	 * 저장하여 반환.
 	 */
 	public Member findMember(String email_id) throws SQLException {
-        String sql = "SELECT pw, mname" //pw를 전달해도 되는지는 의문
-        			+ "FROM member"
+        String sql = "SELECT member_id, pw, mname " //pw를 전달해도 되는지는 의문
+        			+ "FROM member "
         			+ "WHERE email_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 query문과 매개 변수 설정
 
@@ -94,9 +94,10 @@ private JDBCUtil jdbcUtil = null;
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
 				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
+					rs.getInt("member_id"),
 					email_id,
 					rs.getString("pw"),
-					rs.getString("name"));
+					rs.getString("mname"));
 				return member;
 			}
 		} catch (Exception ex) {
@@ -111,8 +112,8 @@ private JDBCUtil jdbcUtil = null;
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
 	public List<Member> findMemberList() throws SQLException {
-        String sql = "SELECT member_id, email_id, pw, mname" 
-        		   + "FROM member"
+        String sql = "SELECT member_id, email_id, pw, mname " 
+        		   + "FROM member "
         		   + "ORDER BY member_id";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
@@ -142,8 +143,8 @@ private JDBCUtil jdbcUtil = null;
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
 	public List<Member> findMemberList(int currentPage, int countPerPage) throws SQLException {
-		String sql = "SELECT pw, mname" //pw를 전달해도 되는지는 의문
-    			+ "FROM member"
+		String sql = "SELECT pw, mname " //pw를 전달해도 되는지는 의문
+    			+ "FROM member "
     			+ "WHERE email_id=? "; 
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능

@@ -18,7 +18,7 @@ public class UpdateMemberController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
-    	/* 우리는 GET아니라 POST니까 상관없을것같아서 주석 처리함
+    	//언제 GET이고 언제 POST인지 잘모르겠다.
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
@@ -43,7 +43,6 @@ public class UpdateMemberController implements Controller {
 					new IllegalStateException("타인의 정보는 수정할 수 없습니다."));            
 			return "/member/view.jsp";	// 사용자 보기 화면으로 이동 (forwarding)
 	    }	
-	    */
     	
     	// POST request (회원정보가 parameter로 전송됨)
     	Member updateMember = new Member(
