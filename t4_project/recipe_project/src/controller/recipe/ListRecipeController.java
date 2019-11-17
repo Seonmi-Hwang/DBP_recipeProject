@@ -15,7 +15,7 @@ public class ListRecipeController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		RecipeManager manager = RecipeManager.getInstance();
-		int categoryId = Integer.valueOf(request.getParameter("categoryId"));
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		
 		List<Recipe> recipeList = manager.findRecipeList(categoryId);
 		

@@ -129,7 +129,7 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("result_img"),
 					rs.getInt("hits"),
 					null,
-					getIngredientsName(recipe_id));	
+					null);	
 				recipeList.add(recipe);				// List에  Recipe 객체 저장
 			}		
 			return recipeList;					
