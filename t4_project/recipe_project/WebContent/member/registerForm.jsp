@@ -88,7 +88,7 @@ function memberCreate() {
 	    <table style="width: 100%">
 		  <tr>
 			<td align="left">
-			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
+			<input type="button" value="회원 가입" onClick="memberCreate()"> &nbsp;
 			<input type="button" value="취소" onClick="history.back()">
 			</td>
 		  </tr>

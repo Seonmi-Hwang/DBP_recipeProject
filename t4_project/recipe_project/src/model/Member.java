@@ -62,7 +62,8 @@ public class Member {
 		if (password == null) {
 			return false;
 		}
-		return this.pw.equals(password);
+		boolean result = pw.trim().equals(password);
+		return result;
 	}
 	
 	@Override

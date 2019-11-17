@@ -12,7 +12,7 @@
 <table style="width:100%">
   <tr>
   	<td width="20"></td>
-    <td><a href="<c:url value='/user/logout' />">·Î±×¾Æ¿ô(&nbsp;${curUserId}&nbsp;)</a></td>
+    <td><a href="<c:url value='/member/logout' />">·Î±×¾Æ¿ô(&nbsp;${curMemberId}&nbsp;)</a></td>
   </tr>
   <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
   <tr>
@@ -38,7 +38,7 @@
 		  </td>
 		  <td width="200" bgcolor="ffffff" style="padding-left: 10">
 			<a href="<c:url value='/member/view'>
-					   <c:param name='email_Id' value='${member.email_id}'/>
+					   <c:param name='email_id' value='${member.email_id}'/>
 			 		 </c:url>">
 			  ${member.email_id}</a>
 		  </td>

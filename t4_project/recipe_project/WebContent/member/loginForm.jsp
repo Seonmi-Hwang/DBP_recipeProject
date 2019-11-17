@@ -9,20 +9,20 @@
 </head>
 <script>
 function login() {
-	if (form.userId.value == "") {
+	if (form.email_id.value == "") {
 		alert("사용자 ID를 입력하십시오.");
-		form.userId.focus();
+		form.email_id.focus();
 		return false;
 	} 
-	if (form.password.value == "") {
+	if (form.pw.value == "") {
 		alert("비밀번호를 입력하십시오.");
-		form.password.focus();
+		form.pw.focus();
 		return false;
 	}		
 	form.submit();
 }
 
-function userCreate(targetUri) {
+function memberCreate(targetUri) {
 	form.action = targetUri;
 	form.submit();
 }
@@ -65,7 +65,7 @@ function userCreate(targetUri) {
 		  <tr>
 			<td align=left>
 			<input type="button" value="로그인" onClick="login()"> &nbsp;
-			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/member/register/form' />')">
+			<input type="button" value="회원가입" onClick="memberCreate('<c:url value='/member/register/form' />')">
 			</td>						
 		  </tr>
 	    </table>
