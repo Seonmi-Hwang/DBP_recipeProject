@@ -9,34 +9,28 @@
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <br>
-<%-- <table> --%>
-<%-- <c:forEach var="category" items="${categories}"> --%>
-<%--	<tr> --%>
-		<table style="width:100%"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
-			<tr>
-			<c:forEach var="recipe" items="${recipeList}">
-				<td>
-					<table> <!-- 레시피 한 개를 표현할 테이블 -->
-						<tr>
-							<td> ${recipe.recipeId} </td> <!-- recipe.getRecipeID() --> 
-						</tr>
-						<tr>
-							<td> ${recipe.recipeName} </td> <!--  recipe.getRecipeName() -->
-						</tr>
-						<tr>
-							<td> ${recipe.ingredients} </td> <!-- recipe.getIngredients() -->
-						</tr>
-						<tr>
-							<td> ${recipe.time} </td> <!--  recipe.getTime() -->
-							<td> ${recipe.hits} </td> <!--  recipe.getHits() -->
-						</tr>
-					</table>
-				</td>
-			</c:forEach>
-			</tr>
-		</table>
-<%--	</tr> --%>
-<%-- </c:forEach> --%>
-<%-- </table> --%>
+<table style="width:100%"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
+	<tr>
+	<c:forEach var="recipe" items="${recipeList}">
+		<td>
+			<table> <!-- 레시피 한 개를 표현할 테이블 -->
+				<tr>
+					<td><a href="<c:url value='/recipe/view'>
+					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+			 		 			 </c:url>"> ${recipe.rname} </a>  
+			  		</td> <!--  recipe.getRecipeName() -->
+				</tr>
+	<!--		<tr>
+					<td> ${recipe.ingredients} </td> <%-- recipe.getIngredients() --%>
+				</tr>  -->
+				<tr>
+					<td> ${recipe.time} </td> <!--  recipe.getTime() -->
+					<td> ${recipe.hits} </td> <!--  recipe.getHits() -->
+				</tr>
+			</table>
+		</td>
+	</c:forEach>
+	</tr>
+</table>
 </body>
 </html>
