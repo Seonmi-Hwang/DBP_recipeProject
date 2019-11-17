@@ -25,7 +25,7 @@ public class RecipeManager {
 		return recipeMan;
 	}
 	
-	public int create(Recipe recipe) throws SQLException, ExistingMemberException {
+	public int create(Recipe recipe) throws SQLException {
 		return recipeDAO.create(recipe);
 	}
 
@@ -52,15 +52,26 @@ public class RecipeManager {
 		return recipe;
 	}
 
-	public List<Recipe> findRecipeList() throws SQLException {
-		return recipeDAO.getRecipeList();
+	public List<Recipe> findRecipeList(int categoryId) throws SQLException, RecipeNotFoundException {
+		List<Recipe> recipeList = recipeDAO.getRecipeList(categoryId);
+		
+		if (recipeList == null) {
+			try {
+				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
+			} catch (RecipeNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		
+		return recipeList;
 	}
 	
-	public List<Integer> findRecommendRecipe(List<Integer> ingredients) {
+	public List<Integer> findRecommendRecipe(List<Integer> ingredients) throws SQLException {
 		return recipeDAO.getRecommendRecipe(ingredients);
 	}
 	
-	public List<Procedure> findProcedure(int recipeId) {
+	public List<Procedure> findProcedure(int recipeId) throws SQLException {
 		return recipeDAO.getProcedures(recipeId);
 	}
 	
@@ -69,12 +80,12 @@ public class RecipeManager {
 //		return recipeDAO.getRecipeList(currentPage, countPerPage);
 //	}
 	
+	public List<String> findIngredientsName(int recipeId) throws SQLException {
+		return recipeDAO.getIngredientsName(recipeId);
+	}
+	
 	public RecipeDAO getRecipeDAO() {
 		return this.recipeDAO;
 	}
 	
-	public List<String> findIngredientsName(int recipeId) {
-		return recipeDAO.getIngredientsName(recipeId);
-	}
-
 }

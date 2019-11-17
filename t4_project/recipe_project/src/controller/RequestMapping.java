@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.member.*;
+import controller.recipe.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -15,6 +16,8 @@ public class RequestMapping {
     public void initMapping() {
 //    	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
+        mappings.put("/main", new ForwardController("/main.jsp"));
+        
         mappings.put("/member/login/form", new ForwardController("/member/loginForm.jsp"));
         mappings.put("/member/login", new LoginController());
         mappings.put("/member/logout", new LogoutController());
@@ -25,6 +28,9 @@ public class RequestMapping {
         mappings.put("/member/update", new UpdateMemberController());
         mappings.put("/member/update/form", new UpdateMemberController());
         mappings.put("/member/delete", new DeleteMemberController());
+        
+        mappings.put("/recipe/list", new ListRecipeController());
+//        mappings.put("", value);
 //        
 //        logger.info("Initialized Request Mapping!");
     }
