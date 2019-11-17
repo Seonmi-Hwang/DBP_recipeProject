@@ -25,13 +25,13 @@ public class RegisterMemberController implements Controller 	{
 		try {
 			MemberManager manager = MemberManager.getInstance();
 			manager.create(member);
-	        return "redirect:/user/list";		// 성공 시 사용자 리스트 화면으로 redirect
+	        return "redirect:/member/list";		// 성공 시 사용자 리스트 화면으로 redirect
 	        
 		} catch (ExistingMemberException e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("member", member);
-			return "/user/registerForm.jsp";
+			return "/member/registerForm.jsp";
 		}
     }
 }
