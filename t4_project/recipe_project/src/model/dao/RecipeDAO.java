@@ -235,25 +235,47 @@ private JDBCUtil jdbcUtil = null;
 	
 	public String getRecipeWriter(int recipe_id) throws SQLException {
 		 String sql = "SELECT mname "
-					+ "FROM users_recipe u, member m"
-					+ "WHERE u.member_id = m.member_id"
+					+ "FROM users_recipe u, member m "
+					+ "WHERE u.member_id = m.member_id "
 					+ "AND recipe_id = ?";
 			jdbcUtil.setSqlAndParameters(sql, new Object[] {recipe_id});
 			
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 				String writer = "";
-				while (rs.next()) {
+				if (rs.next()) {
 					writer = rs.getString("mname");
-				}		
-				return writer;					
+				}					
+				return writer;
 				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
 				jdbcUtil.close();		// resource 반환
 			}
-			return null;
+			return "";
+	}
+	
+	public int getRecipeWriterId(int recipe_id) throws SQLException {
+		 String sql = "SELECT member_id "
+					+ "FROM users_recipe "
+					+ "WHERE recipe_id = ?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {recipe_id});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+				int writerId = 1;
+				while (rs.next()) {
+					writerId = rs.getInt("member_id");
+				}		
+				return writerId;					
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			return 1;	// 못받아오면 작성자 = 관리자(1번)으로 초기화
 	}
 	
 	public Date getCreatedDate(int recipe_id) throws SQLException {
@@ -277,5 +299,7 @@ private JDBCUtil jdbcUtil = null;
 			}
 			return null;
 	}
+	
+	
 	
 }

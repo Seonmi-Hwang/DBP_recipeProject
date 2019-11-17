@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <title>레시피-${recipe.rname} </title>
@@ -16,7 +17,9 @@
 	    <table>
 		  <tr>
 			<td width="120" bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td>
-			<td width="200" bgcolor="ffffff" style="padding-right: 10">조회수: ${recipe.hits} </td>
+			<td width="300" bgcolor="ffffff" style="padding-right: 10; text-align: right;">조회수: ${recipe.hits} </td>
+			<td width="170" bgcolor="ffffff" style="padding-right: 10; text-align: right;">
+				작성일: <fmt:formatDate value="${recipe.createdDate}" pattern="yyyy/MM/dd" /></td>
 		  </tr>
 	    </table>  
 	    <br>	  	    

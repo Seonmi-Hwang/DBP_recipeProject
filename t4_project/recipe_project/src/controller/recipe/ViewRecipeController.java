@@ -22,7 +22,7 @@ public class ViewRecipeController implements Controller {
 
 		HttpSession session = request.getSession();
 		
-		// !!구현!! 현재 로그인 한 사용자가 레시피 작성자와 일치하면 return "/recipe/view(owner).jsp;
+		// !!구현!!현재 로그인 한 사용자가 레시피 작성자와 일치하면 return "/recipe/view(owner).jsp;
 		
 		
 		return "/recipe/view.jsp";
