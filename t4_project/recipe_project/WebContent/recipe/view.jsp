@@ -47,9 +47,15 @@
 		  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">조리 과정</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<c:forEach var="proc" items="${recipe.procedure}">
-					<LI>${proc}
-				</c:forEach>	
+				<table>
+					<c:forEach var="proc" items="${recipe.procedure}">
+						<tr>
+							<td><LI> ${proc.text} </LI></td>
+							<td>${proc.img_url}</td>
+						</tr>
+					</c:forEach>
+				</table>
+					
 			</td>
 		  </tr>
 	 	</table>
