@@ -6,6 +6,11 @@
 <title>레시피-${recipe.rname} </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
+<script>
+function recipeRemove() {
+	return confirm("정말 삭제하시겠습니까?");		
+}
+</script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
   <br>
@@ -15,8 +20,8 @@
 	  <td>
 	    <table>
 		  <tr>
-			<td width="120" bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td>
-			<td width="200" bgcolor="ffffff" style="padding-right: 10">조회수: ${recipe.hits} </td>
+			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td>
+			<td width="470" bgcolor="ffffff" style="padding-right: 10">조회수: ${recipe.hits} </td>
 		  </tr>
 	    </table>  
 	    <br>	  	    
@@ -51,7 +56,19 @@
 		  </tr>
 	 	</table>
 	    <br>
-	    
+	     <a href="<c:url value='/recipe/update'>	<!-- Get 요청 -->
+	     		   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
+			 	 </c:url>">수정</a> &nbsp;
+ 	    <a href="<c:url value='/recipe/delete'>
+				   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
+			 	 </c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+ 	    <a href="<c:url value='/recipe/list' />">목록</a>	    
+ 	    <br><br>	   
+ 	    
+ 	    <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+        <c:if test="${updateFailed || deleteFailed}">
+	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
+	    </c:if>    
 	  </td>
 	</tr>
   </table>  

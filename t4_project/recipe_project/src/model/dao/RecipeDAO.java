@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Procedure;
@@ -58,6 +59,9 @@ private JDBCUtil jdbcUtil = null;
 		}		
 		return 0;
 	}
+	
+	// !레시피 조리 과정 변경해줘야 할 듯!
+	
 
 	// 레시피 삭제
 	public int remove(int recipe_id) throws SQLException {
@@ -97,7 +101,9 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("result_img"),
 					rs.getInt("hits"),
 					getProcedures(recipe_id),
-					getIngredientsName(recipe_id));
+					getIngredientsName(recipe_id),
+					getRecipeWriter(recipe_id),
+					getCreatedDate(recipe_id));
 				return recipe;
 			}
 		} catch (Exception ex) {
@@ -128,6 +134,8 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("time"),
 					rs.getString("result_img"),
 					rs.getInt("hits"),
+					null,
+					null,
 					null,
 					null);	
 				recipeList.add(recipe);				// List에  Recipe 객체 저장
@@ -223,6 +231,51 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.close();		// resource 반환
 		}
 		return null;
+	}
+	
+	public String getRecipeWriter(int recipe_id) throws SQLException {
+		 String sql = "SELECT mname "
+					+ "FROM users_recipe u, member m"
+					+ "WHERE u.member_id = m.member_id"
+					+ "AND recipe_id = ?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {recipe_id});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+				String writer = "";
+				while (rs.next()) {
+					writer = rs.getString("mname");
+				}		
+				return writer;					
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			return null;
+	}
+	
+	public Date getCreatedDate(int recipe_id) throws SQLException {
+		 String sql = "SELECT createdDate "
+					+ "FROM users_recipe "
+					+ "WHERE recipe_id = ?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {recipe_id});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+				Date createdDate = null;
+				while (rs.next()) {
+					createdDate = rs.getDate("createdDate");
+				}		
+				return createdDate;					
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			return null;
 	}
 	
 }

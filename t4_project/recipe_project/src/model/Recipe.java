@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Recipe {
@@ -11,10 +12,12 @@ public class Recipe {
 	private int hits;
 	private List<Procedure> procedure;
 	private List<String> ingredients;
+	private String writer;		// 작성자 (USERS_RECIPE테이블)	
+	private Date createdDate;	// 작성일 (USERS_RECIPE테이블)
 	
 	public Recipe() {}
 	
-	public Recipe (int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients) {
+	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients, String writer, Date createdDate) {
 		this.recipe_id = recipe_id;
 		this.category_id = category_id;
 		this.rname = rname;
@@ -23,6 +26,8 @@ public class Recipe {
 		this.hits = hits;
 		this.procedure = procedure;
 		this.ingredients = ingredients;
+		this.writer = writer;
+		this.createdDate = createdDate;
 	}
 
 	public int getRecipe_id() {
@@ -89,6 +94,22 @@ public class Recipe {
 		this.ingredients = ingredients;
 	}
 	
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", category_id=" + category_id + ", rname=" + rname + ", time="
