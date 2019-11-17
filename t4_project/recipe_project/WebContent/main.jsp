@@ -16,58 +16,80 @@
 	<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 	
 </head>
+<style>
+div, h3, h4, tr, td {
+	text-align : center;
+}
+
+img {
+	width: 240px; 
+	height: 192px;
+	style="text-align:center"
+}
+</style>
 <body>
 
 <div class="container">
 	<div class="masthead">
-        <h3 class="text-muted">모두의 레시피</h3>
+		<br>
+        <h3 class="text-muted">모두의 레시피</h3> <br>
         <nav>
-          <ul>
-            <li class="active"><a href="<c:url value='/main' />">Home</a></li>
-            <li><a href="<c:url value='/recipe/list'>
+          <ul class="nav nav-pills nav-justified">
+            <li class="nav-item"><a class="nav-link active" href="<c:url value='/main' />">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
             				<c:param name='categoryId' value='0' />
             			 </c:url>">재료 맞춤 레시피</a></li>
-            <li><a href="<c:url value='/recipe/list'>
+            <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
             				<c:param name='categoryId' value='10' />
             			 </c:url>">일반 레시피</a></li>
-            <li><a href="<c:url value='/recipe/list'>
+            <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
             				<c:param name='categoryId' value='20' />
             			 </c:url>">SNS 인기 레시피</a></li>
-            <li><a href="<c:url value='/recipe/list'>
+            <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
             				<c:param name='categoryId' value='30' />
             			 </c:url>">나만의 레시피</a></li>
           </ul>
         </nav>
 	</div>
 
+	<br>
+
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+        <h1>재료 맞춤 레시피</h1>
+        <p class="lead">냉장고 속 재료를 입력하여 레시피를 추천받으세요!</p>
+        <p><a class="btn btn-lg btn-success" href="<c:url value='/recipe/list'>
+            				<c:param name='categoryId' value='0' />
+            			 </c:url>" role="button">재료입력</a></p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+          <h2>오늘의 추천 레시피</h2>
           <p>???</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+            				<c:param name='categoryId' value='10' />
+            			 </c:url>" role="button">더 알아보기 »</a></p>
         </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
+          <h2>SNS 인기 레시피</h2>
           <p>???</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+            				<c:param name='categoryId' value='20' />
+            			 </c:url>" role="button">더 알아보기 »</a></p>
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
+          <h2>나만의 레시피</h2>
           <p>???</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+            				<c:param name='categoryId' value='30' />
+            			 </c:url>" role="button">더 알아보기 »</a></p>
         </div>
       </div>
 
       <!-- Site footer -->
+      <br><br>
       <footer class="footer">
         <p>© TEAM4 Sommangchi</p>
       </footer>
