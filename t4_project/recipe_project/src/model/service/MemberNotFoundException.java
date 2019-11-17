@@ -3,18 +3,18 @@ package model.service;
 /**
  * TODO
  */
-public class UserNotFoundException extends Exception {
+public class MemberNotFoundException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UserNotFoundException() {
+	public MemberNotFoundException() {
 		super();
 	}
 
-	public UserNotFoundException(String arg0) {
+	public MemberNotFoundException(String arg0) {
 		super(arg0);
 	}
 }

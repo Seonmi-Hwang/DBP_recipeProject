@@ -25,7 +25,7 @@ public class RecipeManager {
 		return recipeMan;
 	}
 	
-	public int create(Recipe recipe) throws SQLException, ExistingUserException {
+	public int create(Recipe recipe) throws SQLException, ExistingMemberException {
 		return recipeDAO.create(recipe);
 	}
 

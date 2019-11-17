@@ -3,18 +3,18 @@ package model.service;
 /**
  * TODO
  */
-public class ExistingUserException extends Exception {
+public class ExistingMemberException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ExistingUserException() {
+	public ExistingMemberException() {
 		super();
 	}
 
-	public ExistingUserException(String arg0) {
+	public ExistingMemberException(String arg0) {
 		super(arg0);
 	}
 }

@@ -58,6 +58,13 @@ public class Member {
 		this.mname = mname;
 	}
 
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.pw.equals(password);
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
