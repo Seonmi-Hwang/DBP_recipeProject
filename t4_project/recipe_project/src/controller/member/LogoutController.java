@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import controller.recipe.MemberSessionUtils;
 
 public class LogoutController implements Controller {
 	@Override

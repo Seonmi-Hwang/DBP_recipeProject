@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="EUC-KR"%>
-<%@page import="model.Member" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	Member member = (Member)request.getAttribute("member");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +42,7 @@ function memberModify() {
 <br>
 <!-- Update Form  -->
 <form name="form" method="POST" action="<c:url value='/member/update' />">
-  <input type="hidden" name="userId" value="<%=member.getEmail_id()%>"/>	  
+  <input type="hidden" name="email_id" value="${member.email_id}"/>	  
   <table style="width: 100%">
 	<tr>
 	  <td width="20"></td>
@@ -61,25 +57,25 @@ function memberModify() {
 	  	  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">이메일 ID</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<%= member.getEmail_id() %>
+				${member.email_id}
 			</td>
 		  </tr>
 		  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">비밀번호</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw" value="<%=member.getPw()%>">
+				<input type="password" style="width: 240" name="pw" value="${member.pw}">
 			</td>
 		  </tr>
 		  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">비밀번호 확인</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw2" value="<%=member.getPw()%>">
+				<input type="password" style="width: 240" name="pw2" value="${member.pw}">
 			</td>
 		  </tr>
 		  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">이름</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="mname" value="<%=member.getMname()%>">
+				<input type="text" style="width: 240" name="mname" value="${member.mname}">
 			</td>
 	    </table>
 	    <br>	  

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.recipe.MemberSessionUtils;
 import model.Member;
 import model.service.MemberManager;
 

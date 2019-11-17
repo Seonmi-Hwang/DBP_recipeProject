@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.recipe.MemberSessionUtils;
 import model.Member;
 import model.service.MemberManager;
 
@@ -17,7 +16,7 @@ public class DeleteMemberController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		String deleteId = request.getParameter("email_Id");
+		String deleteId = request.getParameter("email_id");
     	log.debug("Delete User : {}", deleteId);
 
     	MemberManager manager = MemberManager.getInstance();		

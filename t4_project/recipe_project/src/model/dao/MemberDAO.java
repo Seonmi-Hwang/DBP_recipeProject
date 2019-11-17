@@ -42,7 +42,7 @@ private JDBCUtil jdbcUtil = null;
 		String sql = "UPDATE member "
 					+ "SET pw=?, mname=? " //member_id는 기본적으로 부여되는거라 수정 불가. email_id는 아이디 값이라 변경할 수 없음 따라서 두개밖에 없음
 					+ "WHERE email_id=?";
-		Object[] param = new Object[] {member.getMember_id(), member.getPw(), member.getMname(), member.getEmail_id()}; 
+		Object[] param = new Object[] {member.getPw(), member.getMname(), member.getEmail_id()}; 
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
 		try {				
@@ -96,6 +96,30 @@ private JDBCUtil jdbcUtil = null;
 				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
 					rs.getInt("member_id"),
 					email_id,
+					rs.getString("pw"),
+					rs.getString("mname"));
+				return member;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	public Member findMember(int member_id) throws SQLException {
+        String sql = "SELECT email_id, pw, mname " //pw를 전달해도 되는지는 의문
+        			+ "FROM member "
+        			+ "WHERE member_id=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {member_id});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						// 학생 정보 발견
+				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
+					member_id,
+					rs.getString("email_id"),
 					rs.getString("pw"),
 					rs.getString("mname"));
 				return member;

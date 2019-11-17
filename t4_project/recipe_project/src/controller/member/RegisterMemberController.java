@@ -16,7 +16,7 @@ public class RegisterMemberController implements Controller 	{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Member member = new Member(
-			request.getParameter("email_Id"),
+			request.getParameter("email_id"),
 			request.getParameter("pw"),
 			request.getParameter("mname"));
 		

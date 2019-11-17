@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.recipe.MemberSessionUtils;
 import model.Member;
 import model.service.MemberManager;
 
@@ -18,7 +17,6 @@ public class UpdateMemberController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
-    	//언제 GET이고 언제 POST인지 잘모르겠다.
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행

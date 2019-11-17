@@ -41,7 +41,7 @@ function memberCreate() {
 <body>
 <br>
 <!-- registration form  -->
-<form name="form" method="POST" action="<c:url value='member/register' />">
+<form name="form" method="POST" action="<c:url value='/member/register' />">
   <table style="width: 100%">
     <tr>
       <td width="20"></td>
