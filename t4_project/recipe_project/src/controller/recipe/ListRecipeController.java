@@ -20,6 +20,7 @@ public class ListRecipeController implements Controller {
 		List<Recipe> recipeList = manager.findRecipeList(category_id);
 		
 		request.setAttribute("recipeList", recipeList);
+		request.setAttribute("category_id", category_id);
 		return "/recipe/list.jsp";	
 	}
 }
