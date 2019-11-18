@@ -37,16 +37,16 @@ img {
           <ul class="nav nav-pills nav-justified">
             <li class="nav-item"><a class="nav-link" href="<c:url value='/main' />">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
-            				<c:param name='categoryId' value='0' />
+            				<c:param name='category_id' value='0' />
             			 </c:url>">재료 맞춤 레시피</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
-            				<c:param name='categoryId' value='10' />
+            				<c:param name='category_id' value='10' />
             			 </c:url>">일반 레시피</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
-            				<c:param name='categoryId' value='20' />
+            				<c:param name='category_id' value='20' />
             			 </c:url>">SNS 인기 레시피</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
-            				<c:param name='categoryId' value='30' />
+            				<c:param name='category_id' value='30' />
             			 </c:url>">나만의 레시피</a></li>
           </ul>
         </nav>
