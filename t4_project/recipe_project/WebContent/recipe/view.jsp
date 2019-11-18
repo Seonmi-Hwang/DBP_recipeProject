@@ -60,7 +60,8 @@
 		  </tr>
 	 	</table>
 	    <br>
-	    
+	    <br>
+	    <input type="button" value="목록" onClick="history.back()">
 	  </td>
 	</tr>
   </table>  
