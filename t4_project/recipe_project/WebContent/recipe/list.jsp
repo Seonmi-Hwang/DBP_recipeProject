@@ -43,7 +43,7 @@ img {
           <div class="input-field first-wrap">
             <div class="input-select">
               <select data-trigger="" name="category_id"> <!-- request.getParameter("category_id")로 받으면 됨 -->
-                <option value="100">전체 레시피</option>
+                <option value="5">전체 레시피</option>
                 <option value="10">일반 레시피</option>
                 <option value="20">SNS 인기 레시피</option>
                 <option value="30">나만의 레시피</option>
@@ -51,7 +51,7 @@ img {
             </div>
           </div>
           <div class="input-field second-wrap">
-            <input id="search" type="text" name="keyword" placeholder="검색하실 레시피를 입력하세요" />
+            <input type="search" name="keyword" autocomplete="on" placeholder="검색하실 레시피를 입력하세요" />
           </div>
           <div class="input-field third-wrap">
             <button class="btn-search" type="submit">
@@ -148,12 +148,16 @@ img {
 	
 <br>
 
-<c:if test="${category_id == 100}">
-	<h4>전체 레시피 검색</h4><br>
-</c:if>
 
 <c:if test="${currentPage eq 'searchRecipe'}">
-	<h5>'${keyword}' 검색어에 대한 결과</h5>
+	<c:choose>
+		<c:when test="${category_id == 5}">
+			<h5>전체 레시피에서 '${keyword}' 검색어에 대한 결과</h5>
+		</c:when>
+		<c:otherwise>
+			<h5>'${keyword}' 검색어에 대한 결과</h5>
+		</c:otherwise>
+	</c:choose>
 	<p> 총 ${fn:length(recipeList)} 개의 레시피가 검색되었습니다. </p>
 </c:if>
 
@@ -195,7 +199,7 @@ img {
       <!-- Site footer -->
       <br><br>
       <footer class="footer">
-        <p>© TEAM4 Sommangchi</p>
+        <p align="center">© TEAM4 Sommangchi</p>
       </footer>
 
 </div>

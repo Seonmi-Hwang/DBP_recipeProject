@@ -158,7 +158,7 @@ private JDBCUtil jdbcUtil = null;
         		   + "WHERE category_id IN (?, ?, ?) AND rname LIKE ?"
         		   + "ORDER BY hits DESC ";
         
-        if (category_id == 100) { // 전체 레시피에서 검색
+        if (category_id == 5) { // 전체 레시피에서 검색
     		jdbcUtil.setSqlAndParameters(sql, new Object[] {10, 20, 30, inputKey});		// JDBCUtil에 query문 설정
         } else { // 각 레시피 카테고리에서 검색
     		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id, 0, 0, inputKey});		// JDBCUtil에 query문 설정
