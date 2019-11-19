@@ -33,15 +33,14 @@ function recipeModify() {
 <br>
 <!-- Add Form  -->
 <form name="form" method="POST" action="<c:url value='/recipe/add' />">
-  <input type="hidden" name="recipe_id" value="${category_id}"/>	  
+  <input type="hidden" name="recipe_id" value="${category_id}"/>	<!-- AddRecipeController.java에서 Recipe객체 생성 시 필요 -->	  
   <table style="width: 100%">
 	<tr>
 	  <td width="20"></td>
 	  <td>
 	    <table>
 		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>레시피 수정</b>&nbsp;&nbsp;</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10"></td>
+			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>레시피 추가</b>&nbsp;&nbsp;</td>
 		  </tr>
 	    </table>  
 	    <br>	  
@@ -49,28 +48,26 @@ function recipeModify() {
 	  	  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">레시피 이름</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="recipeName" value="${recipe.rname}">
+				<input type="text" style="width: 240" name="recipeName" placeholder="검색어를 입력하세요">
 			</td>
 		  </tr>
 		  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">재료정보</td>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">재료 정보</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<c:forEach var="ingredient" items="${recipe.ingredients}">
-					<LI> <input type="text" style="width: 240" name="ingredient" value="${ingredient}">
-				</c:forEach>
+				<jsp:include page="addProcedure.jsp" />
 			</td>
 		  </tr>
 		  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">소요 시간</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="time" value="${recipe.time}">
+				<input type="text" style="width: 240" name="time" placeholder="소요 시간을 입력하세요"">
 			</td>
 		  </tr>		  
 		  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">조리 과정</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				<c:forEach var="proc" items="${recipe.procedure}">
-					<LI> <input type="text" style="width: 240" name="procedure" value="${proc}">
+					<LI> <input type="text" style="width: 240" name="procedure" placeholder="조리 과정을 입력하세요"">
 				</c:forEach>	
 			</td>
 		  </tr>
