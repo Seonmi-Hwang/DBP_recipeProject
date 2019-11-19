@@ -12,17 +12,7 @@
 				 " <li>${ingredient.iname}</li>"+
 				 "</c:forEach>";
 		 };
-	$(document).ready(function(){
-		$("a").click(function(){ 	
-			$("a").hide();
-		
-			//var str = ""
-			//var tdArr = new Array();	// 배열 선언
-			
-			// 현재 클릭된 Row(<tr>)
-			//var li = $(this);
-		});
-	});
+	
 	
 	
 </script>
@@ -111,7 +101,15 @@
 		</li>
 	</ul>
 	<ul class="small" id="small">
-		 <c:forEach var="1000" items='${ingreList}'><li>${ingredient.iname}</li></c:forEach> 
+	
+		 <c:forEach var="1000" items='${ingreList}'>
+		 <jsp:include page="selectForm.jsp">
+        <jsp:param name="myVar" value="계란류"/>
+    </jsp:include>
+		 <li>
+		 ${ingredient.iname}
+		 </li>
+		 </c:forEach> 
 	</ul>
 </fieldset>
 </body>
