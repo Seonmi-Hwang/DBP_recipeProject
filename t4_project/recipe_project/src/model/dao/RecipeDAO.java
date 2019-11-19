@@ -150,6 +150,43 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
+	// 주어진 category_id와 rname 부분값에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
+	public List<Recipe> searchRecipeList(int category_id, String keyword) throws SQLException {
+		String inputKey = "%" + keyword + "%";
+        String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+        		   + "FROM recipe_info "	
+        		   + "WHERE category_id=? AND rname LIKE ?"
+        		   + "ORDER BY hits DESC ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id, inputKey});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Recipe> recipeList = new ArrayList<Recipe>();	// Recipe들의 리스트 생성
+			while (rs.next()) {
+				int recipe_id = rs.getInt("recipe_id");
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 recipe 정보를 저장
+					recipe_id,
+					category_id,
+					rs.getString("rname"),
+					rs.getString("time"),
+					rs.getString("result_img"),
+					rs.getInt("hits"),
+					null,
+					null,
+					null,
+					null);	
+				recipeList.add(recipe);				// List에  Recipe 객체 저장
+			}		
+			return recipeList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	// 재료 맞춤 레시피 출력
 	public List<Integer> getRecommendRecipe(List<Integer> ingredients) throws SQLException {
 		String sql = "SELECT DISTINCT recipe_id "

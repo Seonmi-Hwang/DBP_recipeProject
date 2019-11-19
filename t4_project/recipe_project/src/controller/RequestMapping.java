@@ -36,6 +36,7 @@ public class RequestMapping {
         mappings.put("/recipe/add", new AddRecipeController());
         mappings.put("/recipe/add/form", new AddRecipeController());
         mappings.put("/recipe/update", new UpdateRecipeController());
+        mappings.put("/recipe/search", new SearchRecipeController());
         
         mappings.put("/ingredient/list", new ListIngredientController());
 //        mappings.put("", value);

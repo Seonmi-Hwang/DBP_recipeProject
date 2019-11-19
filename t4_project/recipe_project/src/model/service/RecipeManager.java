@@ -67,6 +67,21 @@ public class RecipeManager {
 		return recipeList;
 	}
 	
+	public List<Recipe> searchRecipeList(int categoryId, String keyword) throws SQLException, RecipeNotFoundException {
+		List<Recipe> recipeList = recipeDAO.searchRecipeList(categoryId, keyword);
+		
+		if (recipeList == null) {
+			try {
+				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
+			} catch (RecipeNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		
+		return recipeList;
+	}
+	
 	public List<Integer> findRecommendRecipe(List<Integer> ingredients) throws SQLException {
 		return recipeDAO.getRecommendRecipe(ingredients);
 	}
