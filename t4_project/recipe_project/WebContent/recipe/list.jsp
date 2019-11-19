@@ -17,14 +17,14 @@
 	
 </head>
 <style>
-div, h3, h4, tr, td {
+h3, h4, tr, td {
 	text-align : center;
 }
 
 img {
 	width: 240px; 
 	height: 192px;
-	style="text-align:center"
+	text-align : center;
 }
 </style>
 <body>
@@ -144,6 +144,12 @@ img {
 			<c:if test="${status.index % 4 == 0}"><br><br></c:if>
 	</c:forEach>
 </div>
+		<c:if test="${category_id == 30}">
+		<br>
+			<p align="right"><a class="btn btn-lg btn-success" href="<c:url value='/recipe/add/form'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>" role="button">레시피 추가</a></p>
+		</c:if>
      
       <!-- Site footer -->
       <br><br>
