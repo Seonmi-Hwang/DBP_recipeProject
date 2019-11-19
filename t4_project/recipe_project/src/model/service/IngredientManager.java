@@ -33,8 +33,8 @@ public class IngredientManager {
 			return ingre;
 		}
 	
-	public List<Ingredient> findIngredientList() throws SQLException {
-		return IngreDAO.findAllingredientList();
+	public List<Ingredient> findIngredientList(String category) throws SQLException {
+		return IngreDAO.findCategoryingredientList(category);
 	}
 	
 	

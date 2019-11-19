@@ -216,11 +216,18 @@ public class IngredientDAO {
 	}
 	
 	public List<Ingredient> findAllingredientList() throws SQLException {
+<<<<<<< HEAD
         String sql = "SELECT ii.icategory AS category, ii.ingredient_id AS ingredientid, "
         		+ " ii.iname AS name"
      		   + "FROM ingredient_info ii "
      		   + "GROUP BY ii.icategory "
      		   + "ORDER BY ii.iname";  
+=======
+        String sql = "SELECT icategory, ingredient_id, iname "
+     		   + "FROM ingredient_info "
+     		   + "GROUP BY icategory, ingredient_id, iname";
+//     		   + "ORDER BY iname";
+>>>>>>> yoon
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
@@ -228,11 +235,11 @@ public class IngredientDAO {
 			List<Ingredient> ingreList = new ArrayList<Ingredient>();	// Ingredient들의 리스트 생성
 			while (rs.next()) {
 				Ingredient ingre = new Ingredient(			// Ingredient 객체를 생성하여 현재 행의 정보를 저장
-						rs.getInt("ingredientid"),
-						rs.getInt(""),
-						rs.getString(""),
-						rs.getString("category"),
-						rs.getString("name"));
+						rs.getInt("ingredient_id"),
+						0,
+						null,
+						rs.getString("icategory"),
+						rs.getString("iname"));
 				ingreList.add(ingre);				// List에 Ingredient 객체 저장
 			}		
 			return ingreList;		
@@ -243,6 +250,7 @@ public class IngredientDAO {
 			jdbcUtil.close();		// resource 반환
 		}
 		return null;
+<<<<<<< HEAD
 	}
 	
 	public List<Ingredient> findCategoryingredientList(String category) throws SQLException {
@@ -273,6 +281,38 @@ public class IngredientDAO {
 			jdbcUtil.close();		// resource 반환
 		}
 		return null;
+=======
+	}
+	
+	public List<Ingredient> findCategoryingredientList(String category) throws SQLException {
+        String sql = "SELECT ii.ingredient_id AS ingredientid, "
+        		+ " ii.iname AS name  "
+     		   + "FROM ingredient_info ii "
+     		   + "WHERE ii.ingredient_id = ? "
+     		   + "ORDER BY ii.iname";  
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Ingredient> ingreList = new ArrayList<Ingredient>();	// Ingredient들의 리스트 생성
+			while (rs.next()) {
+				Ingredient ingre = new Ingredient(			// Ingredient 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("ingredientid"),
+						rs.getInt(""),
+						rs.getString(""),
+						category,
+						rs.getString("name"));
+				ingreList.add(ingre);				// List에 Ingredient 객체 저장
+			}		
+			return ingreList;		
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+>>>>>>> yoon
 	}
 }
 
