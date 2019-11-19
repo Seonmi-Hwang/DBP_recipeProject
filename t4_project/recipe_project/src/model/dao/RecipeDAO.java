@@ -19,7 +19,7 @@ private JDBCUtil jdbcUtil = null;
 	// 레시피 추가
 	public int create(Recipe recipe) throws SQLException {
 		String sql = "INSERT INTO recipe_info (recipe_id, category_id, rname, time, result_img, hits) "
-					+ "VALUES (?, ?, ?, ?, ?, ?) ";		
+					+ "VALUES (rid_sequence.nextval, ?, ?, ?, ?, ?) ";		
 		Object[] param = new Object[] {recipe.getRecipe_id(), recipe.getCategory_id(), 
 				recipe.getRname(), recipe.getTime(), recipe.getResult_img(), recipe.getHits()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
