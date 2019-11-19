@@ -62,7 +62,7 @@ img {
         </div>
       </form>
     </div>
-        
+        <br>
         <nav>
           <ul class="nav nav-pills nav-justified">
             <li class="nav-item"><a class="nav-link" href="<c:url value='/main' />">Home</a></li>
