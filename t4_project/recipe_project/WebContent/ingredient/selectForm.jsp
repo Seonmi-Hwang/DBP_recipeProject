@@ -4,8 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="jquery-3.2.1.min.js"></script>
-<script>//<-- type="text/javascript"--?>
+<script>
+//<-- type="text/javascript"--?>
+	 function wname(category){
+		 var category = document.getElementById("small").text;
+		 document.getElementById("small").innerHTML="<c:forEach var='계란류' items='${ingreList}'>"+
+				 " <li>${ingredient.iname}</li>"+
+				 "</c:forEach>";
+		 };
 	$(document).ready(function(){
 		$("a").click(function(){ 	
 			$("a").hide();
@@ -101,17 +107,12 @@
 			<a>빵류</a> 
 		</li>
 		<li>
-			<a href="javascript:;">계란류</a>
+			<a href="#" onclick="wname('계란류')">계란류</a>
 		</li>
 	</ul>
-	<ul class="small" >
-		<c:forEach var="ingredient" items="${ingreList}">
-		  <li>
-		  	${ingredient.name}
-		  </li>
-	  </c:forEach>  
+	<ul class="small" id="small">
+		 <c:forEach var="1000" items='${ingreList}'><li>${ingredient.iname}</li></c:forEach> 
 	</ul>
 </fieldset>
 </body>
-
 </html>
