@@ -89,21 +89,10 @@
 		</li>
 	</ul>
 	<ul class="small" >
-		<c:forEach var="member" items="${memberList}">  			  	
-  		
+		<c:forEach var="ingredient" items="${ingreList}">
 		  <li>
-		  	${member.member_id}
+		  	${ingre.name}
 		  </li>
-		  <td width="200" bgcolor="ffffff" style="padding-left: 10">
-			<a href="<c:url value='/member/view'>
-					   <c:param name='email_id' value='${member.email_id}'/>
-			 		 </c:url>">
-			  ${member.email_id}</a>
-		  </td>
-		  <td width="200" align="center" bgcolor="ffffff" height="20">
-		    ${member.mname}
-		  </td>
-		</tr>
 	  </c:forEach>  
 	</ul>
 </fieldset>
@@ -111,12 +100,12 @@
 <script type="text/javascript">
 $(".big li").click(function(){ 	
 
-	var str = ""
-	var tdArr = new Array();	// 배열 선언
+	//var str = ""
+	//var tdArr = new Array();	// 배열 선언
 	
 	// 현재 클릭된 Row(<tr>)
-	var li = $(this);
-	
+	//var li = $(this);
+}
 	
 	
 </script>

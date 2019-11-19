@@ -32,7 +32,7 @@ public class ListMemberController implements Controller {
 		// List<User> userList = manager.findUserList(currentPage, countPerPage);
 
 		// userList 객체와 현재 로그인한 사용자 ID를 request에 저장하여 전달
-		request.setAttribute("memberList", memberList);				
+		request.setAttribute("memberList", memberList);	
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		
 

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Ingredient;
+import model.Member;
 import model.dao.IngredientDAO;
 
 public class IngredientManager {
@@ -23,6 +24,16 @@ public class IngredientManager {
 	}
 	
 
+	public Ingredient findIngredient(int ingreId)
+			throws SQLException, IngredientNotFoundException {
+			Ingredient ingre = IngreDAO.findIngredientname(ingreId);
+			
+			if (ingre == null) {
+				throw new IngredientNotFoundException(ingreId + "는 존재하지 않는 아이디입니다.");
+			}		
+			return ingre;
+		}
+	
 	public List<Ingredient> findIngredientList() throws SQLException {
 		return IngreDAO.findAllingredientList();
 	}
