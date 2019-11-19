@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>마이페이지</title>
+<script>
+function memberRemove() {
+	return confirm("정말 삭제하시겠습니까?");		
+}
+</script>
 </head>
 <body>
 <br>
@@ -43,8 +48,11 @@
 	    <br>
 	    <a href="<c:url value='/member/update'>
 	     		   <c:param name='email_id' value='${member.email_id}'/>
-			 	 </c:url>">프로필 설정</a>
-		<c:if test="${updateFailed}">
+			 	 </c:url>">프로필 설정</a>&nbsp;
+ 	    <a href="<c:url value='/member/delete'>
+				   <c:param name='email_id' value='${member.email_id}'/>
+			 	 </c:url>" onclick="return memberRemove();">회원 탈퇴</a>
+		<c:if test="${updateFailed || deleteFailed}}">
 	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
 	    </c:if>    
  	    <br><br>

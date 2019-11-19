@@ -14,6 +14,6 @@ public class LogoutController implements Controller {
 		session.removeAttribute(MemberSessionUtils.USER_SESSION_KEY);
 		session.invalidate();		
         
-        return "redirect:/member/list";
+        return "redirect:/member/login/form";
     }
 }

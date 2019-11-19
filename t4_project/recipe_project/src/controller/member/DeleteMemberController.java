@@ -43,6 +43,6 @@ public class DeleteMemberController implements Controller {
 				   ? "시스템 관리자 정보는 삭제할 수 없습니다."		
 				   : "타인의 정보는 삭제할 수 없습니다.";													
 		request.setAttribute("exception", new IllegalStateException(msg));            
-		return "/member/view.jsp";		// 사용자 보기 화면으로 이동 (forwarding)	
+		return "/member/myPage.jsp";		// 사용자 보기 화면으로 이동 (forwarding)	
 	}
 }
