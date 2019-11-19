@@ -38,8 +38,8 @@ public class IngredientManager {
 	}
 	
 	
-	public List<Ingredient> findingredientname(String category) throws SQLException {
-		List<Ingredient> ingre = IngreDAO.findCategoryingredientList(category); 
+	public List<Ingredient> findingredientname() throws SQLException {
+		List<Ingredient> ingre = IngreDAO.findAllingredientList(); 
 
 		return ingre;
 	}
