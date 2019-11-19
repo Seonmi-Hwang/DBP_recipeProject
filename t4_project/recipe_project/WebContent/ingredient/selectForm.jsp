@@ -6,7 +6,8 @@
 <head>
 <script>
 //<-- type="text/javascript"--?>
-	 function wname(category){
+	var category="계란류";
+	 function wname(){
 		 var category = document.getElementById("small").text;
 		 document.getElementById("small").innerHTML="<c:forEach var='계란류' items='${ingreList}'>"+
 				 " <li>${ingredient.iname}</li>"+
@@ -101,18 +102,27 @@
 <title>재료</title>
 </head>
 <body>
+<form name="form" method="POST" action="<c:url value='/user/update' />">
+<c:set var="category" value="계란류"/>
 <fieldset class="f1">
 	<ul class = "big">
 		<li>
 			<a>빵류</a> 
 		</li>
 		<li>
-			<a href="#" onclick="wname('계란류')">계란류</a>
+			<a href="<c:url value="#" > 
+  
+  </c:url>" onclick="wname()">계란류</a>
 		</li>
 	</ul>
 	<ul class="small" id="small">
-		 <c:forEach var="1000" items='${ingreList}'><li>${ingredient.iname}</li></c:forEach> 
+		<c:param name="category" value="계란류"></c:param>
+		 <c:forEach var="ingredient" items='${ingreList}'>
+			
+		 	<li>${ingredient.iname}</li>
+		 </c:forEach> 
 	</ul>
 </fieldset>
+</form>
 </body>
 </html>

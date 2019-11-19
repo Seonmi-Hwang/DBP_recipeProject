@@ -245,11 +245,11 @@ public class IngredientDAO {
 	}
 	
 	public List<Ingredient> findCategoryingredientList(String category) throws SQLException {
-        String sql = "SELECT ii.ingredient_id AS ingredientid, "
-        		+ " ii.iname AS name  "
-     		   + "FROM ingredient_info ii "
-     		   + "WHERE ii.ingredient_id = ? "
-     		   + "ORDER BY ii.iname";  
+        String sql = "SELECT ingredient_id AS ingredientid, iname AS name " + 
+        		"FROM ingredient_info " + 
+        		"WHERE icategory = ?" + 
+        		"ORDER BY iname";
+        		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {category});		// JDBCUtil에 query문 설정
 					
 		try {
