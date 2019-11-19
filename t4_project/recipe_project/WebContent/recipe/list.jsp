@@ -145,7 +145,6 @@ img {
 	</c:forEach>
 </div>
      
-
       <!-- Site footer -->
       <br><br>
       <footer class="footer">
