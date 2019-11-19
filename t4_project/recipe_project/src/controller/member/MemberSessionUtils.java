@@ -1,6 +1,13 @@
 package controller.member;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
+
+import model.Member;
+import model.dao.MemberDAO;
+import model.service.MemberManager;
+import model.service.MemberNotFoundException;
 
 public class MemberSessionUtils {
 
@@ -27,5 +34,26 @@ public class MemberSessionUtils {
             return false;
         }
         return loginMember.equals(email_id);
+    }
+    
+    /* 현재 로그인한 사용자의 이름을 구함*/
+    public static String getLoginMemberName(HttpSession session) {
+    	String memberId = getLoginMemberId(session);
+    	
+    	MemberManager manager = MemberManager.getInstance();
+        Member member = null;
+        	
+        try {
+			member = manager.findMember(memberId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MemberNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return member.getMname();
+    	
+    	
     }
 }
