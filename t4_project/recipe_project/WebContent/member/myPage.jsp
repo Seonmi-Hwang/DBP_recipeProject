@@ -41,7 +41,7 @@
 		  </tr>
 	 	</table>
 	    <br>
-	    <a href="<c:url value='/member/update/form'>
+	    <a href="<c:url value='/member/update'>
 	     		   <c:param name='email_id' value='${member.email_id}'/>
 			 	 </c:url>">프로필 설정</a>
 		<c:if test="${updateFailed}">

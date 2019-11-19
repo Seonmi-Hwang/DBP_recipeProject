@@ -26,7 +26,8 @@ public class UpdateMemberController implements Controller {
     		
     		MemberManager manager = MemberManager.getInstance();
 			Member member = manager.findMember(updateId);	// 수정하려는 사용자 정보 검색
-			request.setAttribute("member", member);			
+			request.setAttribute("member", member);
+			request.setAttribute("email_id", updateId);
 
 			HttpSession session = request.getSession();
 			if (MemberSessionUtils.isLoginMember(updateId, session) ||
