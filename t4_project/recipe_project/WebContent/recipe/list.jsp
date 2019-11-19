@@ -43,7 +43,7 @@ img {
           <div class="input-field first-wrap">
             <div class="input-select">
               <select data-trigger="" name="category_id"> <!-- request.getParameter("category_id")로 받으면 됨 -->
-                <option>Category</option>
+                <option value="100">전체 레시피</option>
                 <option value="10">일반 레시피</option>
                 <option value="20">SNS 인기 레시피</option>
                 <option value="30">나만의 레시피</option>
@@ -147,6 +147,10 @@ img {
 	</div>
 	
 <br>
+
+<c:if test="${category_id == 100}">
+	<h4>전체 레시피 검색</h4><br>
+</c:if>
 
 <c:if test="${currentPage eq 'searchRecipe'}">
 	<h5>'${keyword}' 검색어에 대한 결과</h5>

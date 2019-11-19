@@ -155,9 +155,14 @@ private JDBCUtil jdbcUtil = null;
 		String inputKey = "%" + keyword + "%";
         String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
         		   + "FROM recipe_info "	
-        		   + "WHERE category_id=? AND rname LIKE ?"
+        		   + "WHERE category_id IN (?, ?, ?) AND rname LIKE ?"
         		   + "ORDER BY hits DESC ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id, inputKey});		// JDBCUtil에 query문 설정
+        
+        if (category_id == 100) { // 전체 레시피에서 검색
+    		jdbcUtil.setSqlAndParameters(sql, new Object[] {10, 20, 30, inputKey});		// JDBCUtil에 query문 설정
+        } else { // 각 레시피 카테고리에서 검색
+    		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id, 0, 0, inputKey});		// JDBCUtil에 query문 설정
+        }
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
