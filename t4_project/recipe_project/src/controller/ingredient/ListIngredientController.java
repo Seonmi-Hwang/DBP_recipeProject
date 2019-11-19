@@ -14,9 +14,9 @@ public class ListIngredientController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IngredientManager manager = IngredientManager.getInstance();
-//		String category = request.getParameter("category");
+		String category = request.getParameter("category");
 		
-		List<Ingredient> ingreList = manager.findIngredientList();
+		List<Ingredient> ingreList = manager.findingredientname(category);
 		
 		request.setAttribute("ingreList", ingreList);
 		return "/ingredient/selectForm.jsp";	
