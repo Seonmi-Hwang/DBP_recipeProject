@@ -9,9 +9,12 @@
 	var category="계란류";
 	 function wname(){
 		 var category = document.getElementById("small").text;
-		 document.getElementById("small").innerHTML="<c:forEach var='계란류' items='${ingreList}'>"+
-				 " <li>${ingredient.iname}</li>"+
-				 "</c:forEach>";
+		 document.getElementById("small").innerHTML="<c:url value='/'>"
+			+"<c:param name='category' value='계란류'/>"
+				+"</c:url>";
+				//"<c:forEach var='계란류' items='${ingreList}'>"+
+				 //" <li>${ingredient.iname}</li>"+
+				 //"</c:forEach>";
 		 };
 	$(document).ready(function(){
 		$("a").click(function(){ 	
@@ -102,8 +105,7 @@
 <title>재료</title>
 </head>
 <body>
-<form name="form" method="POST" action="<c:url value='/user/update' />">
-<c:set var="category" value="계란류"/>
+<form action="/ingredient/list" method="post">
 <fieldset class="f1">
 	<ul class = "big">
 		<li>
@@ -116,10 +118,10 @@
 		</li>
 	</ul>
 	<ul class="small" id="small">
-		<c:param name="category" value="계란류"></c:param>
+		
 		 <c:forEach var="ingredient" items='${ingreList}'>
 			
-		 	<li>${ingredient.iname}</li>
+		 	<li><a>${ingredient.iname}</a></li>
 		 </c:forEach> 
 	</ul>
 </fieldset>
