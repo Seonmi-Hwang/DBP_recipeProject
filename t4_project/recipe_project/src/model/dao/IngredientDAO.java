@@ -251,6 +251,7 @@ public class IngredientDAO {
 		}
 		return null;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	
 	public List<Ingredient> findCategoryingredientList(String category) throws SQLException {
@@ -290,6 +291,38 @@ public class IngredientDAO {
      		   + "FROM ingredient_info ii "
      		   + "WHERE ii.ingredient_id = ? "
      		   + "ORDER BY ii.iname";  
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Ingredient> ingreList = new ArrayList<Ingredient>();	// Ingredient들의 리스트 생성
+			while (rs.next()) {
+				Ingredient ingre = new Ingredient(			// Ingredient 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("ingredientid"),
+						rs.getInt(""),
+						rs.getString(""),
+						category,
+						rs.getString("name"));
+				ingreList.add(ingre);				// List에 Ingredient 객체 저장
+			}		
+			return ingreList;		
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+>>>>>>> yoon
+=======
+	}
+	
+	public List<Ingredient> findCategoryingredientList(String category) throws SQLException {
+        String sql = "SELECT ingredient_id AS ingredientid, iname AS name " + 
+        		"FROM ingredient_info " + 
+        		"WHERE icategory = ?" + 
+        		"ORDER BY iname";
+        		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {category});		// JDBCUtil에 query문 설정
 					
 		try {
