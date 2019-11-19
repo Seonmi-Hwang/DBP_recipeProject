@@ -192,7 +192,7 @@ img {
 		<c:if test="${category_id == 30}">
 		<br>
 			<p align="right"><a class="btn btn-lg btn-success" href="<c:url value='/recipe/add/form'>
-            				<c:param name='category_id' value='20' />
+            				<c:param name='category_id' value='30' />
             			 </c:url>" role="button">레시피 추가</a></p>
 		</c:if>
      
