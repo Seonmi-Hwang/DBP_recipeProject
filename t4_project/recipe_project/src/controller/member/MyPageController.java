@@ -19,12 +19,7 @@ public class MyPageController implements Controller {
 		MemberManager manager = MemberManager.getInstance();
 		String email_id = request.getParameter("email_id");
 
-    	Member member = null;
-    	try {
-			member = manager.findMember(email_id);	// 사용자 정보 검색
-		} catch (MemberNotFoundException e) {				
-	        return "redirect:/main";
-		}	
+    	Member member = manager.findMember(email_id);
 		
     	request.setAttribute("member", member);		// 사용자 정보 저장				
 		return "/member/myPage.jsp";				// 사용자 보기 화면으로 이동
