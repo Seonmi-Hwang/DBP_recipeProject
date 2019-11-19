@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import controller.ingredient.*;
 import controller.member.*;
 import controller.recipe.*;
 
@@ -33,6 +35,8 @@ public class RequestMapping {
         mappings.put("/recipe/list", new ListRecipeController());
         mappings.put("/recipe/view", new ViewRecipeController());
         mappings.put("/recipe/update", new UpdateRecipeController());
+        
+        mappings.put("/ingredient/list", new ListIngredientController());
 //        mappings.put("", value);
 //        
 //        logger.info("Initialized Request Mapping!");

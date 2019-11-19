@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Ingredient;
-import model.Member;
 import model.dao.IngredientDAO;
 
 public class IngredientManager {

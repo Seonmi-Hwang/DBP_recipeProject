@@ -4,6 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="jquery-3.2.1.min.js"></script>
+<script>//<-- type="text/javascript"--?>
+	$(document).ready(function(){
+		$("a").click(function(){ 	
+			$("a").hide();
+		
+			//var str = ""
+			//var tdArr = new Array();	// 배열 선언
+			
+			// 현재 클릭된 Row(<tr>)
+			//var li = $(this);
+		});
+	});
+	
+	
+</script>
 <meta charset="utf-8">
 <style>
 	.big {
@@ -76,13 +92,13 @@
 		text-decoration: none;
 	}
 </style>
-<title>Insert title here</title>
+<title>재료</title>
 </head>
 <body>
 <fieldset class="f1">
 	<ul class = "big">
 		<li>
-			<a href="javascript:;">빵류</a> 
+			<a>빵류</a> 
 		</li>
 		<li>
 			<a href="javascript:;">계란류</a>
@@ -91,22 +107,11 @@
 	<ul class="small" >
 		<c:forEach var="ingredient" items="${ingreList}">
 		  <li>
-		  	${ingre.name}
+		  	${ingredient.name}
 		  </li>
 	  </c:forEach>  
 	</ul>
 </fieldset>
 </body>
-<script type="text/javascript">
-$(".big li").click(function(){ 	
 
-	//var str = ""
-	//var tdArr = new Array();	// 배열 선언
-	
-	// 현재 클릭된 Row(<tr>)
-	//var li = $(this);
-}
-	
-	
-</script>
 </html>
