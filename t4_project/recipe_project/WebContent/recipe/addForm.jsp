@@ -1,128 +1,92 @@
-<%@page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-<title>ë ˆì‹œí”¼ ì…ë ¥</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="css/bootstrap.css">
+<meta charset="utf-8">
+<title>·¹½ÃÇÇ ¼öÁ¤</title>
 <script>
-function recipeCreate() {
+function recipeModify() {
 	if (form.recipeName.value == "") {
-		alert("ë ˆì‹œí”¼ IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
-		form.userId.focus();
-		return false;
-	} 
-	if (form.password.value == "") {
-		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
-		form.password.focus();
+		form.recipeName.value = "·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.";
 		return false;
 	}
-	if (form.password.value != form.password2.value) {
-		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-		form.name.focus();
+	if (form.ingredient.value == "") {
+		form.ingredient.value = "Àç·á¸¦ ÀÔ·ÂÇÏ¼¼¿ä.";
 		return false;
 	}
-	if (form.name.value == "") {
-		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
-		form.name.focus();
+	if (form.time.value == "") {
+		form.time.value = "¼Ò¿ä ½Ã°£À» ÀÔ·ÂÇÏ½Ê½Ã¿À.";
 		return false;
 	}
-	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	if(emailExp.test(form.email.value)==false) {
-		alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-		form.email.focus();
+	if (form.procedure.value == "") {
+		form.procedure.value = "Á¶¸® °úÁ¤À» ÀÔ·ÂÇÏ½Ê½Ã¿À.";
 		return false;
 	}
-	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	if(phoneExp.test(form.phone.value)==false) {
-		alert("ì „í™”ë²ˆí˜¸ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-		form.phone.focus();
-		return false;
-	}
-	form.submit();
-}
-
-function userList(targetUri) {
-	form.action = targetUri;
+	
 	form.submit();
 }
 </script>
 </head>
-<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<body>
 <br>
-<!-- registration form  -->
-<form name="form" method="POST" action="<c:url value='/user/register' />">
+<!-- Add Form  -->
+<form name="form" method="POST" action="<c:url value='/recipe/add' />">
+  <input type="hidden" name="recipe_id" value="${category_id}"/>	  
   <table style="width: 100%">
-    <tr>
-      <td width="20"></td>
+	<tr>
+	  <td width="20"></td>
 	  <td>
 	    <table>
 		  <tr>
-		    <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>ì‚¬ìš©ì ê´€ë¦¬ - íšŒì› ê°€ì…</b>&nbsp;&nbsp;</td>
+			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>·¹½ÃÇÇ ¼öÁ¤</b>&nbsp;&nbsp;</td>
+			<td width="250" bgcolor="ffffff" style="padding-left: 10"></td>
 		  </tr>
 	    </table>  
-	    <br>	 
-	    <!-- íšŒì›ê°€ì…ì´ ì‹¤íŒ¨í•œ ê²½ìš° exception ê°ì²´ì— ì €ì¥ëœ ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥ -->
-        <c:if test="${registerFailed}">
-	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
-	    </c:if>
 	    <br>	  
 	    <table style="background-color: YellowGreen">
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ë ˆì‹œí”¼ ì´ë¦„</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240;" name="recipeName" placeholder="ex)ê¹€ì¹˜ì°Œê°œ">
+	  	  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">·¹½ÃÇÇ ÀÌ¸§</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<input type="text" style="width: 240" name="recipeName" value="${recipe.rname}">
 			</td>
 		  </tr>
-<!-- 	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE"></td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="ingredients">
-			</td>
-		  </tr>  -->
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ì†Œìš”ì‹œê°„</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				ì¡°ë¦¬ì‹œê°„ ì´ <input type="password" style="width: 240" name="time" placeholder="ex)10"> ë¶„ ì†Œìš”
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">Àç·áÁ¤º¸</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<c:forEach var="ingredient" items="${recipe.ingredients}">
+					<LI> <input type="text" style="width: 240" name="ingredient" value="${ingredient}">
+				</c:forEach>
 			</td>
 		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ì´ë¦„</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="name" 
-				 	<c:if test="${registerFailed}">value="${user.name}"</c:if>>
-			</td>
-		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ì´ë©”ì¼ ì£¼ì†Œ</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="email" 
-					<c:if test="${registerFailed}">value="${user.email}"</c:if>>
-			</td>
-		  </tr>	
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ì „í™”ë²ˆí˜¸</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="phone" 
-					<c:if test="${registerFailed}">value="${user.phone}"</c:if>>
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">¼Ò¿ä ½Ã°£</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<input type="text" style="width: 240" name="time" value="${recipe.time}">
 			</td>
 		  </tr>		  
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">Á¶¸® °úÁ¤</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<c:forEach var="proc" items="${recipe.procedure}">
+					<LI> <input type="text" style="width: 240" name="procedure" value="${proc}">
+				</c:forEach>	
+			</td>
+		  </tr>
 	    </table>
 	    <br>	  
 	    <table style="width: 100%">
 		  <tr>
 			<td align="left">
-			<input type="button" value="íšŒì› ê°€ì…" onClick="userCreate()"> &nbsp;
-			<input type="button" value="ëª©ë¡" onClick="userList('<c:url value='/user/list' />')">
+			<input type="button" value="¼öÁ¤" onClick="recipeModify()"> &nbsp;
+			<input type="button" value="Ãë¼Ò" onClick="history.back()">
 			</td>
 		  </tr>
 	    </table>
 	  </td>
-    </tr>
+	</tr>
   </table>  
 </form>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>
