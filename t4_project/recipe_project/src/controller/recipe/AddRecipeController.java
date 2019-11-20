@@ -1,6 +1,8 @@
 package controller.recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import controller.member.MemberSessionUtils;
 import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
+import model.service.IngredientManager;
 import model.service.RecipeManager;
 
 public class AddRecipeController implements Controller {
@@ -48,21 +51,45 @@ public class AddRecipeController implements Controller {
 		List<Ingredient> iList = new ArrayList<>();
 		for (int i = 0; i < iname.length; i++) {
 			Ingredient ingredient = new Ingredient();
+			if (iname[i] == null || iname[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
 			ingredient.setIname(iname[i]);
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
 		}
-		
+
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
-			Procedure proc = new Procedure();
+			Procedure proc = new Procedure(); 
+			if (procId[i] == null || procId[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
 			proc.setProc_Id(Integer.valueOf(procId[i]));
+
 			proc.setText(procText[i]);
+			pList.add(proc);
 		}
+		pList.sort(new Comparator<Procedure>() {
+
+			@Override
+			public int compare(Procedure arg0, Procedure arg1) {
+				// TODO Auto-generated method stub
+				 int age0 = arg0.getProc_Id();
+                 int age1 = arg1.getProc_Id();
+                 if (age0 == age1)
+                       return 0;
+                 else if (age0 > age1)
+                       return 1;
+                 else
+                       return -1;
+			}
+			
+		});
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe recipe = new Recipe(
-				0, //recipe_id는 DAO에서 시퀀스로 설정
+				0, //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
 				request.getParameter("time"),
@@ -77,13 +104,16 @@ public class AddRecipeController implements Controller {
 
 		
 		log.debug("Create Recipe : {}", recipe);
-//
+
 //		RecipeManager manager = RecipeManager.getInstance();
 //		manager.create(recipe);
-//		for (int i = 0; i < iList.size(); i++) {
-//			
-//		}
-//		request.setAttribute("recipe", recipe);
+//		
+		IngredientManager imanager = IngredientManager.getInstance();
+		
+		for (int i = 0; i < iList.size(); i++) {
+			
+		}
+		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 
 	}

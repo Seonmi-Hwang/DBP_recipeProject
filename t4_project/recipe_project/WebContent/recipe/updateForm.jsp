@@ -41,7 +41,7 @@ function recipeModify() {
 				<td>
 					<table>
 						<tr>
-							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>레시피 추가</b>&nbsp;&nbsp;
+							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>레시피 수정</b>&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table> <br>
@@ -51,7 +51,7 @@ function recipeModify() {
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
 								<p>
 									<input type="text" style="width: 60%; height: 30px; font-size:20px;" name="rname"
-										placeholder="레시피 이름을 입력하세요">
+										value="${recipe.rname}">
 								</p>
 							</td>
 						</tr>
@@ -59,13 +59,33 @@ function recipeModify() {
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
-								<c:forEach var="i" begin="1" end="5">
 									<p>
-										<strong>${i}</strong> &nbsp;
-										<input type="text" name="iname${i}" placeholder="ex) 계란">
-										<input type="text" name="quantity${i}" size="10" placeholder="ex) ${i}알">
+										<strong>1</strong> &nbsp;
+										<input type="text" name="iname1" value="${recipe.procedure1}">
+										<input type="text" name="quantity1" size="10" >
 									</p>
-								</c:forEach>
+									<p>
+										<strong>2</strong> &nbsp;
+										<input type="text" name="iname2" value="${recipe.procedure${i}">
+										<input type="text" name="quantity2" size="10" >
+									</p>
+									<p>
+										<strong>3</strong> &nbsp;
+										<input type="text" name="iname3" value="${recipe.procedure${i}">
+										<input type="text" name="quantity3" size="10" >
+									</p>
+									<p>
+										<strong>4</strong> &nbsp;
+										<input type="text" name="iname4" value="${recipe.procedure${i}">
+										<input type="text" name="quantity4" size="10" >
+									</p>
+									<p>
+										<strong>5</strong> &nbsp;
+										<input type="text" name="iname5" value="${recipe.procedure5}">
+										<input type="text" name="quantity5" size="10" >
+									</p>
+									
+								
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addIngredient"></div> <br> <input type="button"
 								id="add_ingredient" value="추가" onclick="addInput(this.id);" />

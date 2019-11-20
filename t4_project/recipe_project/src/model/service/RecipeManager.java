@@ -124,7 +124,7 @@ public class RecipeManager {
 //		throws SQLException {
 //		return recipeDAO.getRecipeList(currentPage, countPerPage);
 //	}
-	
+
 	public List<Ingredient> findIngredients(int recipeId) throws SQLException {
 		return recipeDAO.getIngredientsName(recipeId);
 	}
@@ -155,4 +155,5 @@ public class RecipeManager {
 		
 		return recipeList;
 	}
+	
 }

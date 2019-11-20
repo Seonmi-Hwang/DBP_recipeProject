@@ -64,7 +64,7 @@
 	    <input type="button" value="목록" onClick="history.back()">
 	    <br>
 	    <a href="<c:url value='/recipe/update'>
-	     		   <c:param name='email_id' value='${member.email_id}'/>
+	     		   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
 			 	 </c:url>">수정</a> &nbsp;
 	  </td>
 	</tr>

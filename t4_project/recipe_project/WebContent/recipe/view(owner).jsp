@@ -36,21 +36,21 @@ function recipeRemove() {
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">재료정보</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				<c:forEach var="ingredient" items="${recipe.ingredients}">
-					<LI>${ingredient}
+					<LI>${ingredient.iname} (${ingredient.quantity})
 				</c:forEach>
 			</td>
 		  </tr>
 		  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">소요 시간</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${recipe.time} <%-- <%=recipe.getTime()%> --%>
+				${recipe.time} 분<%-- <%=recipe.getTime()%> --%>
 			</td>
 		  </tr>		  
 		  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">조리 과정</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				<c:forEach var="proc" items="${recipe.procedure}">
-					<LI>${proc}
+					<p>${proc.proc_Id}. &nbsp;${proc.text}</p>
 				</c:forEach>	
 			</td>
 		  </tr>
