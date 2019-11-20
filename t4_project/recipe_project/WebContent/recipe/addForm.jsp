@@ -111,20 +111,34 @@
 	} 
 */	
 	function recipeModify() {
-		if (form.recipeName.value == "") {
-			form.recipeName.value = "레시피 이름을 입력하십시오.";
+		if (form.rname.value == "") {
+			form.rname.placeholder = "레시피 이름을 입력하세요.";
+			alert('레시피 이름을 입력하세요.');
 			return false;
 		}
-		if (form.ingredient.value == "") {
-			form.ingredient.value = "재료를 입력하세요.";
+		if (form.iname[0].value == "") {
+			form.iname[0].placeholder = "ex) 계란";
+			alert('재료를 입력하세요.');
+			return false;
+		}
+		if (form.quantity[0].value == "") {
+			form.quantity[0].placeholder = "ex) 1알";
+			alert('수량을 입력하세요.');
 			return false;
 		}
 		if (form.time.value == "") {
-			form.time.value = "소요 시간을 입력하십시오.";
+			form.time.placeholder = "10";
+			alert('소요 시간을 입력하세요.');
 			return false;
 		}
-		if (form.procedure.value == "") {
-			form.procedure.value = "조리 과정을 입력하십시오.";
+		if (form.procedure[0].value == "") {
+			form.procedure[0].placeholder = "ex) 재료를 손질한다.";
+			alert('조리 과정을 입력하세요.');
+			return false;
+		}
+		if (form.proc_id[0].value == "") {
+			form.proc_id[0].placeholder = "ex) 1";
+			alert('조리 순서를 입력하세요.');
 			return false;
 		}
 
@@ -148,13 +162,12 @@
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen">
+					<table style="background-color: YellowGreen;">
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">레시피
-								이름</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 50">
+							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피 이름</td>
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
 								<p>
-									<input type="text" style="width: 50%; height: 40;" name="rname"
+									<input type="text" style="width: 60%; height: 30px; font-size:20px;" name="rname"
 										placeholder="레시피 이름을 입력하세요">
 								</p>
 							</td>
@@ -162,7 +175,14 @@
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
 								정보</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10">
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+								<c:forEach var="i" begin="1" end="5">
+									<p>
+										<strong>${i}</strong> &nbsp;
+										<input type="text" name="iname" placeholder="ex) 계란">
+										<input type="text" name="quantity" size="10" placeholder="ex) ${i}알">
+									</p>
+								</c:forEach>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addIngredient"></div> <br> <input type="button"
 								id="add_ingredient" value="추가" onclick="addInput(this.id);" />
@@ -173,27 +193,22 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">소요
-								시간</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10"><input
-								type="text" style="width: 240" name="time"
-								placeholder="소요 시간을 입력하세요">
-								<ol>
-									<li>&nbsp; <textarea id="ta"
-											style="width: 300px; height: 32px; overflow-y: hidden"></textarea>
-										<textarea id="xt"
-											style="width: 300px; height: 1px; overflow-y: hidden; position: absolute; top: -9px"
-											disabled></textarea> <input type="number" name="n" size="10" />
-									</li>
-					
-
-								</ol></td>
+							<td width="120" align="center" bgcolor="E6ECDE" height="40px">소요 시간</td>
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+								<input type="text" style="width: 40px; " name="time" placeholder="10">&nbsp;&nbsp;<strong>분</strong>
+							</td>
 								
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">조리
-								과정</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10">
+							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
+							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
+								
+								<c:forEach var="i" begin="1" end="5">
+									<p>
+										<strong>${i}</strong> &nbsp;<input type="text" name="procedure" placeholder="ex) 재료를 손질한다.">
+										<input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+									</p>
+								</c:forEach>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
@@ -202,12 +217,14 @@
 								-->
 							</td>
 						</tr>
-					</table> <br>
-					<table style="width: 100%">
+					</table>
+					<br>
+					<table style="width: 100%;">
 						<tr>
-							<td align="left"><input type="button" value="추가"
-								onClick="recipeModify()"> &nbsp; <input type="button"
-								value="취소" onClick="history.back()"></td>
+							<td align="left">
+								<input type="button" value="추가" onClick="recipeModify()"> &nbsp; 
+								<input type="button" value="취소" onClick="history.back()">
+							</td>
 						</tr>
 					</table>
 				</td>

@@ -12,12 +12,13 @@ public class Recipe {
 	private int hits;
 	private List<Procedure> procedure;
 	private List<String> ingredients;
+	private String ingredientsName;
 	private String writer;		// 작성자 (USERS_RECIPE테이블)	
 	private Date createdDate;	// 작성일 (USERS_RECIPE테이블)
 	
 	public Recipe() {}
 	
-	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients, String writer, Date createdDate) {
+	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients, String ingredientsName, String writer, Date createdDate) {
 		this.recipe_id = recipe_id;
 		this.category_id = category_id;
 		this.rname = rname;
@@ -26,6 +27,7 @@ public class Recipe {
 		this.hits = hits;
 		this.procedure = procedure;
 		this.ingredients = ingredients;
+		this.ingredientsName = ingredientsName;
 		this.writer = writer;
 		this.createdDate = createdDate;
 	}
@@ -92,6 +94,14 @@ public class Recipe {
 
 	public void setIngredients(List<String> ingredients) {
 		this.ingredients = ingredients;
+	}
+	
+	public String getIngredientsName() {
+		return ingredientsName;
+	}
+
+	public void setIngredientsName(String ingredientsName) {
+		this.ingredientsName = ingredientsName;
 	}
 	
 	public String getWriter() {
