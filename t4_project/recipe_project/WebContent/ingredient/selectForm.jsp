@@ -9,7 +9,6 @@
 	 
 	 function wname(name){
 		//var name = doc/ument.getElementById(name).text;
-		ilist.push(name);
 		document.getElementById("list").innerHTML+="<li>"+name+"</li>";
 	};
 	 

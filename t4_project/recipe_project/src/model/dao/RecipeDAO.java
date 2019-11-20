@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
 
@@ -279,7 +280,7 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 		
-	public List<String> getIngredientsName(int recipe_id) throws SQLException {
+	public List<Ingredient> getIngredientsName(int recipe_id) throws SQLException {
         String sql = "SELECT iname, quantity "
 				+ "FROM ingredient igre, ingredient_info info "
 				+ "WHERE igre.ingredient_id = info.ingredient_id "
@@ -288,9 +289,11 @@ private JDBCUtil jdbcUtil = null;
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
-			List<String> ingredientList = new ArrayList<String>();
+			List<Ingredient> ingredientList = new ArrayList<>();
 			while (rs.next()) {
-				String ingredient = rs.getString("iname") + rs.getString("quantity");						
+				Ingredient ingredient = new Ingredient();
+				ingredient.setIname(rs.getString("iname"));
+				ingredient.setQuantity(rs.getString("quantity"));						
 				ingredientList.add(ingredient);
 			}		
 			return ingredientList;					
