@@ -9,19 +9,22 @@ import controller.Controller;
 import controller.ingredient.*;
 import model.Ingredient;
 import model.service.IngredientManager;
+import model.service.RecipeManager;
 
 
 public class ListIngredientController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		IngredientManager manager = IngredientManager.getInstance();
-//		String category = request.getParameter("category");
+		RecipeManager manager = RecipeManager.getInstance();
+		String ingr = request.getParameter("ingre");
+		System.out.printf("%s",ingr);
+		String[] ingre =  ingr.split(",");
 		
 //		List<Ingredient> ingreList = manager.findIngredientList(category);
-		List<Ingredient> ingreList = manager.findingredientname();
-		request.setAttribute("ingreList", ingreList);
+		List<Integer> recipeList = manager.findRecommendRecipe(ingre);
+		request.setAttribute("recipeList", recipeList);
 //		request.setAttribute("category", 
 //				IngredientSessionUtils.getcategory(request.getSession()));	
-		return "/ingredient/selectForm.jsp";	
+		return "/ingredient/Recommend.jsp";	
 	}
 }

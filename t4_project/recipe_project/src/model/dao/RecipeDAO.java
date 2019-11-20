@@ -293,21 +293,18 @@ private JDBCUtil jdbcUtil = null;
 	}
 	
 	// 재료 맞춤 레시피 출력
-	public List<Integer> getRecommendRecipe(List<Integer> ingredients) throws SQLException {
-		String sql = "SELECT DISTINCT recipe_id "
-					+ "FROM ingredient "
-					+ "WHERE ingredient_id IN (?) ";
-		
-		String parameter = "";
-		for (int i = 0; i < ingredients.size(); i++) {
-			parameter += String.valueOf(ingredients.get(i));
-			
-			if (i != ingredients.size() - 1) {
-				parameter += ", ";
-			}
+	public List<Integer> getRecommendRecipe(String[] ingredients) throws SQLException {
+		String p ="";
+		for(String i:ingredients) {
+			p+=i+",";
 		}
+		String sql = "SELECT DISTINCT recipe_id "
+				+ "FROM ingredient,ingredient_info " + 
+				"WHERE ingredient.ingredient_id=ingredient_info.ingredient_id "
+				+ "and ingredient_info.iname IN (?)";
 		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {});	// JDBCUtil에 query문과 매개 변수 설정
+		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {p});	// JDBCUtil에 query문과 매개 변수 설정
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
