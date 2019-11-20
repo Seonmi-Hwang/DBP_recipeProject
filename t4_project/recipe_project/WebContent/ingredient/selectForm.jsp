@@ -9,11 +9,10 @@
 	 
 	 function wname(name){
 		//var name = doc/ument.getElementById(name).text;
-<<<<<<< HEAD
+
 		
 		//ilist.push(name);
-=======
->>>>>>> aafef9c4dfbb65fc81f10802755765bc80c60d1d
+
 		document.getElementById("list").innerHTML+="<li>"+name+"</li>";
 	};
 	 
