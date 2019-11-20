@@ -1,6 +1,9 @@
 package controller.member;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +17,19 @@ public class AddIngredientController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IngredientManager manager = IngredientManager.getInstance();
-		String category = request.getParameter("category");
 		
-		List<Ingredient> ingreList = manager.findIngredientList(category);
+		List<Ingredient> ingreList = manager.findingredientname();
 //		List<Ingredient> ingreList = manager.findingredientname();
 		request.setAttribute("ingreList", ingreList);
 		
-		return "/ingredient/selectForm.jsp";	
+		Set<String> set = new HashSet<String>();
+		for (Ingredient i : ingreList) {
+			set.add(i.getIcategory());
+		}
+		
+		List<String> catList = new ArrayList<String>(set);
+		request.setAttribute("catList", catList);
+		
+		return "/member/addForm.jsp";	
 	}
 }

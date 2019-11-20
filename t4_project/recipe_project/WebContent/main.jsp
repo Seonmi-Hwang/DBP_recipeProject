@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" type="image/x-icon" href="<img src="<c:url value='/images/moduFavicon.png' />">
 
     <title>모두의 레시피</title>
 
@@ -33,6 +33,7 @@ h3, h4, tr, td {
 		<br> 
         <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
         <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
+        <p align="right"><a href="<c:url value='/member/logout' />">로그아웃</a></p>
           
     <div class="s003"> <!-- 검색창 -->
       <form name="search" method="POST" action="<c:url value='/recipe/search' />" >
@@ -95,7 +96,26 @@ h3, h4, tr, td {
       <div class="row">
         <div class="col-lg-4">
           <h2>오늘의 추천 레시피</h2>
-          <p>???</p>
+          <table border="1"> <!-- 레시피 한 개를 표현할 테이블 -->
+				<tr>
+					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
+					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+			 		 			 </c:url>"> ${recipe.rname} </a></h4>  
+			  		</td> <!--  recipe.getRecipeName() -->
+				</tr>
+				<tr>
+					<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
+				</tr>
+				<tr>
+					<td colspan="2" height="30px">
+						&nbsp;재료 : ${recipe.ingredientsName}
+					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+				</tr>  
+				<tr>
+					<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
+					<td width="110px">&nbsp;조회수 : ${recipe.hits}회 </td> <!--  recipe.getHits() -->
+				</tr>
+			</table>
           <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
             			 </c:url>" role="button">더 알아보기 »</a></p>

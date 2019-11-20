@@ -1,5 +1,6 @@
 package controller.recipe;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import controller.member.MemberSessionUtils;
+import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
 import model.service.RecipeManager;
@@ -38,41 +40,49 @@ public class AddRecipeController implements Controller {
 		
 		
 //		List<Procedure> procList = (List<Procedure>)request.getParameterValues("procedure");
-		request.getParameterValues("ingredients");
-
+		String[] iname = request.getParameterValues("iname");
+		String[] quantity = request.getParameterValues("quantity");
+		String[] procText = request.getParameterValues("proc_text");
+		String[] procId = request.getParameterValues("proc_id");
+		
+		List<Ingredient> iList = new ArrayList<>();
+		for (int i = 0; i < iname.length; i++) {
+			Ingredient ingredient = new Ingredient();
+			ingredient.setIname(iname[i]);
+			ingredient.setQuantity(quantity[i]);
+			iList.add(ingredient);
+		}
+		
+		List<Procedure> pList = new ArrayList<>();
+		for (int i = 0; i < procText.length; i++) {
+			Procedure proc = new Procedure();
+			proc.setProc_Id(Integer.valueOf(procId[i]));
+			proc.setText(procText[i]);
+		}
+		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
-//		Recipe recipe = new Recipe(
-//				null, //recipe_id는 DAO에서 시퀀스로 설정
-//				request.getParameter("category_id"),
-//				request.getParameter("rname"),
-//				request.getParameter("time"),
-//				null,	//result_img는 파일 업로드 하고..
-//				0,
-//				null,
-//				null,
-//				writer,
-//				nowTime
-//				);
+		Recipe recipe = new Recipe(
+				0, //recipe_id는 DAO에서 시퀀스로 설정
+				Integer.parseInt(request.getParameter("category_id")),
+				request.getParameter("rname"),
+				request.getParameter("time"),
+				null,	//result_img는 파일 업로드 하고..
+				0,
+				pList,
+				iList,
+				null,
+				writer,
+				nowTime
+		);
 
-		/*
-		 * public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients, String writer, Date createdDate) {
-		this.recipe_id = recipe_id;
-		this.category_id = category_id;
-		this.rname = rname;
-		this.time = time;
-		this.result_img = result_img;
-		this.hits = hits;
-		this.procedure = procedure;
-		this.ingredients = ingredients;
-		this.writer = writer;
-		this.createdDate = createdDate;
-	}
-		 * 
-//		 */
-//		log.debug("Create Recipe : {}", recipe);
+		
+		log.debug("Create Recipe : {}", recipe);
 //
 //		RecipeManager manager = RecipeManager.getInstance();
 //		manager.create(recipe);
+//		for (int i = 0; i < iList.size(); i++) {
+//			
+//		}
 //		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 

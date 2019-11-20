@@ -11,14 +11,14 @@ public class Recipe {
 	private String result_img;
 	private int hits;
 	private List<Procedure> procedure;
-	private List<String> ingredients;
+	private List<Ingredient> ingredients;
 	private String ingredientsName;
 	private String writer;		// 작성자 (USERS_RECIPE테이블)	
 	private Date createdDate;	// 작성일 (USERS_RECIPE테이블)
 	
 	public Recipe() {}
 	
-	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<String> ingredients, String ingredientsName, String writer, Date createdDate) {
+	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<Ingredient> ingredients, String ingredientsName, String writer, Date createdDate) {
 		this.recipe_id = recipe_id;
 		this.category_id = category_id;
 		this.rname = rname;
@@ -88,11 +88,11 @@ public class Recipe {
 		this.procedure = procedure;
 	}
 
-	public List<String> getIngredients() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<String> ingredients) {
+	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 	

@@ -21,6 +21,6 @@ public class CategoryIngredientController implements Controller{
 		request.setAttribute("ingrecate", ingreList);
 //		request.setAttribute("category", 
 //				IngredientSessionUtils.getcategory(request.getSession()));	
-		return "/ingredient/selectForm.jsp";
+		return "/recipe/addForm.jsp";
 	}
 }

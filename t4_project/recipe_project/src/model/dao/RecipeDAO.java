@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
 
@@ -115,6 +116,41 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
+	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
+	public Recipe getTopRecipe(int category_id) throws SQLException {
+        String sql = "SELECT recipe_id, rname, time, result_img, hits " // recipe_procedure
+        			+ "FROM (SELECT recipe_id, rname, time, result_img, hits " 
+        			+ "FROM recipe_info "
+        			+ "ORDER BY hits DESC) "
+        			+ "WHERE category_id=? "
+        			+ "AND rownum = 1";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						// 레시피 정보 발견
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 레시피 정보를 저장
+					rs.getInt("recipe_id"),
+					category_id,
+					rs.getString("rname"),
+					rs.getString("time"),
+					rs.getString("result_img"),
+					rs.getInt("hits"),
+					null,
+					null,
+					null,
+					null,
+					null);
+				return recipe;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	// 주어진 category_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
 	public List<Recipe> getRecipeList(int category_id) throws SQLException {
         String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
@@ -131,6 +167,42 @@ private JDBCUtil jdbcUtil = null;
 				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 recipe 정보를 저장
 					recipe_id,
 					category_id,
+					rs.getString("rname"),
+					rs.getString("time"),
+					rs.getString("result_img"),
+					rs.getInt("hits"),
+					null,
+					null,
+					null,
+					null,
+					null);	
+				recipeList.add(recipe);				// List에  Recipe 객체 저장
+			}		
+			return recipeList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	// 주어진 email_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
+	public List<Recipe> getUserRecipeList(String email_id) throws SQLException {
+        String sql = "SELECT r.recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+        		   + "FROM users_recipe u JOIN recipe_info r ON u.recipe_id = r.recipe_id "	
+        		   + "WHERE r.category_id = 30 and member_id=(SELECT member_id FROM member where email_id=?)";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Recipe> recipeList = new ArrayList<Recipe>();	// Recipe들의 리스트 생성
+			while (rs.next()) {
+				int recipe_id = rs.getInt("recipe_id");
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 recipe 정보를 저장
+					recipe_id,
+					30,
 					rs.getString("rname"),
 					rs.getString("time"),
 					rs.getString("result_img"),
@@ -279,7 +351,7 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 		
-	public List<String> getIngredientsName(int recipe_id) throws SQLException {
+	public List<Ingredient> getIngredientsName(int recipe_id) throws SQLException {
         String sql = "SELECT iname, quantity "
 				+ "FROM ingredient igre, ingredient_info info "
 				+ "WHERE igre.ingredient_id = info.ingredient_id "
@@ -288,9 +360,11 @@ private JDBCUtil jdbcUtil = null;
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<String> ingredientList = new ArrayList<String>();
+			List<Ingredient> ingredientList = new ArrayList<>();
 			while (rs.next()) {
-				String ingredient = rs.getString("iname") + rs.getString("quantity");						
+				Ingredient ingredient = new Ingredient();
+				ingredient.setIname(rs.getString("iname"));
+				ingredient.setQuantity(rs.getString("quantity"));						
 				ingredientList.add(ingredient);
 			}		
 			return ingredientList;					

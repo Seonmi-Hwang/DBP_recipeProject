@@ -52,8 +52,46 @@ public class RecipeManager {
 		return recipe;
 	}
 
+	public Recipe getTopRecipe(int category_id) throws SQLException {
+		Recipe recipe = recipeDAO.getTopRecipe(category_id);
+		
+		if (recipe == null) {
+			try {
+				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
+			} catch (RecipeNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		
+		return recipe;
+	}
+	
 	public List<Recipe> findRecipeList(int categoryId) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getRecipeList(categoryId);
+		
+		for (Recipe recipe : recipeList) {
+			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
+			
+			if (ingredients == null) ingredients = "없음";
+			
+			recipe.setIngredientsName(ingredients);
+		}
+		
+		if (recipeList == null) {
+			try {
+				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
+			} catch (RecipeNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		
+		return recipeList;
+	}
+	
+	public List<Recipe> findUserRecipeList(String email_id) throws SQLException, RecipeNotFoundException {
+		List<Recipe> recipeList = recipeDAO.getUserRecipeList(email_id);
 		
 		for (Recipe recipe : recipeList) {
 			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());

@@ -30,63 +30,89 @@ function recipeModify() {
 </script>
 </head>
 <body>
-<br>
-<!-- Update Form  -->
-<form name="form" method="POST" action="<c:url value='/recipe/update' />">
-  <input type="hidden" name="recipe_id" value="${recipe.recipe_id}"/>	  
-  <table style="width: 100%">
-	<tr>
-	  <td width="20"></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>레시피 수정</b>&nbsp;&nbsp;</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">조회수: ${recipe.hits} </td>
-		  </tr>
-	    </table>  
-	    <br>	  
-	    <table style="background-color: YellowGreen">
-	  	  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">레시피 이름</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="recipeName" value="${recipe.rname}">
-			</td>
-		  </tr>
-		  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">재료정보</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<c:forEach var="ingredient" items="${recipe.ingredients}">
-					<LI> <input type="text" style="width: 240" name="ingredient" value="${ingredient}">
-				</c:forEach>
-			</td>
-		  </tr>
-		  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">소요 시간</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="time" value="${recipe.time}">
-			</td>
-		  </tr>		  
-		  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">조리 과정</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				<c:forEach var="proc" items="${recipe.procedure}">
-					<LI> <input type="text" style="width: 240" name="procedure" value="${proc}">
-				</c:forEach>	
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	    <table style="width: 100%">
-		  <tr>
-			<td align="left">
-			<input type="button" value="수정" onClick="recipeModify()"> &nbsp;
-			<input type="button" value="취소" onClick="history.back()">
-			</td>
-		  </tr>
-	    </table>
-	  </td>
-	</tr>
-  </table>  
-</form>
+	<br>
+	<!-- Add Form  -->
+	<form name="form" method="POST" action="<c:url value='/recipe/update' />">
+		<input type="hidden" name="recipe_id" value="${category_id}" />
+		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
+		<table style="width: 100%">
+			<tr>
+				<td width="20"></td>
+				<td>
+					<table>
+						<tr>
+							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>레시피 추가</b>&nbsp;&nbsp;
+							</td>
+						</tr>
+					</table> <br>
+					<table style="background-color: YellowGreen;">
+						<tr>
+							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피 이름</td>
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+								<p>
+									<input type="text" style="width: 60%; height: 30px; font-size:20px;" name="rname"
+										placeholder="레시피 이름을 입력하세요">
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
+								정보</td>
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+								<c:forEach var="i" begin="1" end="5">
+									<p>
+										<strong>${i}</strong> &nbsp;
+										<input type="text" name="iname${i}" placeholder="ex) 계란">
+										<input type="text" name="quantity${i}" size="10" placeholder="ex) ${i}알">
+									</p>
+								</c:forEach>
+								<!-- 나중에 DOM으로 동적 input 추가하면,
+								<div id="addIngredient"></div> <br> <input type="button"
+								id="add_ingredient" value="추가" onclick="addInput(this.id);" />
+								<input type="button" id="delete_ingredient" value="삭제"
+								onclick="deleteInput(this.id);" />
+								 -->
+
+							</td>
+						</tr>
+						<tr>
+							<td width="120" align="center" bgcolor="E6ECDE" height="40px">소요 시간</td>
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+								<input type="text" style="width: 40px; " name="time" placeholder="10">&nbsp;&nbsp;<strong>분</strong>
+							</td>
+								
+						</tr>
+						<tr>
+							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
+							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
+								
+								<c:forEach var="i" begin="1" end="5">
+									<p>
+										<strong>${i}</strong> &nbsp;<input type="text" name="procedure" placeholder="ex) 재료를 손질한다.">
+										<input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+									</p>
+								</c:forEach>
+								<!-- 나중에 DOM으로 동적 input 추가하면,
+								<div id="addProcedure"></div> <br> <input type="button"
+								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
+								type="button" id="delete_procedure" value="삭제"
+								onclick="deleteInput(this.value);" />
+								-->
+							</td>
+						</tr>
+					</table>
+					<br>
+					<table style="width: 100%;">
+						<tr>
+							<td align="left">
+								<input type="button" value="추가" onClick="recipeModify()"> &nbsp; 
+								<input type="button" value="취소" onClick="history.back()">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

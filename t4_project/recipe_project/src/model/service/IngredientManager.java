@@ -44,7 +44,6 @@ public class IngredientManager {
 		return ingre;
 	}
 	
-
 	public IngredientDAO getIngredientDAO() {
 		return this.IngreDAO;
 	}
