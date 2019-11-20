@@ -18,7 +18,8 @@ public class ViewRecipeController implements Controller {
 		
 		RecipeManager manager = RecipeManager.getInstance();
 		Recipe recipe= manager.findRecipe(recipe_id);	// 수정하려는 사용자 정보 검색
-		request.setAttribute("recipe", recipe);			
+		request.setAttribute("recipe", recipe);
+		request.setAttribute("recipe_id", recipe_id);		
 
 		HttpSession session = request.getSession();
 		
