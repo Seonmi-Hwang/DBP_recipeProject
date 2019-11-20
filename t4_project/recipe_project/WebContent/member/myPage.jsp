@@ -52,14 +52,39 @@ function memberRemove() {
  	    <a href="<c:url value='/member/delete'>
 				   <c:param name='email_id' value='${member.email_id}'/>
 			 	 </c:url>" onclick="return memberRemove();">회원 탈퇴</a>
-		<a href="<c:url value='/member/addForm'>
-			 	 </c:url>">재료</a>
 		<c:if test="${updateFailed || deleteFailed}}">
 	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
 	    </c:if>    
  	    <br><br>
 	  </td>
 	</tr>
-  </table> 
+  </table>
+ <br>
+ <div class="row"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
+	<c:forEach var="recipe" items="${recipeList}" varStatus="status">
+			<table border="1"> <!-- 레시피 한 개를 표현할 테이블 -->
+				<tr>
+					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
+					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+			 		 			 </c:url>"> ${recipe.rname} </a></h4>  
+			  		</td> <!--  recipe.getRecipeName() -->
+				</tr>
+				<tr>
+					<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
+				</tr>
+				<tr>
+					<td colspan="2" height="30px">
+						&nbsp;재료 : ${recipe.ingredientsName}
+					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+				</tr>  
+				<tr>
+					<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
+					<td width="110px">&nbsp;조회수 : ${recipe.hits}회 </td> <!--  recipe.getHits() -->
+				</tr>
+			</table>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${status.index % 4 == 0}"><br><br></c:if>
+	</c:forEach>
+</div>
 </body>
 </html>
