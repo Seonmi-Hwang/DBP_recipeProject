@@ -7,18 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+ 
+    <!-- <link rel="icon" type="image/x-icon" href="<img src="<c:url value='/images/moduFavicon.png' />" /> -->
 
-    <link rel="icon" type="image/x-icon" href="<img src="<c:url value='/images/moduFavicon.png' />">
-
-    <title>모두의 레시피</title>
+    <title>모두의 레시피</title> 
 
     <link href="css/main.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 	<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 	
 </head>
 <style>
-h3, h4, tr, td {
+h3, h4 {
+	text-align : center;
+}
+
+td img {
+	width: 240px; 
+	height: 192px;
 	text-align : center;
 }
 
@@ -40,7 +46,7 @@ h3, h4, tr, td {
         <div class="inner-form">
           <div class="input-field first-wrap">
             <div class="input-select">
-              <select data-trigger="" name="category_id"> <!-- request.getParameter("category_id")로 받으면 됨 -->
+              <select data-trigger="" name="category_id">    
                 <option value="5">전체 레시피</option>
                 <option value="10">일반 레시피</option>
                 <option value="20">SNS 인기 레시피</option>
@@ -95,42 +101,83 @@ h3, h4, tr, td {
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
-          <h2>오늘의 추천 레시피</h2>
-          <table border="1"> <!-- 레시피 한 개를 표현할 테이블 -->
+          <h3>오늘의 추천 레시피</h3><br>
+          <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
 				<tr>
 					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
-					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
-			 		 			 </c:url>"> ${recipe.rname} </a></h4>  
+					   				<c:param name='recipe_id' value='${commonTopRecipe.recipe_id}'/>
+			 		 			 </c:url>"> ${commonTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2"><img src="${commonTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
 					<td colspan="2" height="30px">
-						&nbsp;재료 : ${recipe.ingredientsName}
+						&nbsp;재료 : ${commonTopRecipe.ingredientsName}
 					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
 				</tr>  
 				<tr>
-					<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
-					<td width="110px">&nbsp;조회수 : ${recipe.hits}회 </td> <!--  recipe.getHits() -->
+					<td width="130px">&nbsp;소요시간 : ${commonTopRecipe.time}분 </td> <!--  recipe.getTime() -->
+					<td width="110px">&nbsp;조회수 : ${commonTopRecipe.hits}회 </td> <!--  recipe.getHits() -->
 				</tr>
 			</table>
-          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+			<br>
+          <p align="center"><a class="btn btn-primary" href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
             			 </c:url>" role="button">더 알아보기 »</a></p>
         </div>
         <div class="col-lg-4">
-          <h2>SNS 인기 레시피</h2>
-          <p>???</p>
-          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+          <h3>SNS 인기 레시피</h3><br>
+           <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
+				<tr>
+					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
+					   				<c:param name='recipe_id' value='${snsTopRecipe.recipe_id}'/>
+			 		 			 </c:url>"> ${snsTopRecipe.rname} </a></h4>  
+			  		</td> <!--  recipe.getRecipeName() -->
+				</tr>
+				<tr>
+					<td colspan="2"><img src="${snsTopRecipe.result_img}" alt="Recipe Image"  /></td>
+				</tr>
+				<tr>
+					<td colspan="2" height="30px">
+						&nbsp;재료 : ${snsTopRecipe.ingredientsName}
+					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+				</tr>  
+				<tr>
+					<td width="130px">&nbsp;소요시간 : ${snsTopRecipe.time}분 </td> <!--  recipe.getTime() -->
+					<td width="110px">&nbsp;조회수 : ${snsTopRecipe.hits}회 </td> <!--  recipe.getHits() -->
+				</tr>
+			</table>
+			<br>
+          <p align="center"><a class="btn btn-primary" href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>" role="button">더 알아보기 »</a></p>
        </div>
         <div class="col-lg-4">
-          <h2>나만의 레시피</h2>
-          <p>???</p>
-          <p><a class="btn btn-primary" href="<c:url value='/recipe/list'>
+          <h3>나만의 레시피</h3><br>
+           <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
+				<tr>
+					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
+					   				<c:param name='recipe_id' value='${myTopRecipe.recipe_id}'/>
+			 		 			 </c:url>"> ${myTopRecipe.rname} </a></h4>  
+			  		</td> <!--  recipe.getRecipeName() -->
+				</tr>
+				<tr>
+					<td colspan="2"><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
+				</tr>
+				<tr>
+					<td colspan="2" height="30px">
+						&nbsp;재료 : ${myTopRecipe.ingredientsName}
+					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+				</tr>  
+				<tr>
+					<td width="130px">&nbsp;소요시간 : ${myTopRecipe.time}분 </td> <!--  recipe.getTime() -->
+					<td width="110px">&nbsp;조회수 : ${myTopRecipe.hits}회 </td> <!--  recipe.getHits() -->
+				</tr>
+			</table>
+			<br>
+          <p align="center"><a class="btn btn-primary" href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
             			 </c:url>" role="button">더 알아보기 »</a></p>
         </div>

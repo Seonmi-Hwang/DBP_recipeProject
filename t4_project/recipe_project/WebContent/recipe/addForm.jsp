@@ -233,7 +233,7 @@
 	<br>
 	<!-- Add Form  -->
 	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
-		<input type="hidden" name="recipe_id" value="${category_id}" />
+		<input type="hidden" name="category_id" value="${category_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
 		<table style="width: 100%">
 			<tr>

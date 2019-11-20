@@ -21,7 +21,7 @@ private JDBCUtil jdbcUtil = null;
 	public int create(Recipe recipe) throws SQLException {
 		String sql = "INSERT INTO recipe_info (recipe_id, category_id, rname, time, result_img, hits) "
 					+ "VALUES (rid_sequence.nextval, ?, ?, ?, ?, ?) ";		
-		Object[] param = new Object[] {recipe.getRecipe_id(), recipe.getCategory_id(), 
+		Object[] param = new Object[] {recipe.getCategory_id(), 
 				recipe.getRname(), recipe.getTime(), recipe.getResult_img(), recipe.getHits()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
@@ -118,12 +118,10 @@ private JDBCUtil jdbcUtil = null;
 	
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getTopRecipe(int category_id) throws SQLException {
-        String sql = "SELECT recipe_id, rname, time, result_img, hits " // recipe_procedure
-        			+ "FROM (SELECT recipe_id, rname, time, result_img, hits " 
-        			+ "FROM recipe_info "
-        			+ "ORDER BY hits DESC) "
+        String sql = "SELECT recipe_id, category_id, rname, time, result_img, hits " // recipe_procedure
+        			+ "FROM (SELECT recipe_id, category_id, rname, time, result_img, hits FROM recipe_info ORDER BY hits DESC) "
         			+ "WHERE category_id=? "
-        			+ "AND rownum = 1";              
+        			+ "AND rownum = 1 ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
@@ -454,7 +452,6 @@ private JDBCUtil jdbcUtil = null;
 			}
 			return null;
 	}
-	
 	
 	
 }

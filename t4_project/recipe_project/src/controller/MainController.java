@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.member.MemberSessionUtils;
 import model.Member;
+import model.Recipe;
 import model.service.MemberManager;
+import model.service.RecipeManager;
 
 public class MainController implements Controller {
 	@Override
@@ -17,12 +19,18 @@ public class MainController implements Controller {
             return "redirect:/member/login/form";		// login form 요청으로 redirect
         }
     	
-		MemberManager manager = MemberManager.getInstance();
-
+		RecipeManager manager  = RecipeManager.getInstance();
+		Recipe commonTopRecipe = manager.getTopRecipe(10);
+		Recipe snsTopRecipe = manager.getTopRecipe(20);
+		Recipe myTopRecipe = manager.getTopRecipe(30); 
+		
 		// 현재 로그인한 사용자 ID를 request에 저장하여 전달
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		
-
+		request.setAttribute("commonTopRecipe", commonTopRecipe);
+		request.setAttribute("snsTopRecipe", snsTopRecipe);
+		request.setAttribute("myTopRecipe", myTopRecipe);
+		
 		// 사용자 리스트 화면으로 이동(forwarding)
 		return "/main.jsp";        
     }
