@@ -23,7 +23,7 @@ h3, h4 {
 	text-align : center;
 }
 
-img {
+td img {
 	width: 240px; 
 	height: 192px;
 	text-align : center;
@@ -34,7 +34,7 @@ img {
 <div class="container">
 	<div class="masthead">
 		<br>
-        <h3 class="text-muted">모두의 레시피</h3>
+        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
         <p align="right"><a href="<c:url value='/member/myPage'></c:url>">${curMemberId}</a></p>
         
             <div class="s003"> <!--검색창 -->
