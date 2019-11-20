@@ -116,6 +116,41 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
+	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
+	public Recipe getTopRecipe(int category_id) throws SQLException {
+        String sql = "SELECT recipe_id, rname, time, result_img, hits " // recipe_procedure
+        			+ "FROM (SELECT recipe_id, rname, time, result_img, hits " 
+        			+ "FROM recipe_info "
+        			+ "ORDER BY hits DESC) "
+        			+ "WHERE category_id=? "
+        			+ "AND rownum = 1";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						// 레시피 정보 발견
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 레시피 정보를 저장
+					rs.getInt("recipe_id"),
+					category_id,
+					rs.getString("rname"),
+					rs.getString("time"),
+					rs.getString("result_img"),
+					rs.getInt("hits"),
+					null,
+					null,
+					null,
+					null,
+					null);
+				return recipe;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	// 주어진 category_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
 	public List<Recipe> getRecipeList(int category_id) throws SQLException {
         String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력

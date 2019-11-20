@@ -35,7 +35,8 @@ td img {
 	<div class="masthead">
 		<br>
         <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
-        <p align="right"><a href="<c:url value='/member/myPage'></c:url>">${curMemberId}</a></p>
+        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
+        <p align="right"><a href="<c:url value='/member/logout' />">로그아웃</a></p>
         
             <div class="s003"> <!--검색창 -->
       <form name="search" method="POST" action="<c:url value='/recipe/search' />" >
