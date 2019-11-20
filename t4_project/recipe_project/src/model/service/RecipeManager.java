@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Recipe;
+import model.Ingredient;
 import model.Procedure;
 import model.dao.RecipeDAO;
 
@@ -52,8 +53,8 @@ public class RecipeManager {
 		return recipe;
 	}
 
-	public Recipe getTopRecipe(int category_id) throws SQLException {
-		Recipe recipe = recipeDAO.getTopRecipe(category_id);
+	public Recipe getTopRecipe(int recipe_id) throws SQLException {
+		Recipe recipe = recipeDAO.getTopRecipe(recipe_id);
 		
 		if (recipe == null) {
 			try {
@@ -69,29 +70,6 @@ public class RecipeManager {
 	
 	public List<Recipe> findRecipeList(int categoryId) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getRecipeList(categoryId);
-		
-		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
-			
-			if (ingredients == null) ingredients = "없음";
-			
-			recipe.setIngredientsName(ingredients);
-		}
-		
-		if (recipeList == null) {
-			try {
-				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
-			} catch (RecipeNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}	
-		
-		return recipeList;
-	}
-	
-	public List<Recipe> findUserRecipeList(String email_id) throws SQLException, RecipeNotFoundException {
-		List<Recipe> recipeList = recipeDAO.getUserRecipeList(email_id);
 		
 		for (Recipe recipe : recipeList) {
 			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
@@ -147,7 +125,7 @@ public class RecipeManager {
 //		return recipeDAO.getRecipeList(currentPage, countPerPage);
 //	}
 	
-	public List<String> findIngredientsName(int recipeId) throws SQLException {
+	public List<Ingredient> findIngredients(int recipeId) throws SQLException {
 		return recipeDAO.getIngredientsName(recipeId);
 	}
 	
