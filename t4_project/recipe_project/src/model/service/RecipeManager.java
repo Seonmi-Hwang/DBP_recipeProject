@@ -53,8 +53,8 @@ public class RecipeManager {
 		return recipe;
 	}
 
-	public Recipe getTopRecipe(int recipe_id) throws SQLException {
-		Recipe recipe = recipeDAO.getTopRecipe(recipe_id);
+	public Recipe getTopRecipe(int category_id) throws SQLException {
+		Recipe recipe = recipeDAO.getTopRecipe(category_id);
 		
 		if (recipe == null) {
 			try {
