@@ -52,6 +52,8 @@ function memberRemove() {
  	    <a href="<c:url value='/member/delete'>
 				   <c:param name='email_id' value='${member.email_id}'/>
 			 	 </c:url>" onclick="return memberRemove();">회원 탈퇴</a>
+		<a href="<c:url value='/member/addForm'>
+			 	 </c:url>">재료</a>
 		<c:if test="${updateFailed || deleteFailed}}">
 	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
 	    </c:if>    
