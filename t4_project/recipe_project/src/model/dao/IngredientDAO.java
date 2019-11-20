@@ -116,24 +116,6 @@ public class IngredientDAO {
 		return 0;
 	}
 	
-	public int remove_pre(int ingreId, int memberId) throws SQLException {
-		String sql = "DELETE FROM Prefer_ingredient WHERE ingredient_id=?, member_id=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingreId, memberId});	// JDBCUtil에 delete문과 매개 변수 설정
-
-		try {				
-			int result = jdbcUtil.executeUpdate();	// delete 문 실행
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		}
-		finally {
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}		
-		return 0;
-	}
-	
 	//찾기
 	public Ingredient findIngredient(int recipId) throws SQLException {
         String sql = "SELECT ii.icategory AS category, ii.iname AS name, i.quantity AS quant"

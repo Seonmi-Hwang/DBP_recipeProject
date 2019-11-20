@@ -9,11 +9,16 @@
 	 
 	 function wname(name){
 		//var name = doc/ument.getElementById(name).text;
+<<<<<<< HEAD
+		
+		//ilist.push(name);
+=======
+>>>>>>> aafef9c4dfbb65fc81f10802755765bc80c60d1d
 		document.getElementById("list").innerHTML+="<li>"+name+"</li>";
 	};
 	 
-	function listget(ilist){
-		
+	function listget(){
+		var ilist = document.getElementById("list").text
 		for (var n in ilist){
 			document.getElementById("list").innerHTML+=n;
 	};
@@ -118,13 +123,13 @@
 <title>재료</title>
 </head>
 <body>
-
 <fieldset class="f1">
+	
 	<ul class = "big">
 		<li>
-			<a href="<c:url value="/ingredient/cate" > 
+			<a href="<c:url value="" > 
  				<c:param value='빵류' name='category'/> 
-  				</c:url>" onclick="listget(ilist)">빵류</a>
+  				</c:url>" onclick="listget()">빵류</a>
 		</li>
 		<li>
 			<a href="<c:url value="/ingredient/cate" > 
@@ -151,5 +156,9 @@
 		 
 	</ul>
 </fieldset>
+<!-- %
+String a = request.getParameter("recipeName");
+%-->
+<%@include file="/recipe/updateForm.jsp" %><!-- flush="false"%-->
 </body>
 </html>
