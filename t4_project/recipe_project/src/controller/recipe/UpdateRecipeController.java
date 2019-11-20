@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
+import controller.member.MemberSessionUtils;
 import model.Recipe;
 import model.Procedure;
 import model.Ingredient;
@@ -15,6 +16,7 @@ import model.service.RecipeManager;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class UpdateRecipeController implements Controller {
 	
@@ -26,7 +28,7 @@ public class UpdateRecipeController implements Controller {
 		if (request.getMethod().equals("GET")) {	
     		// GET request: 레시피 수정 form (초기 값)요청	
     		// 원래는 UpdateRecipeFormController가 처리하던 작업을 여기서 수행
-    		int updateId = Integer.valueOf(request.getParameter("recipe_id"));
+    		int updateId = Integer.parseInt(request.getParameter("recipe_id"));
 
     		log.debug("UpdateForm Request : {}", updateId);
     		
@@ -40,30 +42,56 @@ public class UpdateRecipeController implements Controller {
 //				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
 //				return "/member/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
 //			}    
-			
+			return "/recipe/updateForm.jsp";
 	    }	
     	
-		String[] procedure = request.getParameterValues("procedure");
-//		List<Procedure> procList = new ArrayList<Procedure>();
+		String writer = MemberSessionUtils.getLoginMemberName(request.getSession());
+		Date nowTime = new Date();
 		
-    	// POST request (회원정보가 parameter로 전송됨)
-//    	Recipe updatedRecipe = new Recipe(
-//    		Integer.parseInt(request.getParameter("recipe_id")),
-//    		Integer.parseInt(request.getParameter("category_id")),
-//    		request.getParameter("rname"),
-//    		request.getParameter("time"),
-//    		request.getParameter("result_img"),
-//    		request.getParameter("hits"),
-//    		(List<Procedure>)procedure,
-//    		(List<Ingredient>)request.getParameter("ingredients"),
-//    		request.getParameter("writerId"),
-//    		request.getParameter("createdDate"));
-//
-//    	log.debug("Update User : {}", updatedRecipe);
-//
-//		RecipeManager manager = RecipeManager.getInstance();
-//		manager.update(updatedRecipe);			
-        return "redirect:/recipe/view";		
+		
+//		List<Procedure> procList = (List<Procedure>)request.getParameterValues("procedure");
+		String[] iname = request.getParameterValues("iname");
+		String[] quantity = request.getParameterValues("quantity");
+		String[] procText = request.getParameterValues("proc_text");
+		String[] procId = request.getParameterValues("proc_id");
+		
+		List<Ingredient> iList = new ArrayList<>();
+		for (int i = 0; i < iname.length; i++) {
+			Ingredient ingredient = new Ingredient();
+			ingredient.setIname(iname[i]);
+			ingredient.setQuantity(quantity[i]);
+			iList.add(ingredient);
+		}
+		
+		List<Procedure> pList = new ArrayList<>();
+		for (int i = 0; i < procText.length; i++) {
+			Procedure proc = new Procedure();
+			proc.setProc_Id(Integer.parseInt(procId[i]));
+			proc.setText(procText[i]);
+		}
+		
+		/* request로 받아온 parameter들로 recipe 객체 생성*/
+		Recipe updateRecipe = new Recipe(
+				0, //recipe_id는 DAO에서 시퀀스로 설정
+				Integer.parseInt(request.getParameter("category_id")),
+				request.getParameter("rname"),
+				request.getParameter("time"),
+				null,	//result_img는 파일 업로드 하고..
+				0,
+				pList,
+				iList,
+				null,
+				writer,
+				nowTime
+		);
+		
+		log.debug("Update Recipe : {}", updateRecipe);
+    	
+		RecipeManager manager = RecipeManager.getInstance();
+		manager.update(updateRecipe);
+		Recipe recipe = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id")));
+		request.setAttribute("recipe", recipe);
+		return "/recipe/view(owner).jsp";
 	}
 
 }

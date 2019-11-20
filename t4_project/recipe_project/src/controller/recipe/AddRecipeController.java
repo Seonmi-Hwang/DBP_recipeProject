@@ -15,6 +15,7 @@ import controller.member.MemberSessionUtils;
 import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
+import model.service.IngredientManager;
 import model.service.RecipeManager;
 
 public class AddRecipeController implements Controller {
@@ -48,6 +49,9 @@ public class AddRecipeController implements Controller {
 		List<Ingredient> iList = new ArrayList<>();
 		for (int i = 0; i < iname.length; i++) {
 			Ingredient ingredient = new Ingredient();
+			if (iname[i] == null || iname[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
 			ingredient.setIname(iname[i]);
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
@@ -55,10 +59,16 @@ public class AddRecipeController implements Controller {
 		
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
-			Procedure proc = new Procedure();
-			proc.setProc_Id(Integer.parseInt(procId[i]));
+			Procedure proc = new Procedure(); 
+			if (procId[i] == null || procId[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
+			proc.setProc_Id(Integer.valueOf(procId[i]));
+
 			proc.setText(procText[i]);
+			pList.add(proc);
 		}
+		
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe recipe = new Recipe(
@@ -77,13 +87,16 @@ public class AddRecipeController implements Controller {
 
 		
 		log.debug("Create Recipe : {}", recipe);
-//
-//		RecipeManager manager = RecipeManager.getInstance();
-//		manager.create(recipe);
-//		for (int i = 0; i < iList.size(); i++) {
-//			
-//		}
-//		request.setAttribute("recipe", recipe);
+
+		RecipeManager manager = RecipeManager.getInstance();
+		manager.create(recipe);
+		
+		IngredientManager imanager = IngredientManager.getInstance();
+		
+		for (int i = 0; i < iList.size(); i++) {
+			
+		}
+		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 
 	}
