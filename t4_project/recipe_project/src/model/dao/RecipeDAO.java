@@ -152,6 +152,42 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
+	// 주어진 email_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
+	public List<Recipe> getUserRecipeList(String email_id) throws SQLException {
+        String sql = "SELECT r.recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+        		   + "FROM users_recipe u JOIN recipe_info r ON u.recipe_id = r.recipe_id "	
+        		   + "WHERE r.category_id = 30 and member_id=(SELECT member_id FROM member where email_id=?)";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Recipe> recipeList = new ArrayList<Recipe>();	// Recipe들의 리스트 생성
+			while (rs.next()) {
+				int recipe_id = rs.getInt("recipe_id");
+				Recipe recipe = new Recipe (		// Recipe 객체를 생성하여 recipe 정보를 저장
+					recipe_id,
+					30,
+					rs.getString("rname"),
+					rs.getString("time"),
+					rs.getString("result_img"),
+					rs.getInt("hits"),
+					null,
+					null,
+					null,
+					null,
+					null);	
+				recipeList.add(recipe);				// List에  Recipe 객체 저장
+			}		
+			return recipeList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	public String getIngredients(int recipe_id) throws SQLException {
 	       String sql = "SELECT DISTINCT iname " // 여기서 ingredient 목록을 ingredientDAO에서 출력
         		   + "FROM ingredient_info info, ingredient ingr "
