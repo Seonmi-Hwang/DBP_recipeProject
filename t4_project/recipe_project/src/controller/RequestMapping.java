@@ -38,6 +38,7 @@ public class RequestMapping {
         mappings.put("/recipe/add/form", new AddRecipeController());
         mappings.put("/recipe/update", new UpdateRecipeController());
         mappings.put("/recipe/search", new SearchRecipeController());
+        mappings.put("/recipe/view/owner", new ForwardController("/recipe/view(owner).jsp"));
         
         mappings.put("/ingredient/list", new ListIngredientController());
         mappings.put("/ingredient/cate", new CategoryIngredientController());

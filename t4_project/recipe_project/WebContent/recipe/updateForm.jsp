@@ -41,7 +41,7 @@ function recipeModify() {
 				<td>
 					<table>
 						<tr>
-							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>레시피 추가</b>&nbsp;&nbsp;
+							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>레시피 수정</b>&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table> <br>
