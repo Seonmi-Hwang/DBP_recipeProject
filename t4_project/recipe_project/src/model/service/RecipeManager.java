@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Recipe;
+import model.Ingredient;
 import model.Procedure;
 import model.dao.RecipeDAO;
 
@@ -132,7 +133,8 @@ public class RecipeManager {
 //		return recipeDAO.getRecipeList(currentPage, countPerPage);
 //	}
 	
-	public List<String> findIngredientsName(int recipeId) throws SQLException {
+	/* YJ */
+	public List<Ingredient> findIngredients(int recipeId) throws SQLException {
 		return recipeDAO.getIngredientsName(recipeId);
 	}
 	

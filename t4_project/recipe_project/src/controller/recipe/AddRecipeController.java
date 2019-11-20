@@ -56,7 +56,7 @@ public class AddRecipeController implements Controller {
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
 			Procedure proc = new Procedure();
-			proc.setProc_Id(Integer.valueOf(procId[i]));
+			proc.setProc_Id(Integer.parseInt(procId[i]));
 			proc.setText(procText[i]);
 		}
 		
