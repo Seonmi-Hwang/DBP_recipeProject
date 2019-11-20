@@ -53,7 +53,7 @@ public class RecipeManager {
 		return recipe;
 	}
 
-	public Recipe getTopRecipe(int category_id) throws SQLException {
+	public Recipe getTopRecipe(int category_id) throws SQLException, RecipeNotFoundException {
 		Recipe recipe = recipeDAO.getTopRecipe(category_id);
 		
 		if (recipe == null) {
@@ -68,8 +68,8 @@ public class RecipeManager {
 		return recipe;
 	}
 	
-	public List<Recipe> findRecipeList(int categoryId) throws SQLException, RecipeNotFoundException {
-		List<Recipe> recipeList = recipeDAO.getRecipeList(categoryId);
+	public List<Recipe> findRecipeList(int category_id) throws SQLException, RecipeNotFoundException {
+		List<Recipe> recipeList = recipeDAO.getRecipeList(category_id);
 		
 		for (Recipe recipe : recipeList) {
 			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
