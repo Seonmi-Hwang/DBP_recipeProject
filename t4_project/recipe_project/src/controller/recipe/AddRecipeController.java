@@ -1,6 +1,8 @@
 package controller.recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class AddRecipeController implements Controller {
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
 		}
-		
+
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
 			Procedure proc = new Procedure(); 
@@ -68,7 +70,24 @@ public class AddRecipeController implements Controller {
 			proc.setText(procText[i]);
 			pList.add(proc);
 		}
-		
+		pList.sort(new Comparator<Procedure>() {
+
+			@Override
+			public int compare(Procedure arg0, Procedure arg1) {
+				// TODO Auto-generated method stub
+				 int age0 = arg0.getProc_Id();
+                 int age1 = arg1.getProc_Id();
+                 if (age0 == age1)
+                       return 0;
+                 else if (age0 > age1)
+                       return 1;
+                 else
+                       return -1;
+			}
+			
+		});
+
+		/* 부가 기능: 우선순위 저장처럼 조리과정 순서 기능 구현하기!*/
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe recipe = new Recipe(
@@ -88,8 +107,8 @@ public class AddRecipeController implements Controller {
 		
 		log.debug("Create Recipe : {}", recipe);
 
-		RecipeManager manager = RecipeManager.getInstance();
-		manager.create(recipe);
+//		RecipeManager manager = RecipeManager.getInstance();
+//		manager.create(recipe);
 		
 		IngredientManager imanager = IngredientManager.getInstance();
 		

@@ -50,7 +50,7 @@ function recipeRemove() {
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">조리 과정</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				<c:forEach var="proc" items="${recipe.procedure}">
-					${proc.proc_Id}. &nbsp;${proc.text}
+					<p>${proc.proc_Id}. &nbsp;${proc.text}</p>
 				</c:forEach>	
 			</td>
 		  </tr>
