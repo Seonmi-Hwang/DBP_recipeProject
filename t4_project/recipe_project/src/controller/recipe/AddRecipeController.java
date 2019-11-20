@@ -105,14 +105,14 @@ public class AddRecipeController implements Controller {
 		
 		log.debug("Create Recipe : {}", recipe);
 
-//		RecipeManager manager = RecipeManager.getInstance();
-//		manager.create(recipe);
+		RecipeManager manager = RecipeManager.getInstance();
+		manager.create(recipe);
 //		
-		IngredientManager imanager = IngredientManager.getInstance();
-		
-		for (int i = 0; i < iList.size(); i++) {
-			
-		}
+//		IngredientManager imanager = IngredientManager.getInstance();
+//		
+//		for (int i = 0; i < iList.size(); i++) {
+//			
+//		}
 		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 
