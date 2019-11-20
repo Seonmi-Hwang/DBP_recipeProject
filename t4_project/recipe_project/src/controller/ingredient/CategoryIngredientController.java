@@ -14,9 +14,9 @@ public class CategoryIngredientController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IngredientManager manager = IngredientManager.getInstance();
-//		String category = request.getParameter(URLDecoder.decode("category", "UTF-8"));
-		System.out.printf("ddd");
-		List<Ingredient> ingreList = manager.findIngredientList("");
+		String category = request.getParameter(URLDecoder.decode("category", "UTF-8"));
+		System.out.printf("%s",category);
+		List<Ingredient> ingreList = manager.findIngredientList(category);
 //		List<Ingredient> ingreList = manager.findingredientname();
 		request.setAttribute("ingrecate", ingreList);
 //		request.setAttribute("category", 

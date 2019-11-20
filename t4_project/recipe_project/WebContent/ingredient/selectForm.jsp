@@ -9,36 +9,19 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 				 " <li>${ingredient.iname}</li>"+
 				 "</c:forEach>";
 	 function wname(){
-<<<<<<< HEAD
-		 var category = document.getElementById("small").text;
-		 document.getElementById("small").innerHTML="<c:url value='/'>"
-			+"<c:param name='category' value='�����'/>"
-				+"</c:url>";
-				//"<c:forEach var='�����' items='${ingreList}'>"+
+				//"<c:forEach var='�����' items='${ingreList}'>"+
 				 //" <li>${ingredient.iname}</li>"+
 				 //"</c:forEach>";
+		 //document.getElementById("small").innerHTML="<p>dk</p>"
+		 //+"<c:forEach var='계란류' items='${ingrecate}'>"+
+		 //" <li>${Ingredient.iname}</li>"+
+		 //"</c:forEach>";
 		 };
 	
-=======
 		 //document.getElementById("small").innerHTML="";
 		 //var category = document.getElementById("small").text;
-		 return document.getElementById("small").innerHTML="<p>dk</p><c:forEach var='계란류' items='${ingrecate}'>"+
-		 " <li>${ingredient.iname}</li>"+
-		 "</c:forEach>";
 		 
-		 }
-	$(document).ready(function(){
-		$("a").click(function(){ 	
-			$("a").hide();
-		
-			//var str = ""
-			//var tdArr = new Array();	// 배열 선언
-			
-			// 현재 클릭된 Row(<tr>)
-			//var li = $(this);
-		});
-	});
->>>>>>> yoon
+
 	
 	
 	
@@ -88,7 +71,7 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 	
 	.f1 {
     position: relative;
-    width: 300px;
+    width: 500px;
     float:left
 	}
 	
@@ -100,13 +83,17 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 	}
 	.big>li{
 		line-height: 40px;
-		
-		
 	}
+	
+	scrollbar-track {
+    	background: #f8f8f8;
+	}
+	
 	.f1>ul {
-    height: 100px;
+    height: 300px;
     border: 1px solid #a73f40;
     background: #fff;
+    overflow:auto;
 	}
 	
 	ul {
@@ -132,46 +119,31 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 <fieldset class="f1">
 	<ul class = "big">
 		<li>
-			<a>${ingredient.icategory}</a> 
+			<a href="<c:url value="/ingredient/cate" > 
+ 				<c:param value='빵류' name='category'/> 
+  				</c:url>">빵류</a>
+		</li>
+		<li>
+			<a href="<c:url value="/ingredient/cate" > 
+ 				<c:param value='채소류' name='category'/> 
+  				</c:url>">채소류</a>
 		</li>
 		<li>
 			<a href="<c:url value="/ingredient/cate" > 
  				<c:param value='계란류' name='category'/> 
-  				</c:url>" onclick="wname(); return true;">계란류</a>
+  				</c:url>">계란류</a>
 		</li>
 	</ul>
 	
 	<ul class="small" id="small">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-		 <c:forEach var="1000" items='${ingreList}'>
-		 <jsp:include page="selectForm.jsp">
-        <jsp:param name="myVar" value="�����"/>
-    </jsp:include>
-		 <li>
-		 ${ingredient.iname}
-		 </li>
-=======
-		<c:param name="category" value="�����"></c:param>
-		 <c:forEach var="ingredient" items='${ingreList}'>
+		 <c:forEach var="ingredient" items='${ingrecate}'>
 			
-		 	<li>${ingredient.iname}</li>
->>>>>>> yoon
-=======
-		
-		 <c:forEach var="ingredient" items='${ingreList}'>
-			
-		 	<li><a>${ingredient.iname}</a></li>
->>>>>>> yoon
+		 	<li><a onclick="wname(); return flase;">${ingredient.iname}</a></li>
 		 </c:forEach> 
 	</ul>
-=======
-	
-		</ul>
-	
->>>>>>> yoon
+	<ul class="small" id="small">
+		 
+	</ul>
 </fieldset>
 </body>
 </html>
