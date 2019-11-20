@@ -16,12 +16,11 @@ public class ListIngredientController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		RecipeManager manager = RecipeManager.getInstance();
-		String ingr = request.getParameter("ingre");
-		System.out.printf("%s",ingr);
-		String[] ingre =  ingr.split(",");
+		String[] ingr = request.getParameterValues("ingre");
+		
 		
 //		List<Ingredient> ingreList = manager.findIngredientList(category);
-		List<Integer> recipeList = manager.findRecommendRecipe(ingre);
+		List<Integer> recipeList = manager.findRecommendRecipe(ingr);
 		request.setAttribute("recipeList", recipeList);
 //		request.setAttribute("category", 
 //				IngredientSessionUtils.getcategory(request.getSession()));	

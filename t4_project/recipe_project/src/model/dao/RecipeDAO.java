@@ -295,23 +295,37 @@ private JDBCUtil jdbcUtil = null;
 	// 재료 맞춤 레시피 출력
 	public List<Integer> getRecommendRecipe(String[] ingredients) throws SQLException {
 		String p ="";
-		for(String i:ingredients) {
-			p+=i+",";
-		}
-		String sql = "SELECT DISTINCT recipe_id "
+		String sql = "SELECT DISTINCT ingredient.recipe_id "
 				+ "FROM ingredient,ingredient_info " + 
-				"WHERE ingredient.ingredient_id=ingredient_info.ingredient_id "
-				+ "and ingredient_info.iname IN (?)";
+				"WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
+		int count = 0;
+		System.out.printf("%s\n", ingredients);
+		if(ingredients!=null) {
+			for(String i:ingredients) {
+				if(i!="") {
+					if(count == 0) {
+						p+="'"+i+"'";
+					}
+					else {
+						p+=",'"+i+"'";
+					}
+					count++;
+				}
+			}
+			sql+="and ingredient_info.iname IN ("+p+")";
+			System.out.printf("%s\n", p);
+		}
 		
-		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {p});	// JDBCUtil에 query문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, null);	// JDBCUtil에 query문과 매개 변수 설정
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 			List<Integer> recipeIdList = new ArrayList<Integer>();	// Recipe들의 리스트 생성
 			while (rs.next()) {
-				recipeIdList.add(rs.getInt("recipe_id"));				// List에  Recipe 객체 저장
-			}		
+				recipeIdList.add(rs.getInt("recipe_id"));	
+				// List에  Recipe 객체 저장
+			}	
+			System.out.printf("%s", recipeIdList);
 			return recipeIdList;					
 			
 		} catch (Exception ex) {
