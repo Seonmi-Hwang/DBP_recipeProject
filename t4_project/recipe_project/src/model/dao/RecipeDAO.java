@@ -102,6 +102,7 @@ private JDBCUtil jdbcUtil = null;
 					rs.getInt("hits"),
 					getProcedures(recipe_id),
 					getIngredientsName(recipe_id),
+					null,
 					getRecipeWriter(recipe_id),
 					getCreatedDate(recipe_id));
 				return recipe;
@@ -137,10 +138,36 @@ private JDBCUtil jdbcUtil = null;
 					null,
 					null,
 					null,
+					null,
 					null);	
 				recipeList.add(recipe);				// List에  Recipe 객체 저장
 			}		
 			return recipeList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	public String getIngredients(int recipe_id) throws SQLException {
+	       String sql = "SELECT DISTINCT iname " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+        		   + "FROM ingredient_info info, ingredient ingr "
+        		   + "WHERE info.ingredient_id = ingr.ingredient_id "
+        		   + "AND recipe_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipe_id});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			String ingredients = "";
+			while (rs.next()) {
+				ingredients += rs.getString("iname") + "| ";
+			}
+			
+			
+			return ingredients;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -176,6 +203,7 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("time"),
 					rs.getString("result_img"),
 					rs.getInt("hits"),
+					null,
 					null,
 					null,
 					null,
