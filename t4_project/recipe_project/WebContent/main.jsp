@@ -22,13 +22,6 @@ h3, h4, tr, td {
 	text-align : center;
 }
 
-img {
-	width : 240px; 
-	height : 192px;
-	text-align : center;
-}
-
-
 </style>
 <script>
 
@@ -37,10 +30,10 @@ img {
 
 <div class="container">
 	<div class="masthead">
-		<br>
-        <h3 class="text-muted">모두의 레시피</h3> 
+		<br> 
+        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
         <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
-        
+          
     <div class="s003"> <!-- 검색창 -->
       <form name="search" method="POST" action="<c:url value='/recipe/search' />" >
         <div class="inner-form">
@@ -68,7 +61,7 @@ img {
       </form>
     </div>
         <br>
-        <nav>
+        <nav> 
           <ul class="nav nav-pills nav-justified"> <!-- 메뉴 카테고리 바 -->
             <li class="nav-item"><a class="nav-link active" href="<c:url value='/main' />">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="<c:url value='/recipe/list'>
