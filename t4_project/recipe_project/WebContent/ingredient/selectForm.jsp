@@ -4,19 +4,21 @@
 <html>
 <head>
 <script>
-//<-- type="text/javascript"--?>
-document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류' items='${ingrecate}'>"+
-				 " <li>${ingredient.iname}</li>"+
-				 "</c:forEach>";
-	 function wname(){
-				//"<c:forEach var='�����' items='${ingreList}'>"+
-				 //" <li>${ingredient.iname}</li>"+
-				 //"</c:forEach>";
-		 //document.getElementById("small").innerHTML="<p>dk</p>"
-		 //+"<c:forEach var='계란류' items='${ingrecate}'>"+
-		 //" <li>${Ingredient.iname}</li>"+
-		 //"</c:forEach>";
-		 };
+// type="text/javascript">
+	 var ilist = new Array();
+	 
+	 function wname(name){
+		//var name = doc/ument.getElementById(name).text;
+		ilist.push(name);
+		document.getElementById("list").innerHTML+="<li>"+name+"</li>";
+	};
+	 
+	function listget(ilist){
+		
+		for (var n in ilist){
+			document.getElementById("list").innerHTML+=n;
+	};
+		
 	
 		 //document.getElementById("small").innerHTML="";
 		 //var category = document.getElementById("small").text;
@@ -30,10 +32,6 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
  				//<c:param value='계란류' name='category'/> 
   				//</c:url>" onclick="wname()">계란류</a>
 		//</li>
-		
-		//<c:forEach var="ingredient" items='${ingreList}'>
-		//<li><input type="checkbox" name="color" value="blue">${ingredient.iname}</input></li>
-	//</c:forEach>
 </script>
 <meta charset="utf-8">
 <style>
@@ -44,9 +42,15 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 	
 	}
 	
+	.list {
+    width: 100px;
+	box-sizing: border-box;
+	float: left;
+	
+	}
+	
 	.small {
     width: 200px;
-    height: 100px;
     float: left;
     padding: 10px 13px;
     box-sizing: border-box;
@@ -121,27 +125,30 @@ document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='계란류
 		<li>
 			<a href="<c:url value="/ingredient/cate" > 
  				<c:param value='빵류' name='category'/> 
-  				</c:url>">빵류</a>
+  				</c:url>" onclick="listget(ilist)">빵류</a>
 		</li>
 		<li>
 			<a href="<c:url value="/ingredient/cate" > 
  				<c:param value='채소류' name='category'/> 
-  				</c:url>">채소류</a>
+  				</c:url>"onclick="listget(ilist)">채소류</a>
 		</li>
 		<li>
 			<a href="<c:url value="/ingredient/cate" > 
  				<c:param value='계란류' name='category'/> 
-  				</c:url>">계란류</a>
+  				</c:url>" onclick="listget(ilist)">계란류</a>
 		</li>
 	</ul>
 	
 	<ul class="small" id="small">
 		 <c:forEach var="ingredient" items='${ingrecate}'>
 			
-		 	<li><a onclick="wname(); return flase;">${ingredient.iname}</a></li>
+		 	<li>
+		 	<a id="${ingredient.iname}" onclick="wname('${ingredient.iname}'); return false;">
+		 	${ingredient.iname}</a>
+		 	</li>
 		 </c:forEach> 
 	</ul>
-	<ul class="small" id="small">
+	<ul class="list" id="list">
 		 
 	</ul>
 </fieldset>
