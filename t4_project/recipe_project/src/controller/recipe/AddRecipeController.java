@@ -86,12 +86,10 @@ public class AddRecipeController implements Controller {
 			}
 			
 		});
-
-		/* 부가 기능: 우선순위 저장처럼 조리과정 순서 기능 구현하기!*/
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe recipe = new Recipe(
-				0, //recipe_id는 DAO에서 시퀀스로 설정
+				0, //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
 				request.getParameter("time"),
@@ -109,7 +107,7 @@ public class AddRecipeController implements Controller {
 
 //		RecipeManager manager = RecipeManager.getInstance();
 //		manager.create(recipe);
-		
+//		
 		IngredientManager imanager = IngredientManager.getInstance();
 		
 		for (int i = 0; i < iList.size(); i++) {
