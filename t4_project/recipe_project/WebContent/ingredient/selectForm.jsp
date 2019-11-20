@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <script>
 //<-- type="text/javascript"--?>
-	var category="∞Ë∂ı∑˘";
+document.getElementById("small").innerHTML="<p>dkdk</p><c:forEach var='Í≥ÑÎûÄÎ•ò' items='${ingrecate}'>"+
+				 " <li>${ingredient.iname}</li>"+
+				 "</c:forEach>";
 	 function wname(){
+<<<<<<< HEAD
 		 var category = document.getElementById("small").text;
 		 document.getElementById("small").innerHTML="<c:url value='/'>"
 			+"<c:param name='category' value='∞Ë∂ı∑˘'/>"
@@ -17,8 +19,38 @@
 				 //"</c:forEach>";
 		 };
 	
+=======
+		 //document.getElementById("small").innerHTML="";
+		 //var category = document.getElementById("small").text;
+		 return document.getElementById("small").innerHTML="<p>dk</p><c:forEach var='Í≥ÑÎûÄÎ•ò' items='${ingrecate}'>"+
+		 " <li>${ingredient.iname}</li>"+
+		 "</c:forEach>";
+		 
+		 }
+	$(document).ready(function(){
+		$("a").click(function(){ 	
+			$("a").hide();
+		
+			//var str = ""
+			//var tdArr = new Array();	// Î∞∞Ïó¥ ÏÑ†Ïñ∏
+			
+			// ÌòÑÏû¨ ÌÅ¥Î¶≠Îêú Row(<tr>)
+			//var li = $(this);
+		});
+	});
+>>>>>>> yoon
 	
 	
+	
+	//<li>
+			//<a href="<c:url value="/ingredient/cate" > 
+ 				//<c:param value='Í≥ÑÎûÄÎ•ò' name='category'/> 
+  				//</c:url>" onclick="wname()">Í≥ÑÎûÄÎ•ò</a>
+		//</li>
+		
+		//<c:forEach var="ingredient" items='${ingreList}'>
+		//<li><input type="checkbox" name="color" value="blue">${ingredient.iname}</input></li>
+	//</c:forEach>
 </script>
 <meta charset="utf-8">
 <style>
@@ -31,7 +63,7 @@
 	
 	.small {
     width: 200px;
-    height: 270px;
+    height: 100px;
     float: left;
     padding: 10px 13px;
     box-sizing: border-box;
@@ -63,15 +95,16 @@
 	li {
     display: list-item;
     text-align: match-parent;
+    border-bottom: 1px solid #dddddd;
     
 	}
 	.big>li{
 		line-height: 40px;
-		border-bottom: 1px solid #dddddd;
+		
 		
 	}
 	.f1>ul {
-    height: 200px;
+    height: 100px;
     border: 1px solid #a73f40;
     background: #fff;
 	}
@@ -92,22 +125,24 @@
 		text-decoration: none;
 	}
 </style>
-<title>¿Á∑·</title>
+<title>Ïû¨Î£å</title>
 </head>
 <body>
-<form action="/ingredient/list" method="post">
+
 <fieldset class="f1">
 	<ul class = "big">
 		<li>
-			<a>ªß∑˘</a> 
+			<a>${ingredient.icategory}</a> 
 		</li>
 		<li>
-			<a href="<c:url value="#" > 
-  
-  </c:url>" onclick="wname()">∞Ë∂ı∑˘</a>
+			<a href="<c:url value="/ingredient/cate" > 
+ 				<c:param value='Í≥ÑÎûÄÎ•ò' name='category'/> 
+  				</c:url>" onclick="wname(); return true;">Í≥ÑÎûÄÎ•ò</a>
 		</li>
 	</ul>
+	
 	<ul class="small" id="small">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	
@@ -132,7 +167,11 @@
 >>>>>>> yoon
 		 </c:forEach> 
 	</ul>
+=======
+	
+		</ul>
+	
+>>>>>>> yoon
 </fieldset>
-</form>
 </body>
 </html>

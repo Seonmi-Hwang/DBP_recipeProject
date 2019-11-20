@@ -40,6 +40,7 @@ public class RequestMapping {
         mappings.put("/recipe/search", new SearchRecipeController());
         
         mappings.put("/ingredient/list", new ListIngredientController());
+        mappings.put("/ingredient/cate", new CategoryIngredientController());
 //        mappings.put("", value);
 //        
 //        logger.info("Initialized Request Mapping!");
