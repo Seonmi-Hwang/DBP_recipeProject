@@ -30,6 +30,7 @@ public class RequestMapping {
         mappings.put("/member/update", new UpdateMemberController());
         mappings.put("/member/delete", new DeleteMemberController());
         mappings.put("/member/myPage", new MyPageController());
+        mappings.put("/member/addForm", new AddIngredientController());
         
         mappings.put("/recipe/list", new ListRecipeController());
         mappings.put("/recipe/view", new ViewRecipeController());
