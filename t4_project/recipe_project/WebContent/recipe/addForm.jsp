@@ -31,9 +31,8 @@
 	 xSize(document.getElementById('ta'));
 	 }
 	 */
-	/* input 동적으로 추가 */
-
-	var ingredient_arrInput = new Array(0);
+/* input 동적으로 추가 
+ * var ingredient_arrInput = new Array(0);
 	var ingredient_arrInputValue = new Array(0);
 	var procedure_arrInput = new Array(0);
 	var procedure_arrInputValue = new Array(0);
@@ -109,8 +108,8 @@
 		
 		}
 		display(div_id);
-	}
-	
+	} 
+*/	
 	function recipeModify() {
 		if (form.recipeName.value == "") {
 			form.recipeName.value = "레시피 이름을 입력하십시오.";
@@ -164,10 +163,12 @@
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10">
+								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addIngredient"></div> <br> <input type="button"
 								id="add_ingredient" value="추가" onclick="addInput(this.id);" />
 								<input type="button" id="delete_ingredient" value="삭제"
 								onclick="deleteInput(this.id);" />
+								 -->
 
 							</td>
 						</tr>
@@ -184,23 +185,21 @@
 											style="width: 300px; height: 1px; overflow-y: hidden; position: absolute; top: -9px"
 											disabled></textarea> <input type="number" name="n" size="10" />
 									</li>
-									<li>&nbsp; <textarea id="ta"
-											style="width: 300px; height: 32px; overflow-y: hidden"></textarea>
-										<textarea id="xt"
-											style="width: 300px; height: 1px; overflow-y: hidden; position: absolute; top: -9px"
-											disabled></textarea> <input type="number" name="n" />
-									</li>
+					
 
 								</ol></td>
+								
 						</tr>
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">조리
 								과정</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10">
+								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
 								type="button" id="delete_procedure" value="삭제"
 								onclick="deleteInput(this.value);" />
+								-->
 							</td>
 						</tr>
 					</table> <br>
