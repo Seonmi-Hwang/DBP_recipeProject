@@ -7,8 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
+<script>
+function categoryChange(e) {
+	
+}
+</script>
 <body>
-Category: <select name="mainCategory" style="width:200px">
+Category: <select name="mainCategory" style="width:200px" onchange="categoryChange(this)">
 		<c:forEach var = "cat" items = "${catList}">
         	<option value="">${cat}</option>
         </c:forEach>
