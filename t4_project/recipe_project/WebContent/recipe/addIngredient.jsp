@@ -36,7 +36,30 @@ function delete_ingredient(obj) {
     $(obj).parent().remove();
   }
 }
+function parse_ingredients(inputbox) {
+	  var ingredArray = new Array();
+	  var str = inputbox.val();
 
+	  ingredArray = str.split(/\s*,\s*/);
+	  $(inputbox).parent().remove();
+
+	  $("#ingredients li").each(function (index, element) {
+	    if ($(element).find("input.input-ingred").val() == "" && $(element).find("input.input-amount").val() == "") {
+	      $(element).remove();
+	    }
+	  });
+
+	  for (var i = 0; i < ingredArray.length; i++) {
+	    $("#ingredients").append($('<li class="ui-sortable-handle">' +
+	        '<input type="hidden" name="recipe[ingredients][][id]"> ' +
+	        '<input type="text" class="lft input-ingred" name="recipe[ingredients][][name]" value="' + ingredArray[i] + '"> ' +
+	        '<input type="hidden" class="input-id" name="recipe[ingredients][][basefood_id]"> ' +
+	        '<input type="text" class="rgt input-amount" name="recipe[ingredients][][amount]" placeholder="분량"> ' +
+	        '<button type="button" class="btn_del" onclick="delete_ingredient(this)">삭제</button> ' +
+	        '</div>' +
+	        '</li>'));
+	  }
+	}
 </script>
 </head>
 <body>
@@ -71,6 +94,6 @@ function delete_ingredient(obj) {
 		</ul>
 		<div class="input-error"></div>
 	</div>
-	<a href="javascript:;" class="btn_plus" onclick="add_ingredient()">재료추가하기</a>
+	<input type="button" onclick="add_ingredient()" value="재료 추가">
 </body>
 </html>
