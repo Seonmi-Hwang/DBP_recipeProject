@@ -18,7 +18,7 @@ public class RecipeDAO {
 	}
 
 	// 레시피 추가
-	public void create(Recipe recipe, int memberId) throws SQLException {
+	public int create(Recipe recipe, int memberId) throws SQLException {
 		try {
 			/* recipe_info에 추가 */
 			String sql = "INSERT INTO recipe_info (recipe_id, category_id, rname, time, result_img, hits) "
@@ -63,7 +63,18 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
-
+			
+			
+			/* 현재 레시피 아이디 select */
+			sql = "SELECT rid_sequence.currval AS recipe_id FROM DUAL ";
+			param = new Object[] { };
+			jdbcUtil.setSqlAndParameters(sql, param);
+			ResultSet rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) { 
+				return rs.getInt("recipe_id"); 
+			}
+			return 1;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -71,6 +82,7 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
+		return 0;
 	}
 
 	// 레시피 수정
@@ -130,6 +142,7 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
+
 			return 1;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

@@ -111,7 +111,7 @@
 	 display(div_id);
 	 } 
 	 */
-	function recipeModify() {
+	function recipeAdd() {
 		if (form.rname.value == "") {
 			form.rname.placeholder = "레시피 이름을 입력하세요.";
 			alert('레시피 이름을 입력하세요.');
