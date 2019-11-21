@@ -26,36 +26,44 @@ public class RecipeDAO {
 			Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
 					recipe.getResult_img(), recipe.getHits() };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
-			
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+
 			/* ingredient에 추가 */
 			List<Ingredient> iList = recipe.getIngredients();
 			for (int i = 0; i < iList.size(); i++) {
 				sql = "INSERT INTO ingredient (recipe_id, ingredient_id, quantity) "
 						+ "VALUES (rid_sequence.currval, ?, ?) ";
-				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity()};
+				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-				if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
+				if (jdbcUtil.executeUpdate() != 1) {
+					throw new SQLException();
+				}
 			}
-			
+
 			/* recipe_procedure에 추가 */
 			List<Procedure> pList = recipe.getProcedure();
 			for (int i = 0; i < pList.size(); i++) {
 				sql = "INSERT INTO recipe_procedure (recipe_id, proc_id, text, img_url) "
 						+ "VALUES (rid_sequence.currval, ?, ?, ?) ";
-				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url()};
+				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-				if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
+				if (jdbcUtil.executeUpdate() != 1) {
+					throw new SQLException();
+				}
 			}
-			
+
 			/* users_recipe에 추가 */
 			sql = "INSERT INTO users_recipe (member_id, recipe_id, createdDate) "
 					+ "VALUES (?, rid_sequence.currval, ?) ";
 			java.sql.Date date = new java.sql.Date(recipe.getCreatedDate().getTime());
 			param = new Object[] { memberId, date };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
-			
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -90,12 +98,39 @@ public class RecipeDAO {
 
 	// 레시피 삭제
 	public int remove(int recipe_id) throws SQLException {
-		String sql = "DELETE FROM recipe_info WHERE recipe_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { recipe_id }); // JDBCUtil에 delete문과 매개 변수 설정
-
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 문 실행
-			return result;
+			/* users_recipe에서 삭제 */
+			String sql = "DELETE FROM users_recipe WHERE recipe_id=? ";
+			Object[] param = new Object[] { recipe_id };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+			
+			/* recipe_procedure에서 삭제 */
+			sql = "DELETE FROM recipe_procedure WHERE recipe_id=? ";
+			param = new Object[] { recipe_id };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+			
+			/* ingredient에서 삭제 */
+			sql = "DELETE FROM ingredient WHERE recipe_id=? ";
+			param = new Object[] { recipe_id };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+			
+			/* recipe_info에서 삭제 */
+			sql = "DELETE FROM recipe_info WHERE recipe_id=?";
+			param = new Object[] { recipe_id };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			if (jdbcUtil.executeUpdate() != 1) {
+				throw new SQLException();
+			}
+			return 1;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -132,11 +167,10 @@ public class RecipeDAO {
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getTopRecipe(int category_id) throws SQLException {
 
-        String sql = "SELECT recipe_id, category_id, rname, time, result_img, hits " // recipe_procedure
-        			+ "FROM (SELECT recipe_id, category_id, rname, time, result_img, hits FROM recipe_info ORDER BY hits DESC) "
-        			+ "WHERE category_id=? "
-        			+ "AND rownum = 1 ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id});	// JDBCUtil에 query문과 매개 변수 설정
+		String sql = "SELECT recipe_id, category_id, rname, time, result_img, hits " // recipe_procedure
+				+ "FROM (SELECT recipe_id, category_id, rname, time, result_img, hits FROM recipe_info ORDER BY hits DESC) "
+				+ "WHERE category_id=? " + "AND rownum = 1 ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { category_id }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
@@ -264,40 +298,38 @@ public class RecipeDAO {
 
 	// 재료 맞춤 레시피 출력
 	public List<Integer> getRecommendRecipe(String[] ingredients) throws SQLException {
-		String p ="";
-		String sql = "SELECT DISTINCT ingredient.recipe_id "
-				+ "FROM ingredient,ingredient_info " + 
-				"WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
+		String p = "";
+		String sql = "SELECT DISTINCT ingredient.recipe_id " + "FROM ingredient,ingredient_info "
+				+ "WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
 		int count = 0;
 		System.out.printf("%s\n", ingredients);
-		if(ingredients!=null) {
-			for(String i:ingredients) {
-				if(i!="") {
-					if(count == 0) {
-						p+="'"+i+"'";
-					}
-					else {
-						p+=",'"+i+"'";
+		if (ingredients != null) {
+			for (String i : ingredients) {
+				if (i != "") {
+					if (count == 0) {
+						p += "'" + i + "'";
+					} else {
+						p += ",'" + i + "'";
 					}
 					count++;
 				}
 			}
-			sql+="and ingredient_info.iname IN ("+p+")";
+			sql += "and ingredient_info.iname IN (" + p + ")";
 			System.out.printf("%s\n", p);
 		}
-		
-		jdbcUtil.setSqlAndParameters(sql, null);	// JDBCUtil에 query문과 매개 변수 설정
-		
+
+		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil에 query문과 매개 변수 설정
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			List<Integer> recipeIdList = new ArrayList<Integer>(); // Recipe들의 리스트 생성
 			while (rs.next()) {
-				recipeIdList.add(rs.getInt("recipe_id"));	
-				// List에  Recipe 객체 저장
-			}	
+				recipeIdList.add(rs.getInt("recipe_id"));
+				// List에 Recipe 객체 저장
+			}
 			System.out.printf("%s", recipeIdList);
-			return recipeIdList;					
-			
+			return recipeIdList;
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
