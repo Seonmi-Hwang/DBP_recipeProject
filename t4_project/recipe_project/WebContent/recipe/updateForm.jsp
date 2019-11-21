@@ -20,8 +20,8 @@ function recipeModify() {
 		form.time.value = "소요 시간을 입력하십시오.";
 		return false;
 	}
-	if (form.procedure.value == "") {
-		form.procedure.value = "조리 과정을 입력하십시오.";
+	if (form.procedure1.value == "") {
+		form.procedure1.value = "조리 과정을 입력하십시오.";
 		return false;
 	}
 	
@@ -48,10 +48,10 @@ function recipeModify() {
 					<table style="background-color: YellowGreen;">
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피 이름</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+							<td width="470" bgcolor="ffffff" style="padding-left: 10px" >
 								<p>
 									<input type="text" style="width: 60%; height: 30px; font-size:20px;" name="rname"
-										value="${recipe.rname}">
+										value="${recipe.rname}" placeholder="레시피 이름을 입력하세요">
 								</p>
 							</td>
 						</tr>
@@ -59,32 +59,13 @@ function recipeModify() {
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+									<c:forEach var="i" begin="1" end="5">
 									<p>
-										<strong>1</strong> &nbsp;
-										<input type="text" name="iname1" value="${recipe.procedure1}">
-										<input type="text" name="quantity1" size="10" >
+										<strong>${i}</strong> &nbsp;
+										<input type="text" name="iname" placeholder="ex) 계란">
+										<input type="text" name="quantity" size="10" placeholder="ex) ${i}알">
 									</p>
-									<p>
-										<strong>2</strong> &nbsp;
-										<input type="text" name="iname2" value="${recipe.procedure${i}">
-										<input type="text" name="quantity2" size="10" >
-									</p>
-									<p>
-										<strong>3</strong> &nbsp;
-										<input type="text" name="iname3" value="${recipe.procedure${i}">
-										<input type="text" name="quantity3" size="10" >
-									</p>
-									<p>
-										<strong>4</strong> &nbsp;
-										<input type="text" name="iname4" value="${recipe.procedure${i}">
-										<input type="text" name="quantity4" size="10" >
-									</p>
-									<p>
-										<strong>5</strong> &nbsp;
-										<input type="text" name="iname5" value="${recipe.procedure5}">
-										<input type="text" name="quantity5" size="10" >
-									</p>
-									
+								</c:forEach>									
 								
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addIngredient"></div> <br> <input type="button"
@@ -105,13 +86,15 @@ function recipeModify() {
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
 							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
-								
-								<c:forEach var="i" begin="1" end="5">
+							<c:forEach var="i" begin="1"
+									end="5">
 									<p>
-										<strong>${i}</strong> &nbsp;<input type="text" name="procedure" placeholder="ex) 재료를 손질한다.">
-										<input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+										<strong>${i}</strong> &nbsp;<input type="text"
+											name="proc_text" placeholder="ex) 재료를 손질한다."> <input
+											type="text" name="proc_id" size="10" placeholder="ex) ${i}">
 									</p>
 								</c:forEach>
+</p>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
@@ -125,7 +108,7 @@ function recipeModify() {
 					<table style="width: 100%;">
 						<tr>
 							<td align="left">
-								<input type="button" value="추가" onClick="recipeModify()"> &nbsp; 
+								<input type="button" value="수정" onClick="recipeModify()"> &nbsp; 
 								<input type="button" value="취소" onClick="history.back()">
 							</td>
 						</tr>

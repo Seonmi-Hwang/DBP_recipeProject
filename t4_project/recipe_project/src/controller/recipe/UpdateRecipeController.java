@@ -12,10 +12,13 @@ import controller.member.MemberSessionUtils;
 import model.Recipe;
 import model.Procedure;
 import model.Ingredient;
+import model.service.IngredientManager;
+import model.service.MemberManager;
 import model.service.RecipeManager;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 public class UpdateRecipeController implements Controller {
@@ -45,37 +48,67 @@ public class UpdateRecipeController implements Controller {
 			return "/recipe/updateForm.jsp";
 	    }	
     	
-		String writer = MemberSessionUtils.getLoginMemberName(request.getSession());
+		/* writer 설정 위해 */
+		MemberManager mManager = MemberManager.getInstance();
+		String email_id = MemberSessionUtils.getLoginMemberId(request.getSession());
+		int writerId = mManager.findMember(email_id).getMember_id();
+		String writer = mManager.findMember(email_id).getMname();
 		Date nowTime = new Date();
 		
-		
-//		List<Procedure> procList = (List<Procedure>)request.getParameterValues("procedure");
+		/* 사용자로부터 입력받아온 재료 정보와 조리 과정을 recipe객체의 멤버변수에 맞게 */
 		String[] iname = request.getParameterValues("iname");
 		String[] quantity = request.getParameterValues("quantity");
 		String[] procText = request.getParameterValues("proc_text");
 		String[] procId = request.getParameterValues("proc_id");
 		
+		IngredientManager imanager = IngredientManager.getInstance();
 		List<Ingredient> iList = new ArrayList<>();
 		for (int i = 0; i < iname.length; i++) {
 			Ingredient ingredient = new Ingredient();
-			ingredient.setIname(iname[i]);
+			if (iname[i] == null || iname[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
+			ingredient.setIngredient_id(imanager.findIdByName(iname[i]));
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
 		}
-		
+
+		/* 조리 과정들의 배열 */
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
-			Procedure proc = new Procedure();
-			proc.setProc_Id(Integer.parseInt(procId[i]));
+			Procedure proc = new Procedure(); 
+			if (procId[i] == null || procId[i].trim().equals("")) {	// ""만 들어올 경우를 방지
+				continue;
+			}
+			proc.setProc_Id(Integer.valueOf(procId[i]));
 			proc.setText(procText[i]);
+			proc.setImg_url(null);
+			pList.add(proc);
 		}
+		/* 조리 과정을 proc_id를 기준으로 오름차순으로 정렬*/
+		pList.sort(new Comparator<Procedure>() {
+
+			@Override
+			public int compare(Procedure arg0, Procedure arg1) {
+				// TODO Auto-generated method stub
+				 int age0 = arg0.getProc_Id();
+                 int age1 = arg1.getProc_Id();
+                 if (age0 == age1)
+                       return 0;
+                 else if (age0 > age1)
+                       return 1;
+                 else
+                       return -1;
+			}
+			
+		});
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe updateRecipe = new Recipe(
-				0, //recipe_id는 DAO에서 시퀀스로 설정
+				0, //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
-				request.getParameter("time"),
+				Integer.parseInt(request.getParameter("time")),
 				null,	//result_img는 파일 업로드 하고..
 				0,
 				pList,

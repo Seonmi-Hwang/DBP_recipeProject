@@ -115,7 +115,7 @@ public class AddRecipeController implements Controller {
 		rmanager.create(recipe, writerId);
 
 		request.setAttribute("recipe", recipe);
-		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
+		return "/recipe/view.jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 
 	}
 
