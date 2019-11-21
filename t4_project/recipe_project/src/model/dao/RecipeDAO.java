@@ -18,8 +18,9 @@ public class RecipeDAO {
 	}
 
 	// 레시피 추가
-	public void create(Recipe recipe) throws SQLException {
+	public void create(Recipe recipe, String memberId) throws SQLException {
 		try {
+			/* recipe_info에 추가 */
 			String sql = "INSERT INTO recipe_info (recipe_id, category_id, rname, time, result_img, hits) "
 					+ "VALUES (rid_sequence.nextval, ?, ?, ?, ?, ?) ";
 			Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
@@ -27,28 +28,32 @@ public class RecipeDAO {
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			
+			/* ingredient에 추가 */
 			List<Ingredient> iList = recipe.getIngredients();
 			for (int i = 0; i < iList.size(); i++) {
 				sql = "INSERT INTO ingredient (recipe_id, ingredient_id, quantity) "
 						+ "VALUES (rid_sequence.currval, ?, ?) ";
-				param = new Object[] { iList.get(i).getIngredient_id(), };
+				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity()};
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			}
 			
+			/* recipe_procedure에 추가 */
 			List<Procedure> pList = recipe.getProcedure();
 			for (int i = 0; i < pList.size(); i++) {
 				sql = "INSERT INTO recipe_procedure (recipe_id, proc_id, text, img_url) "
 						+ "VALUES (rid_sequence.currval, ?, ?, ?) ";
+				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url()};
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			}
 			
+			/* users_recipe에 추가 */
 			sql = "INSERT INTO users_recipe (member_id, recipe_id, createdDate) "
 					+ "VALUES (?, rid_sequence.currval, ?) ";
-			param = new Object[] { recipe.getWriter(), recipe.getCreatedDate() };
+			param = new Object[] { memberId, recipe.getCreatedDate() };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			
+			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

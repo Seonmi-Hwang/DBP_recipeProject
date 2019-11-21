@@ -17,6 +17,7 @@ import model.Ingredient;
 import model.Procedure;
 import model.Recipe;
 import model.service.IngredientManager;
+import model.service.MemberManager;
 import model.service.RecipeManager;
 
 public class AddRecipeController implements Controller {
@@ -37,19 +38,20 @@ public class AddRecipeController implements Controller {
 		
 		
 		/* POST (/recipe/addForm.jsp에서 레시피 등록버튼 누른 후 폼 입력 값 전송 request*/
-		String writer = MemberSessionUtils.getLoginMemberName(request.getSession());
+		
+		/* writer 설정 위해 */
+		MemberManager mManager = MemberManager.getInstance();
+		String writerId = MemberSessionUtils.getLoginMemberId(request.getSession());
+		String writer = mManager.findMember(writerId).getMname();
 		Date nowTime = new Date();
 		
-		
-//		List<Procedure> procList = (List<Procedure>)request.getParameterValues("procedure");
+		/* 사용자로부터 입력받아온 재료 정보와 조리 과정을 recipe객체의 멤버변수에 맞게 */
 		String[] iname = request.getParameterValues("iname");
 		String[] quantity = request.getParameterValues("quantity");
 		String[] procText = request.getParameterValues("proc_text");
 		String[] procId = request.getParameterValues("proc_id");
 		
-
 		IngredientManager imanager = IngredientManager.getInstance();
-		
 		List<Ingredient> iList = new ArrayList<>();
 		for (int i = 0; i < iname.length; i++) {
 			Ingredient ingredient = new Ingredient();
@@ -61,6 +63,7 @@ public class AddRecipeController implements Controller {
 			iList.add(ingredient);
 		}
 
+		/* 조리 과정들의 배열 */
 		List<Procedure> pList = new ArrayList<>();
 		for (int i = 0; i < procText.length; i++) {
 			Procedure proc = new Procedure(); 
@@ -72,6 +75,7 @@ public class AddRecipeController implements Controller {
 			proc.setImg_url(null);
 			pList.add(proc);
 		}
+		/* 조리 과정을 proc_id를 기준으로 오름차순으로 정렬*/
 		pList.sort(new Comparator<Procedure>() {
 
 			@Override
@@ -104,11 +108,10 @@ public class AddRecipeController implements Controller {
 				nowTime
 		);
 
-		
 		log.debug("Create Recipe : {}", recipe);
 
 		RecipeManager rmanager = RecipeManager.getInstance();
-		rmanager.create(recipe);
+		rmanager.create(recipe, writerId);
 
 		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect

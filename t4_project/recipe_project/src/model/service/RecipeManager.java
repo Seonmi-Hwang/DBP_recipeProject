@@ -26,8 +26,8 @@ public class RecipeManager {
 		return recipeMan;
 	}
 	
-	public void create(Recipe recipe) throws SQLException {
-		recipeDAO.create(recipe);
+	public void create(Recipe recipe, String memberId) throws SQLException {
+		recipeDAO.create(recipe, memberId);
 	}
 
 	public int update(Recipe recipe) throws SQLException {
