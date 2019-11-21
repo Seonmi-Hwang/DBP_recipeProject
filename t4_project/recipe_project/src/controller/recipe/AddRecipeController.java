@@ -41,8 +41,9 @@ public class AddRecipeController implements Controller {
 		
 		/* writer 설정 위해 */
 		MemberManager mManager = MemberManager.getInstance();
-		String writerId = MemberSessionUtils.getLoginMemberId(request.getSession());
-		String writer = mManager.findMember(writerId).getMname();
+		String email_id = MemberSessionUtils.getLoginMemberId(request.getSession());
+		int writerId = mManager.findMember(email_id).getMember_id();
+		String writer = mManager.findMember(email_id).getMname();
 		Date nowTime = new Date();
 		
 		/* 사용자로부터 입력받아온 재료 정보와 조리 과정을 recipe객체의 멤버변수에 맞게 */
@@ -98,7 +99,7 @@ public class AddRecipeController implements Controller {
 				0, //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
-				request.getParameter("time"),
+				Integer.parseInt(request.getParameter("time")),
 				null,	//result_img는 파일 업로드 하고..
 				0,
 				pList,

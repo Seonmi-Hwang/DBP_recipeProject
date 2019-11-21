@@ -18,7 +18,7 @@ public class RecipeDAO {
 	}
 
 	// 레시피 추가
-	public void create(Recipe recipe, String memberId) throws SQLException {
+	public void create(Recipe recipe, int memberId) throws SQLException {
 		try {
 			/* recipe_info에 추가 */
 			String sql = "INSERT INTO recipe_info (recipe_id, category_id, rname, time, result_img, hits) "
@@ -57,7 +57,8 @@ public class RecipeDAO {
 			/* users_recipe에 추가 */
 			sql = "INSERT INTO users_recipe (member_id, recipe_id, createdDate) "
 					+ "VALUES (?, rid_sequence.currval, ?) ";
-			param = new Object[] { memberId, recipe.getCreatedDate() };
+			java.sql.Date date = new java.sql.Date(recipe.getCreatedDate().getTime());
+			param = new Object[] { memberId, date };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
@@ -150,7 +151,7 @@ public class RecipeDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) { // 레시피 정보 발견
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 레시피 정보를 저장
-						recipe_id, rs.getInt("category_id"), rs.getString("rname"), rs.getString("time"),
+						recipe_id, rs.getInt("category_id"), rs.getString("rname"), rs.getInt("time"),
 						rs.getString("result_img"), rs.getInt("hits"), getProcedures(recipe_id),
 						getIngredientsName(recipe_id), null, getRecipeWriter(recipe_id), getCreatedDate(recipe_id));
 				return recipe;
@@ -175,7 +176,7 @@ public class RecipeDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) { // 레시피 정보 발견
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 레시피 정보를 저장
-						rs.getInt("recipe_id"), category_id, rs.getString("rname"), rs.getString("time"),
+						rs.getInt("recipe_id"), category_id, rs.getString("rname"), rs.getInt("time"),
 						rs.getString("result_img"), rs.getInt("hits"), null, null, null, null, null);
 				return recipe;
 			}
@@ -199,7 +200,7 @@ public class RecipeDAO {
 			while (rs.next()) {
 				int recipe_id = rs.getInt("recipe_id");
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 recipe 정보를 저장
-						recipe_id, category_id, rs.getString("rname"), rs.getString("time"), rs.getString("result_img"),
+						recipe_id, category_id, rs.getString("rname"), rs.getInt("time"), rs.getString("result_img"),
 						rs.getInt("hits"), null, null, null, null, null);
 				recipeList.add(recipe); // List에 Recipe 객체 저장
 			}
@@ -226,7 +227,7 @@ public class RecipeDAO {
 			while (rs.next()) {
 				int recipe_id = rs.getInt("recipe_id");
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 recipe 정보를 저장
-						recipe_id, 30, rs.getString("rname"), rs.getString("time"), rs.getString("result_img"),
+						recipe_id, 30, rs.getString("rname"), rs.getInt("time"), rs.getString("result_img"),
 						rs.getInt("hits"), null, null, null, null, null);
 				recipeList.add(recipe); // List에 Recipe 객체 저장
 			}
@@ -281,7 +282,7 @@ public class RecipeDAO {
 			while (rs.next()) {
 				int recipe_id = rs.getInt("recipe_id");
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 recipe 정보를 저장
-						recipe_id, category_id, rs.getString("rname"), rs.getString("time"), rs.getString("result_img"),
+						recipe_id, category_id, rs.getString("rname"), rs.getInt("time"), rs.getString("result_img"),
 						rs.getInt("hits"), null, null, null, null, null);
 				recipeList.add(recipe); // List에 Recipe 객체 저장
 			}
