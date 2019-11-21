@@ -20,11 +20,15 @@ function recipeRemove() {
 	  <td>
 	    <table> 
 		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td>
-			<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td>  
-	    	<c:if test="${recipe.category_id eq '30'}">
-	    		<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">작성일: ${recipe.createdDate} </td>
-			</c:if>
+			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td> 
+	    	
+	    		<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">
+	    			<c:choose>
+	    				<c:when test="${recipe.category_id eq '30'}">
+	    					작성일: ${recipe.createdDate} </td>
+						</c:when>
+					</c:choose>
+			<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
 		  </tr>
 	    </table>  
 	    <br>	  	    
@@ -59,20 +63,22 @@ function recipeRemove() {
 		  </tr>
 	 	</table>
 	    <br>
-	    <c:if test="${memberName eq recipe.writer}">
+	    
 	    	<table style="width: 100%;">
 				<tr>
 					<td align="left">
-						<a href="<c:url value='/recipe/update'>	<!-- Get 요청 -->
-					     		   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
-							 	 </c:url>">수정</a> &nbsp;
-				 	    <a href="<c:url value='/recipe/delete'>
-								   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
-							 	 </c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+						<c:if test="${memberName eq recipe.writer}">
+							<a href="<c:url value='/recipe/update'>	<!-- Get 요청 -->
+					     			   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
+							 		 </c:url>">수정</a> &nbsp;
+				 	    	<a href="<c:url value='/recipe/delete'>
+								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
+							 	 	</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+						
+	    				</c:if>
 				 	    <a href="<c:url value='/recipe/list'>
 				 	    			<c:param name='category_id' value='${recipe.category_id}'/>
 				 	    		</c:url>">목록</a>
-				 	    
 				 	    <br>
 				 	       <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 				        <c:if test="${updateFailed || deleteFailed}">
@@ -81,8 +87,6 @@ function recipeRemove() {
 					</td>
 				</tr>
 			</table>
-	    </c:if>
-	      
  	    <br><br>	   
  	    
  	     
