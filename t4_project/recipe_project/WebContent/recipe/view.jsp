@@ -8,11 +8,7 @@
 <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function recipeRemove() {
-	var bool = confirm("정말 삭제하시겠습니까?");
-	
-	if (bool) {
-		form.submit();
-	}
+	return confirm("정말 삭제하시겠습니까?");
 }
 </script>
 </head>
@@ -22,10 +18,13 @@ function recipeRemove() {
     <tr>
 	  <td width="20"></td>
 	  <td>
-	    <table>
+	    <table> 
 		  <tr>
 			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td>
-			<td width="470" bgcolor="ffffff" style="padding-right: 10">조회수: ${recipe.hits} </td>
+			<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td>  
+	    	<c:if test="${recipe.category_id eq '30'}">
+	    		<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">작성일: ${recipe.createdDate} </td>
+			</c:if>
 		  </tr>
 	    </table>  
 	    <br>	  	    
@@ -70,9 +69,12 @@ function recipeRemove() {
 				 	    <a href="<c:url value='/recipe/delete'>
 								   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
 							 	 </c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
-				 	    <a href="<c:url value='/recipe/list' />">목록</a>	
-				 	    <br><br>
-				 	    <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+				 	    <a href="<c:url value='/recipe/list'>
+				 	    			<c:param name='category_id' value='${recipe.category_id}'/>
+				 	    		</c:url>">목록</a>
+				 	    
+				 	    <br>
+				 	       <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 				        <c:if test="${updateFailed || deleteFailed}">
 					      <font color="red"><c:out value="${exception.getMessage()}" /></font>
 					    </c:if>  
@@ -80,7 +82,10 @@ function recipeRemove() {
 				</tr>
 			</table>
 	    </c:if>
-	   
+	      
+ 	    <br><br>	   
+ 	    
+ 	     
 	  </td>
 	</tr>
   </table>  
