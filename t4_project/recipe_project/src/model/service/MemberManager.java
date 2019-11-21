@@ -76,4 +76,5 @@ public class MemberManager {
 	public MemberDAO getMemberDAO() {
 		return this.memberDAO;
 	}
+
 }

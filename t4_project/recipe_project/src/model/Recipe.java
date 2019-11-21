@@ -7,7 +7,7 @@ public class Recipe {
 	private int recipe_id;
 	private int category_id;
 	private String rname;
-	private String time;
+	private int time;
 	private String result_img;
 	private int hits;
 	private List<Procedure> procedure;
@@ -18,7 +18,7 @@ public class Recipe {
 	
 	public Recipe() {}
 	
-	public Recipe(int recipe_id, int category_id, String rname, String time, String result_img, int hits, List<Procedure> procedure, List<Ingredient> ingredients, String ingredientsName, String writer, Date createdDate) {
+	public Recipe(int recipe_id, int category_id, String rname, int time, String result_img, int hits, List<Procedure> procedure, List<Ingredient> ingredients, String ingredientsName, String writer, Date createdDate) {
 		this.recipe_id = recipe_id;
 		this.category_id = category_id;
 		this.rname = rname;
@@ -56,11 +56,11 @@ public class Recipe {
 		this.rname = rname;
 	}
 
-	public String getTime() {
+	public int getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 
