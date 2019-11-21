@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="icon" href="images/favicon.ico">
 <title>로그인</title>
 </head>
 <script>

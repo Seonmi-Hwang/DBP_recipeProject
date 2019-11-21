@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
  
-    <!-- <link rel="icon" type="image/x-icon" href="<img src="<c:url value='/images/moduFavicon.png' />" /> -->
-
+	<link rel="icon" href="images/favicon.ico">
+ 
     <title>모두의 레시피</title> 
 
     <link href="css/main.css" rel="stylesheet" />
