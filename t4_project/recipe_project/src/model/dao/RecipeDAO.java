@@ -51,7 +51,8 @@ public class RecipeDAO {
 			/* users_recipe에 추가 */
 			sql = "INSERT INTO users_recipe (member_id, recipe_id, createdDate) "
 					+ "VALUES (?, rid_sequence.currval, ?) ";
-			param = new Object[] { memberId, recipe.getCreatedDate() };
+			java.sql.Date date = new java.sql.Date(recipe.getCreatedDate().getTime());
+			param = new Object[] { memberId, date };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			
