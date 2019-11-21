@@ -306,9 +306,9 @@
 					</table> <br>
 					<table style="width: 100%;">
 						<tr>
-							<td align="left"><input type="button" value="추가"
-								onClick="recipeModify()"> &nbsp; <input type="button"
-								value="취소" onClick="history.back()"></td>
+							<td align="left">
+								<input type="button" value="추가" onClick="recipeAdd()"> &nbsp;
+								<input type="button" value="취소" onClick="history.back()"></td>
 						</tr>
 					</table>
 				</td>
