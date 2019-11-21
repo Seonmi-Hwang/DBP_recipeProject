@@ -258,5 +258,24 @@ public class IngredientDAO {
 		}
 		return null;
 	}
+	
+	public int findIdByName(String iname) throws SQLException {
+        String sql = "SELECT ingredient_id "
+    			+ "FROM ingredient_info "
+    			+ "WHERE iname=? ";              
+	jdbcUtil.setSqlAndParameters(sql, new Object[] {iname});	// JDBCUtil에 query문과 매개 변수 설정
+
+	try {
+		ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+		if (rs.next()) {						// 학생 정보 발견
+			return rs.getInt("ingredient_id");
+		}
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		jdbcUtil.close();		// resource 반환
+	}
+	return 0;
+	}
 }
 

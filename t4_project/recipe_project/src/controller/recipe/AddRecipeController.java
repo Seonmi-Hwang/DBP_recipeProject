@@ -54,6 +54,7 @@ public class AddRecipeController implements Controller {
 			if (iname[i] == null || iname[i].trim().equals("")) {	// ""만 들어올 경우를 방지
 				continue;
 			}
+			
 			ingredient.setIname(iname[i]);
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
@@ -108,11 +109,12 @@ public class AddRecipeController implements Controller {
 //		RecipeManager manager = RecipeManager.getInstance();
 //		manager.create(recipe);
 //		
-		IngredientManager imanager = IngredientManager.getInstance();
-		
-		for (int i = 0; i < iList.size(); i++) {
-			
-		}
+		/* ingredient에 레시피에 따른 재료 DB 추가*/
+//		IngredientManager imanager = IngredientManager.getInstance();
+//		
+//		for (int i = 0; i < iList.size(); i++) {
+//			imanager.create(iList.get(i));
+//		}
 		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 

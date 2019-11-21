@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Ingredient;
+import model.Recipe;
 import model.dao.IngredientDAO;
 
 public class IngredientManager {
@@ -22,6 +23,9 @@ public class IngredientManager {
 		return IngreMan;
 	}
 	
+	public int create(Ingredient ingredient) throws SQLException {
+		return IngreDAO.create(ingredient);
+	}
 
 	public Ingredient findIngredient(int ingreId)
 			throws SQLException, IngredientNotFoundException {
@@ -46,5 +50,9 @@ public class IngredientManager {
 	
 	public IngredientDAO getIngredientDAO() {
 		return this.IngreDAO;
+	}
+	
+	public int findIdByName(String iname) throws SQLException {
+		return IngreDAO.findIdByName(iname);
 	}
 }
