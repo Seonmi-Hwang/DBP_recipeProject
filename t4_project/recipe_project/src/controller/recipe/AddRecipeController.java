@@ -112,11 +112,12 @@ public class AddRecipeController implements Controller {
 		log.debug("Create Recipe : {}", recipe);
 
 		RecipeManager rmanager = RecipeManager.getInstance();
-		rmanager.create(recipe, writerId);
-
+		int recipe_id = rmanager.create(recipe, writerId);
+		
+		recipe = rmanager.findRecipe(recipe_id);
 		request.setAttribute("recipe", recipe);
+		request.setAttribute("memberName", writer);
 		return "/recipe/view.jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
-
 	}
 
 }
