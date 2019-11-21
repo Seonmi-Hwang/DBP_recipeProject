@@ -36,8 +36,8 @@ td img {
 
 <div class="container">
 	<div class="masthead">
-		<br> 
-        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
+		<br><br>
+        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피"/></a></p>
         <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
         <p align="right"><a href="<c:url value='/member/logout' />">로그아웃</a></p>
           

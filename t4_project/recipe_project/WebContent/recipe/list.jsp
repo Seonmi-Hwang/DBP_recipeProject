@@ -28,6 +28,14 @@ td img {
 	height: 192px;
 	text-align: center;
 }
+
+table {
+	margin-top : 20px;
+}
+
+.row {
+	margin-left : 85px;
+}
 </style>
 <c:choose>
 	<c:when test="${deleteComplete == 1}">
@@ -44,10 +52,9 @@ td img {
 
 <div class="container">
 	<div class="masthead">
-		<br>
+		<br><br>
 		<p align="center">
-			<a href="<c:url value="/main" />"><img
-				src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피" /></a>
+			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a>
 		</p>
 		<p align="right">
 			<a
@@ -216,22 +223,31 @@ td img {
 
 	<br>
 
+	<c:if test="${category_id == 30 && currentPage != 'searchRecipe'}">
+		<p align="right">
+			<a class="btn btn-lg btn-success"
+				href="<c:url value='/recipe/add/form'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>"
+				role="button">레시피 추가</a></p>
+	</c:if>
 
+	<!-- 검색 결과를 나타내는 창일 경우 -->
 	<c:if test="${currentPage eq 'searchRecipe'}">
 		<c:choose>
 			<c:when test="${category_id == 5}">
-				<h5>전체 레시피에서 '${keyword}' 검색어에 대한 결과</h5>
+				<h5	style="margin-left : 85px;">전체 레시피에서 '${keyword}' 검색어에 대한 결과</h5>
 			</c:when>
 			<c:otherwise>
-				<h5>'${keyword}' 검색어에 대한 결과</h5>
+				<h5 style="margin-left : 85px;">'${keyword}' 검색어에 대한 결과</h5>
 			</c:otherwise>
 		</c:choose>
-		<p>총 ${fn:length(recipeList)} 개의 레시피가 검색되었습니다.</p>
+		<p style="margin-left : 85px;">총 ${fn:length(recipeList)} 개의 레시피가 검색되었습니다.</p>
 	</c:if>
 
 	<div class="row">
 		<!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
-		<c:forEach var="recipe" items="${recipeList}" varStatus="status">
+		<c:forEach var="recipe" items="${recipeList}">
 			<table border="1">
 				<!-- 레시피 한 개를 표현할 테이블 -->
 				<tr>
@@ -261,22 +277,8 @@ td img {
 				</tr>
 			</table>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<c:if test="${status.index % 4 == 0}">
-				<br>
-				<br>
-			</c:if>
 		</c:forEach>
 	</div>
-	<c:if test="${category_id == 30}">
-		<br>
-		<p align="right">
-			<a class="btn btn-lg btn-success"
-				href="<c:url value='/recipe/add/form'>
-            				<c:param name='category_id' value='30' />
-            			 </c:url>"
-				role="button">레시피 추가</a>
-		</p>
-	</c:if>
 
 	<!-- Site footer -->
 	<br>

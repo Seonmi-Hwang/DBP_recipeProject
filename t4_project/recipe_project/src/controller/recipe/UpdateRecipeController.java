@@ -124,7 +124,7 @@ public class UpdateRecipeController implements Controller {
 		manager.update(updateRecipe);
 		Recipe recipe = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id")));
 		request.setAttribute("recipe", recipe);
-		return "/recipe/view(owner).jsp";
+		return "/recipe/view.jsp";
 	}
 
 }
