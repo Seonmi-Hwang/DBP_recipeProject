@@ -119,10 +119,12 @@ public class RecipeDAO {
 
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getTopRecipe(int category_id) throws SQLException {
-		String sql = "SELECT recipe_id, rname, time, result_img, hits " // recipe_procedure
-				+ "FROM (SELECT recipe_id, rname, time, result_img, hits " + "FROM recipe_info "
-				+ "ORDER BY hits DESC) " + "WHERE category_id=? " + "AND rownum = 1";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { category_id }); // JDBCUtil에 query문과 매개 변수 설정
+
+        String sql = "SELECT recipe_id, category_id, rname, time, result_img, hits " // recipe_procedure
+        			+ "FROM (SELECT recipe_id, category_id, rname, time, result_img, hits FROM recipe_info ORDER BY hits DESC) "
+        			+ "WHERE category_id=? "
+        			+ "AND rownum = 1 ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {category_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
@@ -249,28 +251,41 @@ public class RecipeDAO {
 	}
 
 	// 재료 맞춤 레시피 출력
-	public List<Integer> getRecommendRecipe(List<Integer> ingredients) throws SQLException {
-		String sql = "SELECT DISTINCT recipe_id " + "FROM ingredient " + "WHERE ingredient_id IN (?) ";
-
-		String parameter = "";
-		for (int i = 0; i < ingredients.size(); i++) {
-			parameter += String.valueOf(ingredients.get(i));
-
-			if (i != ingredients.size() - 1) {
-				parameter += ", ";
+	public List<Integer> getRecommendRecipe(String[] ingredients) throws SQLException {
+		String p ="";
+		String sql = "SELECT DISTINCT ingredient.recipe_id "
+				+ "FROM ingredient,ingredient_info " + 
+				"WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
+		int count = 0;
+		System.out.printf("%s\n", ingredients);
+		if(ingredients!=null) {
+			for(String i:ingredients) {
+				if(i!="") {
+					if(count == 0) {
+						p+="'"+i+"'";
+					}
+					else {
+						p+=",'"+i+"'";
+					}
+					count++;
+				}
 			}
+			sql+="and ingredient_info.iname IN ("+p+")";
+			System.out.printf("%s\n", p);
 		}
-
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {}); // JDBCUtil에 query문과 매개 변수 설정
-
+		
+		jdbcUtil.setSqlAndParameters(sql, null);	// JDBCUtil에 query문과 매개 변수 설정
+		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			List<Integer> recipeIdList = new ArrayList<Integer>(); // Recipe들의 리스트 생성
 			while (rs.next()) {
-				recipeIdList.add(rs.getInt("recipe_id")); // List에 Recipe 객체 저장
-			}
-			return recipeIdList;
-
+				recipeIdList.add(rs.getInt("recipe_id"));	
+				// List에  Recipe 객체 저장
+			}	
+			System.out.printf("%s", recipeIdList);
+			return recipeIdList;					
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

@@ -53,8 +53,8 @@ public class RecipeManager {
 		return recipe;
 	}
 
-	public Recipe getTopRecipe(int recipe_id) throws SQLException {
-		Recipe recipe = recipeDAO.getTopRecipe(recipe_id);
+	public Recipe getTopRecipe(int category_id) throws SQLException, RecipeNotFoundException {
+		Recipe recipe = recipeDAO.getTopRecipe(category_id);
 		
 		if (recipe == null) {
 			try {
@@ -68,8 +68,8 @@ public class RecipeManager {
 		return recipe;
 	}
 	
-	public List<Recipe> findRecipeList(int categoryId) throws SQLException, RecipeNotFoundException {
-		List<Recipe> recipeList = recipeDAO.getRecipeList(categoryId);
+	public List<Recipe> findRecipeList(int category_id) throws SQLException, RecipeNotFoundException {
+		List<Recipe> recipeList = recipeDAO.getRecipeList(category_id);
 		
 		for (Recipe recipe : recipeList) {
 			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
@@ -112,7 +112,7 @@ public class RecipeManager {
 		return recipeList;
 	}
 	
-	public List<Integer> findRecommendRecipe(List<Integer> ingredients) throws SQLException {
+	public List<Integer> findRecommendRecipe(String[] ingredients) throws SQLException {
 		return recipeDAO.getRecommendRecipe(ingredients);
 	}
 	

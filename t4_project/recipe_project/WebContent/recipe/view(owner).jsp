@@ -8,7 +8,11 @@
 <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function recipeRemove() {
-	return confirm("정말 삭제하시겠습니까?");		
+	var bool = confirm("정말 삭제하시겠습니까?");
+	
+	if (bool) {
+		form.submit();
+	}
 }
 </script>
 </head>
