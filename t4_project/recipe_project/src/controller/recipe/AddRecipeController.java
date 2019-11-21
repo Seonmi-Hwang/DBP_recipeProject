@@ -1,7 +1,6 @@
 package controller.recipe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -48,14 +47,16 @@ public class AddRecipeController implements Controller {
 		String[] procText = request.getParameterValues("proc_text");
 		String[] procId = request.getParameterValues("proc_id");
 		
+
+		IngredientManager imanager = IngredientManager.getInstance();
+		
 		List<Ingredient> iList = new ArrayList<>();
 		for (int i = 0; i < iname.length; i++) {
 			Ingredient ingredient = new Ingredient();
 			if (iname[i] == null || iname[i].trim().equals("")) {	// ""만 들어올 경우를 방지
 				continue;
 			}
-			
-			ingredient.setIname(iname[i]);
+			ingredient.setIngredient_id(imanager.findIdByName(iname[i]));
 			ingredient.setQuantity(quantity[i]);
 			iList.add(ingredient);
 		}
@@ -67,8 +68,8 @@ public class AddRecipeController implements Controller {
 				continue;
 			}
 			proc.setProc_Id(Integer.valueOf(procId[i]));
-
 			proc.setText(procText[i]);
+			proc.setImg_url(null);
 			pList.add(proc);
 		}
 		pList.sort(new Comparator<Procedure>() {
@@ -106,14 +107,9 @@ public class AddRecipeController implements Controller {
 		
 		log.debug("Create Recipe : {}", recipe);
 
-		RecipeManager manager = RecipeManager.getInstance();
-		manager.create(recipe);
-//		
-//		IngredientManager imanager = IngredientManager.getInstance();
-//		
-//		for (int i = 0; i < iList.size(); i++) {
-//			
-//		}
+		RecipeManager rmanager = RecipeManager.getInstance();
+		rmanager.create(recipe);
+
 		request.setAttribute("recipe", recipe);
 		return "/recipe/view(owner).jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 

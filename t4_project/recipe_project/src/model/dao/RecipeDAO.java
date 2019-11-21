@@ -25,7 +25,6 @@ public class RecipeDAO {
 			Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
 					recipe.getResult_img(), recipe.getHits() };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			
 			if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			
 			List<Ingredient> iList = recipe.getIngredients();
@@ -44,6 +43,13 @@ public class RecipeDAO {
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				if (jdbcUtil.executeUpdate() != 1) { throw new SQLException(); }
 			}
+			
+			sql = "INSERT INTO users_recipe (member_id, recipe_id, createdDate) "
+					+ "VALUES (?, rid_sequence.currval, ?) ";
+			param = new Object[] { recipe.getWriter(), recipe.getCreatedDate() };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			
+			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
