@@ -63,16 +63,15 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
-			
-			
+
 			/* 현재 레시피 아이디 select */
 			sql = "SELECT rid_sequence.currval AS recipe_id FROM DUAL ";
-			param = new Object[] { };
+			param = new Object[] {};
 			jdbcUtil.setSqlAndParameters(sql, param);
 			ResultSet rs = jdbcUtil.executeQuery();
-			
-			if (rs.next()) { 
-				return rs.getInt("recipe_id"); 
+
+			if (rs.next()) {
+				return rs.getInt("recipe_id");
 			}
 			return 1;
 		} catch (Exception ex) {
@@ -92,16 +91,16 @@ public class RecipeDAO {
 			String sql = "UPDATE recipe_info SET category_id = ?, rname = ?, time = ?, result_img = ?, hits = ? "
 					+ "WHERE recipe_id = ?";
 			Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
-					recipe.getResult_img(), recipe.getHits(), recipe.getRecipe_id()};
+					recipe.getResult_img(), recipe.getHits(), recipe.getRecipe_id() };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 			jdbcUtil.executeUpdate();
 
 			/* ingredient에 수정 */
 			List<Ingredient> iList = recipe.getIngredients();
 			for (int i = 0; i < iList.size(); i++) {
-				sql = "UPDATE ingredient SET ingredient_id = ?, quantity = ? "
-						+ "WHERE recipe_id = ?";
-				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity(), recipe.getRecipe_id() };
+				sql = "UPDATE ingredient SET ingredient_id = ?, quantity = ? " + "WHERE recipe_id = ?";
+				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity(),
+						recipe.getRecipe_id() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				jdbcUtil.executeUpdate();
 			}
@@ -109,18 +108,18 @@ public class RecipeDAO {
 			/* recipe_procedure에 수정 */
 			List<Procedure> pList = recipe.getProcedure();
 			for (int i = 0; i < pList.size(); i++) {
-				sql = "UPDATE recipe_procedure SET proc_id = ?, text = ?, img_url = ? "
-						+ "WHERE recipe_id = ?";
-				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url(), recipe.getRecipe_id() };
+				sql = "UPDATE recipe_procedure SET proc_id = ?, text = ?, img_url = ? " + "WHERE recipe_id = ?";
+				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url(),
+						recipe.getRecipe_id() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				jdbcUtil.executeUpdate();
 			}
 
 			/* users_recipe에 수정은 안하는걸로? update 날짜로 수정 해야될까? */
-		}  catch (Exception ex) {
+		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		}  finally {
+		} finally {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
@@ -139,7 +138,7 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
-			
+
 			/* recipe_procedure에서 삭제 */
 			sql = "DELETE FROM recipe_procedure WHERE recipe_id=? ";
 			param = new Object[] { recipe_id };
@@ -147,7 +146,7 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
-			
+
 			/* ingredient에서 삭제 */
 			sql = "DELETE FROM ingredient WHERE recipe_id=? ";
 			param = new Object[] { recipe_id };
@@ -155,7 +154,7 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() != 1) {
 				throw new SQLException();
 			}
-			
+
 			/* recipe_info에서 삭제 */
 			sql = "DELETE FROM recipe_info WHERE recipe_id=?";
 			param = new Object[] { recipe_id };
@@ -172,7 +171,7 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
-		return 0; //리턴 왜하는지 모르겠음
+		return 0; // 리턴 왜하는지 모르겠음
 	}
 
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 찾아서 Recipe 도메인 클래스에 저장하여 반환.
@@ -347,8 +346,8 @@ public class RecipeDAO {
 					}
 					count++;
 				}
-				if(p!="")
-					sql+="and ingredient_info.iname IN ("+p+")";
+				if (p != "")
+					sql += "and ingredient_info.iname IN (" + p + ")";
 			}
 			System.out.printf("%s\n", p);
 		}
@@ -479,6 +478,24 @@ public class RecipeDAO {
 			jdbcUtil.close(); // resource 반환
 		}
 		return null;
+	}
+
+	public void updateHits(Recipe recipe) throws SQLException {
+		try {
+			/* recipe_info에 수정 */
+			String sql = "UPDATE recipe_info SET hits = ? "
+					+ "WHERE recipe_id = ?";
+			Object[] param = new Object[] { recipe.getHits(), recipe.getRecipe_id() };
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			jdbcUtil.executeUpdate();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close(); // resource 반환
+		}
+
 	}
 
 }

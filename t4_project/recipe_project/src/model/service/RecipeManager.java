@@ -156,4 +156,8 @@ public class RecipeManager {
 		return recipeList;
 	}
 	
+	public void updateHits(Recipe recipe) throws SQLException {
+		recipeDAO.updateHits(recipe);
+	}
+	
 }
