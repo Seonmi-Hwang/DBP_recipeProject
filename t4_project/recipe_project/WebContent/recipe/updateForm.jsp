@@ -33,7 +33,7 @@ function recipeModify() {
 	<br>
 	<!-- Add Form  -->
 	<form name="form" method="POST" action="<c:url value='/recipe/update' />">
-		<input type="hidden" name="recipe_id" value="${category_id}" />
+		<input type="hidden" name="recipe_id" value="${recipe.recipe_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
 		<table style="width: 100%">
 			<tr>
@@ -59,11 +59,10 @@ function recipeModify() {
 							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
-									<c:forEach var="i" begin="1" end="5">
+									<c:forEach var="ingredient" items="${recipe.ingredients}">
 									<p>
-										<strong>${i}</strong> &nbsp;
-										<input type="text" name="iname" placeholder="ex) 계란">
-										<input type="text" name="quantity" size="10" placeholder="ex) ${i}알">
+										<input type="text" name="iname" value="${ingredient.iname}" placeholder="ex) 계란">
+										<input type="text" name="quantity" value="${ingredient.quantity}" size="10" placeholder="ex) 1알">
 									</p>
 								</c:forEach>									
 								
@@ -79,22 +78,20 @@ function recipeModify() {
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="40px">소요 시간</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
-								<input type="text" style="width: 40px; " name="time" placeholder="10">&nbsp;&nbsp;<strong>분</strong>
+								<input type="text" style="width: 40px; " name="time" value="${recipe.time}" placeholder="10">&nbsp;&nbsp;<strong>분</strong>
 							</td>
 								
 						</tr>
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
 							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
-							<c:forEach var="i" begin="1"
-									end="5">
+							<c:forEach var="proc" items="${recipe.procedure}">
 									<p>
-										<strong>${i}</strong> &nbsp;<input type="text"
-											name="proc_text" placeholder="ex) 재료를 손질한다."> <input
-											type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+										<input type="text"
+											name="proc_text" value="${proc.text}" placeholder="ex) 재료를 손질한다."> <input
+											type="text" name="proc_id" value="${proc.proc_Id}" size="10" placeholder="ex) ${proc.proc_Id}">
 									</p>
 								</c:forEach>
-</p>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input

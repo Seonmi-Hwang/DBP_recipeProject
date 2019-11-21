@@ -75,19 +75,40 @@ public class RecipeDAO {
 
 	// 레시피 수정
 	public int update(Recipe recipe) throws SQLException {
-		String sql = "UPDATE recipe_info " + "SET category_id=?, rname=?, time=?, result_img=?, hits=? "
-				+ "WHERE recipe_id=?";
-		Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
-				recipe.getResult_img(), recipe.getHits(), recipe.getRecipe_id() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 update문과 매개 변수 설정
-
 		try {
-			int result = jdbcUtil.executeUpdate(); // update 문 실행
-			return result;
-		} catch (Exception ex) {
+			/* recipe_info에 수정 */
+			String sql = "UPDATE recipe_info SET category_id = ?, rname = ?, time = ?, result_img = ?, hits = ? "
+					+ "WHERE recipe_id = ?";
+			Object[] param = new Object[] { recipe.getCategory_id(), recipe.getRname(), recipe.getTime(),
+					recipe.getResult_img(), recipe.getHits(), recipe.getRecipe_id()};
+			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+			jdbcUtil.executeUpdate();
+
+			/* ingredient에 수정 */
+			List<Ingredient> iList = recipe.getIngredients();
+			for (int i = 0; i < iList.size(); i++) {
+				sql = "UPDATE ingredient SET ingredient_id = ?, quantity = ? "
+						+ "WHERE recipe_id = ?";
+				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity(), recipe.getRecipe_id() };
+				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+				jdbcUtil.executeUpdate();
+			}
+
+			/* recipe_procedure에 수정 */
+			List<Procedure> pList = recipe.getProcedure();
+			for (int i = 0; i < pList.size(); i++) {
+				sql = "UPDATE recipe_procedure SET proc_id = ?, text = ?, img_url = ? "
+						+ "WHERE recipe_id = ?";
+				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url(), recipe.getRecipe_id() };
+				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+				jdbcUtil.executeUpdate();
+			}
+
+			/* users_recipe에 수정은 안하는걸로? update 날짜로 수정 해야될까? */
+		}  catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {
+		}  finally {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
@@ -138,7 +159,7 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
-		return 0;
+		return 0; //리턴 왜하는지 모르겠음
 	}
 
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 찾아서 Recipe 도메인 클래스에 저장하여 반환.

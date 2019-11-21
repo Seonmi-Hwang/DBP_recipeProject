@@ -105,7 +105,7 @@ public class UpdateRecipeController implements Controller {
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe updateRecipe = new Recipe(
-				0, //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
+				Integer.parseInt(request.getParameter("recipt_id")), //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
 				Integer.parseInt(request.getParameter("time")),
