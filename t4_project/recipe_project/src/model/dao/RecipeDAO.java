@@ -280,8 +280,10 @@ public class RecipeDAO {
 					}
 					count++;
 				}
+				if(p!="")
+					sql+="and ingredient_info.iname IN ("+p+")";
 			}
-			sql+="and ingredient_info.iname IN ("+p+")";
+			
 			System.out.printf("%s\n", p);
 		}
 		

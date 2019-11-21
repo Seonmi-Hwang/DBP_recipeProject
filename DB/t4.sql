@@ -40,8 +40,8 @@ DROP TABLE member CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE category
 (
-	category_id          CHAR(18) NOT NULL ,
-	cname                CHAR(18) NOT NULL 
+	category_id          VARCHAR2(18) NOT NULL ,
+	cname                VARCHAR2(18) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKcategories ON category
@@ -53,8 +53,8 @@ ALTER TABLE category
 CREATE TABLE ingredient_info
 (
 	ingredient_id        NUMBER NOT NULL ,
-	icategory            CHAR(18) NULL ,
-	iname                CHAR(18) NULL 
+	icategory            VARCHAR2(18) NULL ,
+	iname                VARCHAR2(18) NULL 
 );
 
 CREATE UNIQUE INDEX XPKingredients_info ON ingredient_info
@@ -66,8 +66,8 @@ ALTER TABLE ingredient_info
 CREATE TABLE member
 (
 	member_id            NUMBER NOT NULL ,
-	mname                CHAR(18) NOT NULL ,
-	pw                   CHAR(18) NOT NULL ,
+	mname                VARCHAR2(18) NOT NULL ,
+	pw                   VARCHAR2(18) NOT NULL ,
 	email_id             VARCHAR2(40) NOT NULL 
 );
 
@@ -93,7 +93,7 @@ ALTER TABLE prefer_ingrdient
 CREATE TABLE recipe_info
 (
 	recipe_id            NUMBER NOT NULL ,
-	category_id          CHAR(18) NOT NULL ,
+	category_id          VARCHAR2(18) NOT NULL ,
 	rname                VARCHAR2(30) NOT NULL ,
 	time                 NUMBER DEFAULT  0  NULL ,
 	result_img           VARCHAR2(100) NULL ,
@@ -136,8 +136,8 @@ CREATE TABLE recipe_procedure
 (
 	recipe_id            NUMBER NOT NULL ,
 	proc_id              NUMBER NOT NULL ,
-	text                 CHAR(18) NOT NULL ,
-	img_url              VARCHAR2(100) NULL
+	text                 VARCHAR2(18) NOT NULL ,
+	img_url              VARCHAR2(1000) NULL
 );
 
 CREATE UNIQUE INDEX XPKrecipe_procedure ON recipe_procedure
