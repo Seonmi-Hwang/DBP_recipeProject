@@ -28,6 +28,8 @@ public class ViewRecipeController implements Controller {
 		String emailId = MemberSessionUtils.getLoginMemberId(request.getSession());
 		String memberName = mManager.findMember(emailId).getMname();
 		request.setAttribute("memberName", memberName);
+		request.setAttribute("curMemberId", 
+				MemberSessionUtils.getLoginMemberId(request.getSession()));		
 		
 		return "/recipe/view.jsp";
 	}

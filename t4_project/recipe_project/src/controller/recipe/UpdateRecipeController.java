@@ -45,6 +45,8 @@ public class UpdateRecipeController implements Controller {
 //				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
 //				return "/member/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
 //			}    
+			request.setAttribute("curMemberId", 
+					MemberSessionUtils.getLoginMemberId(request.getSession()));		
 			return "/recipe/updateForm.jsp";
 	    }	
     	
