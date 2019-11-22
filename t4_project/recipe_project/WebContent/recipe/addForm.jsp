@@ -6,7 +6,9 @@
 <head>
 <meta charset="utf-8">
 <title>레시피 추가</title>
-<script>
+<link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
 
 	function recipeAdd() {
 		if (form.rname.value == "") {
@@ -51,7 +53,7 @@
 	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
 		<input type="hidden" name="category_id" value="${category_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
-		<table style="width: 100%">
+		<table style="width: 100%; height: 100%">
 			<tr>
 				<td width="20"></td>
 				<td>
@@ -61,7 +63,7 @@
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen;">
+					<table style="background-color: YellowGreen; width: 80%; height: 70%">
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피
 								이름</td>
@@ -74,7 +76,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
+							<td width="120" align="center" bgcolor="E6ECDE" height="auto">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
 								<c:forEach var="i" begin="1" end="5">
@@ -103,16 +105,29 @@
 
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
-							<td width="470" height="200" bgcolor="ffffff"
-								style="padding-left: 10px"><c:forEach var="i" begin="1"
-									end="5">
-									<p>
-										<strong>${i}</strong> &nbsp;<input type="text"
-											name="proc_text" placeholder="ex) 재료를 손질한다."> <input
-											type="text" name="proc_id" size="10" placeholder="ex) ${i}">
-									</p>
-								</c:forEach> <!-- 나중에 DOM으로 동적 input 추가하면,
+							<td width="15%" align="center" bgcolor="E6ECDE">조리 과정</td>
+							<td width="85%" height="auto" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
+								<table style="height: 100%; width: 100%">
+									<c:forEach var="i" begin="1" end="5">
+										<tr height="120px">
+											<td width="60%" height="auto" style="vertical-align: top">
+												<strong>${i}</strong> &nbsp; <br>
+												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text" placeholder="ex) 재료를 손질한다." size="40"><br><br>
+												&nbsp;&nbsp;&nbsp;순서 <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+											</td>
+											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
+												<div class="field" align="left">
+													<input type="file" id="files${i}" name="img_url" accept="image/*" onchange="loadImage(${i})"/>
+													<img id="preview${i}"/> 
+												</div>
+											</td>	
+										</tr>
+									</c:forEach>
+								</table>
+								<script type="text/javascript" src="../../js/addForm.js"></script>
+									
+									
+								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
 								type="button" id="delete_procedure" value="삭제"
