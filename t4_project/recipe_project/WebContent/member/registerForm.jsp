@@ -1,37 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<link rel="icon" href="images/favicon.ico">
-<title>È¸¿ø°¡ÀÔ</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<link rel="icon" href="../images/favicon.ico">
+
+<title>ëª¨ë‘ì˜ ë ˆì‹œí”¼ - íšŒì›ê°€ì…</title>
+
+<link href="../css/signin.css" rel="stylesheet">
+<link href="../../css/signin.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<script src="../js/ie-emulation-modes-warning.js"></script>
+<script src="../../js/ie-emulation-modes-warning.js"></script>
+
 <script>
 function memberCreate() {
 	if (form.email_id.value == "") {
-		alert("email(ID)À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("email(ID)ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.email_id.focus();
 		return false;
 	} 
 	if (form.pw.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.pw.focus();
 		return false;
 	}
 	if (form.pw.value != form.pw2.value) {
-		alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.pw2.focus();
 		return false;
 	}
 	if (form.mname.value == "") {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.mname.focus();
 		return false;
 	}
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email_id.value)==false) {
-		alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+		alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.email_id.focus();
 		return false;
 	}
@@ -40,63 +52,46 @@ function memberCreate() {
 </script>
 </head>
 <body>
-<br>
+<div class="container">
+	<div class="masthead">
+		<br><br>
+		<p align="center">
+			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="ëª¨ë‘ì˜ ë ˆì‹œí”¼" /></a>
+		</p>
+	</div>
 <!-- registration form  -->
-<form name="form" method="POST" action="<c:url value='/member/register' />">
-  <table style="width: 100%">
-    <tr>
-      <td width="20"></td>
-	  <td>
-	    <table>
-		  <tr>
-		    <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>È¸¿ø °¡ÀÔ</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
-	    <br>	 
-	    <!-- È¸¿ø°¡ÀÔÀÌ ½ÇÆĞÇÑ °æ¿ì exception °´Ã¼¿¡ ÀúÀåµÈ ¿À·ù ¸Ş½ÃÁö¸¦ Ãâ·Â -->
+<form class="form-signin" name="form" method="POST" action="<c:url value='/member/register' />">
+ 	  <h3 class="form-signin-heading" align="center">íšŒì›ê°€ì…</h3> 
+	    <!-- íšŒì›ê°€ì…ì´ ì‹¤íŒ¨í•œ ê²½ìš° exception ê°ì²´ì— ì €ì¥ëœ ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥ -->
         <c:if test="${registerFailed}">
-	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
+	      <font color="red" size="2"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>
 	    <br>	  
-	    <table style="background-color: YellowGreen">
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ÀÌ¸ŞÀÏ ID</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240;" name="email_id">
-			</td>
-		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ºñ¹Ğ¹øÈ£</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw">
-			</td>
-		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ºñ¹Ğ¹øÈ£ È®ÀÎ</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw2">
-			</td>
-		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ÀÌ¸§</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="mname" 
-				 	<c:if test="${registerFailed}">value="${user.mname}"</c:if>>
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	    <table style="width: 100%">
-		  <tr>
-			<td align="left">
-			<input type="button" value="È¸¿ø °¡ÀÔ" onClick="memberCreate()"> &nbsp;
-			<input type="button" value="Ãë¼Ò" onClick="history.back()">
-			</td>
-		  </tr>
-	    </table>
-	  </td>
-    </tr>
-  </table>  
+	    <label for="inputEmail" class="sr-only">ì´ë©”ì¼ ì•„ì´ë””</label>
+	    <input type="email" id="inputEmail" class="form-control" name="email_id" placeholder="ì´ë©”ì¼ ì£¼ì†Œ" required autofocus>
+
+		<label for="inputPassword" class="sr-only">ë¹„ë°€ë²ˆí˜¸</label>
+		<input type="password" id="inputPassword" class="form-control" name="pw" placeholder="ë¹„ë°€ë²ˆí˜¸" required>
+
+		<label for="inputPassword" class="sr-only">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+		<input type="password" id="inputPassword" class="form-control" name="pw2" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" required>
+
+		<label for="inputName" class="sr-only">ì´ë¦„</label>
+		<input type="text" id="inputName" class="form-control" name="mname" placeholder="ë‹‰ë„¤ì„" required> 
+		
+		<!-- <c:if test="${registerFailed}">value="${user.mname}"</c:if> ì´ê±´ ì™œ ë“¤ì–´ê°€ëŠ”ê±°ì§€?!-->
+		<br>
+
+		<button class="btn btn-lg btn-primary btn-block" type="button" onClick="memberCreate()">íšŒì›ê°€ì…</button>
+		<button class="btn btn-lg btn-primary btn-block" type="button" onClick="history.back()">ì·¨ì†Œ</button>
 </form>
+</div>
+	<script src="../js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,14 +1,10 @@
 package controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.member.MemberSessionUtils;
-import model.Member;
 import model.Recipe;
-import model.service.MemberManager;
 import model.service.RecipeManager;
 
 public class MainController implements Controller {
@@ -27,6 +23,7 @@ public class MainController implements Controller {
 		// 현재 로그인한 사용자 ID를 request에 저장하여 전달
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		
+		request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
 		request.setAttribute("commonTopRecipe", commonTopRecipe);
 		request.setAttribute("snsTopRecipe", snsTopRecipe);
 		request.setAttribute("myTopRecipe", myTopRecipe);

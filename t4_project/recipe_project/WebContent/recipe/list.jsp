@@ -15,7 +15,7 @@
 
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+<script src="../js/ie-emulation-modes-warning.js"></script>
 
 </head>
 <style>
@@ -26,17 +26,19 @@ h3, h4 {
 td img {
 	width: 240px;
 	height: 192px;
-	text-align: center;
-}
-
-table {
-	margin-top : 20px;
 }
 
 .row {
-	margin-left : 85px;
+	margin-left : 50px;
 }
 
+.pagination > li > a { 
+	border-radius: 50% !important;
+	margin: 0 5px;
+	text-align : center;
+}
+
+<<<<<<< HEAD
 	.Rul {
 		display: block;
 		width: 1000px;
@@ -85,6 +87,8 @@ table {
     	float:left;
     	margin: 5px;
     }
+=======
+>>>>>>> seonmi
 </style>
 <c:choose>
 	<c:when test="${deleteComplete == 1}">
@@ -102,16 +106,9 @@ table {
 <div class="container">
 	<div class="masthead">
 		<br><br>
-		<p align="center">
-			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a>
-		</p>
-		<p align="right">
-			<a
-				href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a>
-		</p>
-		<p align="right">
-			<a href="<c:url value='/member/logout' />">로그아웃</a>
-		</p>
+		<p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a></p>
+        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">로그아웃</a></p>
 
 		<div class="s003">
 			<!--검색창 -->
@@ -138,14 +135,14 @@ table {
 							<svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true"
 								data-prefix="fas" data-icon="search" role="img"
 								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor"
-									d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
               </svg>
 						</button>
 					</div>
 				</div>
 			</form>
 		</div>
+		
 		<br>
 		<nav>
 			<ul class="nav nav-pills nav-justified">
@@ -269,68 +266,6 @@ table {
 			</ul>
 		</nav>
 	</div>
-<<<<<<< HEAD
-	
-<br>
-<c:if test="${category_id == 0}">
-
-<form name="form" action="http://localhost:8088/recipe_project/ingredient/list" method="get">
-<input type="text" name="ingre" value="">
-<input type="text" name="ingre" value=""><input type="submit" value="재료입력" onclick="check()">
-</form>
-<ul class="Rul">
-<c:forEach var="recipe" items="${recipeList}" varStatus="status">
-			<li>
-			<form name="form" action="http://localhost:8088/recipe_project/ingredient/list" method="get">
-			<input type="text" name="ingre" value="">
-			<input type="text" name="ingre" value=""><input type="submit" value="재료입력" onclick="check()">
-			</form>
-			</li>
-			<li>
-			<table border="1" class="table"> <!-- 레시피 한 개를 표현할 테이블 -->
-				<tr>
-					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
-					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
-			 		 			 </c:url>"> ${recipe.rname} </a></h4>  
-			  		</td> <!--  recipe.getRecipeName() -->
-				</tr>
-				<tr height="250px">
-					<td colspan="2" ><img src="${recipe.result_img}" alt="Recipe Image" class="img" /></td>
-				</tr>
-				<tr>
-					<td colspan="2" height="30px">
-						&nbsp;재료 : ${recipe.ingredientsName}
-					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
-				</tr>  
-				<tr>
-					<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
-					<td width="110px">&nbsp;조회수 : ${recipe.hits}회 </td> <!--  recipe.getHits() -->
-				</tr>
-			</table>
-			</li>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			
-	</c:forEach>
-
-</ul>
-
-</c:if>
-<c:if test="${currentPage eq 'searchRecipe'}">
-	<c:choose>
-		<c:when test="${category_id == 5}">
-			<h5>전체 레시피에서 '${keyword}' 검색어에 대한 결과</h5>
-		</c:when>
-		<c:otherwise>
-			<h5>'${keyword}' 검색어에 대한 결과</h5>
-		</c:otherwise>
-	</c:choose>
-	<p> 총 ${fn:length(recipeList)} 개의 레시피가 검색되었습니다. </p>
-</c:if>
-
-<div class="row"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
-	<c:forEach var="recipe" items="${recipeList}" varStatus="status">
-			<table border="1"> <!-- 레시피 한 개를 표현할 테이블 -->
-=======
 
 	<br>
 
@@ -355,31 +290,37 @@ table {
 		</c:choose>
 		<p style="margin-left : 85px;">총 ${fn:length(recipeList)} 개의 레시피가 검색되었습니다.</p>
 	</c:if>
+	
+		    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+    <c:if test="${noRecipe}">
+	  	<font color="red" size="2"><c:out value="${exception.getMessage()}" /></font><br>
+	</c:if>
 
 	<div class="row">
 		<!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
 		<c:forEach var="recipe" items="${recipeList}">
-			<table border="1">
+		<div class="col-lg-4">
+			<table border="1" style="margin-top : 20px;">
 				<!-- 레시피 한 개를 표현할 테이블 -->
->>>>>>> 238bc12ae4c4c171cd303a09cf75e935fac5f389
 				<tr>
-					<td colspan="2" style="text-align: center;"><h4>
-							<a
-								href="<c:url value='/recipe/view'>
+					<td colspan="2" style="text-align: center;">
+					<h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
-			 		 			 </c:url>">
-								${recipe.rname} </a>
-						</h4></td>
-					<!--  recipe.getRecipeName() -->
+			 		 			 </c:url>"> ${recipe.rname} </a></h4>
+			 		</td><!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2"><img src="${recipe.result_img}"
-						alt="Recipe Image" /></td>
+					<td colspan="2" style="text-align: center;"><img src="${recipe.result_img}" alt="Recipe Image" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" height="30px">&nbsp;재료 :
-						${recipe.ingredientsName}</td>
-					<%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+					<td colspan="2">
+						<table>
+							<tr>
+								<td width="20%">&nbsp; 재료 : </td>
+								<td>&nbsp; ${recipe.ingredientsName}</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${recipe.time}분</td>
@@ -388,12 +329,36 @@ table {
 					<!--  recipe.getHits() -->
 				</tr>
 			</table>
-			&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+			
 		</c:forEach>
+	</div>
+	
+	<!-- Page Navigation -->
+	<br>
+	<div>
+		<nav class="nav nav-tabs centered" aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Previous">
+		        <span aria-hidden="true">«</span>
+		        <span class="sr-only">Previous</span>
+		      </a>
+		    </li>
+		    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Next">
+		        <span aria-hidden="true">»</span>
+		        <span class="sr-only">Next</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
 	</div>
 
 	<!-- Site footer -->
-	<br>
 	<br>
 	<footer class="footer">
 		<p align="center">© TEAM4 Sommangchi</p>

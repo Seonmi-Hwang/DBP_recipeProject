@@ -63,7 +63,13 @@ public class RecipeManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}	
+		} else {
+			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
+			
+			if (ingredients == null) ingredients = "없음";
+			
+			recipe.setIngredientsName(ingredients);
+		}
 		
 		return recipe;
 	}
@@ -72,14 +78,6 @@ public class RecipeManager {
 	public List<Recipe> findRecipeList(int category_id) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getRecipeList(category_id);
 		
-		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
-			
-			if (ingredients == null) ingredients = "없음";
-			
-			recipe.setIngredientsName(ingredients);
-		}
-		
 		if (recipeList == null) {
 			try {
 				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
@@ -87,7 +85,15 @@ public class RecipeManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}	
+		} else {
+			for (Recipe recipe : recipeList) {
+				String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
+				
+				if (ingredients == null) ingredients = "없음";
+				
+				recipe.setIngredientsName(ingredients);
+			}
+		}
 		
 		return recipeList;
 	}
@@ -96,14 +102,6 @@ public class RecipeManager {
 	public List<Recipe> searchRecipeList(int categoryId, String keyword) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.searchRecipeList(categoryId, keyword);
 		
-		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
-			
-			if (ingredients == null) ingredients = "없음";
-			
-			recipe.setIngredientsName(ingredients);
-		}
-		
 		if (recipeList == null) {
 			try {
 				throw new RecipeNotFoundException("레시피가 존재하지 않습니다.");
@@ -111,7 +109,15 @@ public class RecipeManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}	
+		} else {
+			for (Recipe recipe : recipeList) {
+				String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
+				
+				if (ingredients == null) ingredients = "없음";
+				
+				recipe.setIngredientsName(ingredients);
+			}
+		}
 		
 		return recipeList;
 	}
@@ -137,17 +143,9 @@ public class RecipeManager {
 		return this.recipeDAO;
 	}
 	
-	/*  */
+	/* 해당 유저가 만든 레시피를 가져오는 함수 */
 	public List<Recipe> findUserRecipeList(String email_id) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getUserRecipeList(email_id);
-		
-		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
-			
-			if (ingredients == null) ingredients = "없음";
-			
-			recipe.setIngredientsName(ingredients);
-		}
 		
 		if (recipeList == null) {
 			try {
@@ -156,7 +154,15 @@ public class RecipeManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}	
+		} else {
+			for (Recipe recipe : recipeList) {
+				String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
+				
+				if (ingredients == null) ingredients = "없음";
+				
+				recipe.setIngredientsName(ingredients);
+			}
+		}
 		
 		return recipeList;
 	}

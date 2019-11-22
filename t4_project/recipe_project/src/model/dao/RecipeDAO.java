@@ -208,8 +208,9 @@ public class RecipeDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) { // 레시피 정보 발견
+				int recipe_id = rs.getInt("recipe_id");
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 레시피 정보를 저장
-						rs.getInt("recipe_id"), category_id, rs.getString("rname"), rs.getInt("time"),
+						recipe_id, category_id, rs.getString("rname"), rs.getInt("time"),
 						rs.getString("result_img"), rs.getInt("hits"), null, null, null, null, null);
 				return recipe;
 			}
@@ -285,11 +286,9 @@ public class RecipeDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			String ingredients = "";
 			while (rs.next()) {
-				ingredients += rs.getString("iname") + "| ";
+				ingredients += rs.getString("iname") + " | ";
 			}
-
 			return ingredients;
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
