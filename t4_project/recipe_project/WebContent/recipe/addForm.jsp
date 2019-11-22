@@ -6,112 +6,11 @@
 <head>
 <meta charset="utf-8">
 <title>레시피 추가</title>
-<script>
+<link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
 
-	/*
-	 function xSize(e)
-	 {
-	 var xe = document.getElementById('xt'), t;
-
-	 e.onfocus = function()
-	 {
-	 t = setInterval(
-	 function()
-	 {
-	 xe.value = e.value;
-	 e.style.height = (xe.scrollHeight + 12) + 'px';
-	 }, 100);
-	 }
-
-	 e.onblur = function()
-	 {
-	 clearInterval(t);
-	 }
-	
-
-	 xSize(document.getElementById('ta'));
-	 }
-	 */
-	/* input 동적으로 추가 
-	 * var ingredient_arrInput = new Array(0);
-	 var ingredient_arrInputValue = new Array(0);
-	 var procedure_arrInput = new Array(0);
-	 var procedure_arrInputValue = new Array(0);
-
-	 function addInput(clicked_id) {
-	 var div_id = "";
-	 if (clicked_id == 'add_ingredient') {
-	 ingredient_arrInput.push(ingredient_arrInput.length);
-	 ingredient_arrInputValue.push("");
-	 div_id = 'addIngredient';
-	 }
-	 else { //clicked_id == 'add_procedure')
-	 procedure_arrInput.push(procedure_arrInput.length);
-	 procedure_arrInputValue.push("");
-	 div_id = 'addProcedure';
-	 }
-	 display(div_id);
-
-	 }
-
-	 function display(div_id) {
-	 document.getElementById(div_id).innerHTML = "<ol>";
-	
-	 if (div_id == 'addIngredient') {
-	 for (intI = 0; intI < ingredient_arrInput.length; intI++) {
-	 document.getElementById(div_id).innerHTML += createInput(div_id,
-	 ingredient_arrInput[intI], ingredient_arrInputValue[intI]);
-	 }
-	 } else { //div_id == 'addProcedure'
-	 for (intI = 0; intI < procedure_arrInput.length; intI++) {
-	 document.getElementById(div_id).innerHTML += createInput(div_id,
-	 procedure_arrInput[intI], procedure_arrInputValue[intI]);
-	 }
-	 }
-	
-	 document.getElementById(div_id).innerHTML += "</ol>";
-	 }
-
-	 function saveValue(div_id, intId, strValue) {
-	 if (div_id == 'addIngredient')
-	 ingredient_arrInputValue[intId] = strValue;
-	 else if (div_id == 'addProcedure')
-	 procedure_arrInputValue[intID] = strValue;
-	 }
-
-	 function createInput(div_id, id, value) {
-	 if (div_id == 'addIngredient') {
-	 return "<li><input type='text' id='ingredient_" + id
-	 + "' onChange='javascript:saveValue(" + div_id + ", " + id
-	 + ", this.value)' value='" + value + "'/></li>";
-	 }
-
-	 return "<li><input type='text' id='procedure_" + id
-	 + "' onChange='javascript:saveValue(" + div_id + ", " + id
-	 + ",this.value)' value='" + value + "'/></li>";
-
-	 }
-
-	 function deleteInput(clicked_id) {
-	 if (clicked_id == 'delete_ingredient') {
-	 div_id = 'addIngredient';
-	 if (ingredient_arrInput.length > 0) {
-	 ingredient_arrInput.pop();
-	 ingredient_arrInputValue.pop();
-	 }
-	 }
-	 else { //(clicked_id == 'delete_procedure')
-	 div_id = 'addProcedure';
-	 if (ingredient_arrInput.length > 0) {
-	 procedure_arrInput.pop();
-	 procedure_arrInputValue.pop();
-	 }
-	
-	 }
-	 display(div_id);
-	 } 
-	 */
-	function recipeModify() {
+	function recipeAdd() {
 		if (form.rname.value == "") {
 			form.rname.placeholder = "레시피 이름을 입력하세요.";
 			alert('레시피 이름을 입력하세요.');
@@ -146,88 +45,7 @@
 		form.submit();
 	}
 </script>
-<style>
-	.big {
-    width: 100px;
-	box-sizing: border-box;
-	float: left;
-	
-	}
-	
-	.list {
-    width: 100px;
-	box-sizing: border-box;
-	float: left;
-	
-	}
-	
-	.small {
-    width: 200px;
-    float: left;
-    padding: 10px 13px;
-    box-sizing: border-box;
-    font-family: Microsoft YaHei,'NS';
-	}
-	
-	fieldset {
-	
-    display: block;
-    margin-inline-start: 2px;
-    margin-inline-end: 2px;
-    padding-block-start: 0.35em;
-    padding-inline-start: 0.75em;
-    padding-inline-end: 0.75em;
-    padding-block-end: 0.625em;
-    min-inline-size: min-content;
-    border-width: 2px;
-    border-style: groove;
-    border-color: threedface;
-    border-image: initial;
-	}
-	
-	.f1 {
-    position: relative;
-    width: 500px;
-    float:left
-	}
-	
-	li {
-    display: list-item;
-    text-align: match-parent;
-    border-bottom: 1px solid #dddddd;
-    
-	}
-	.big>li{
-		line-height: 40px;
-	}
-	
-	scrollbar-track {
-    	background: #f8f8f8;
-	}
-	
-	.f1>ul {
-    height: 300px;
-    border: 1px solid #a73f40;
-    background: #fff;
-    overflow:auto;
-	}
-	
-	ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
-    padding: 5px;
-    list-style: none;
-    float: left;
-	}
-	a {
-		text-decoration: none;
-	}
-</style>
+
 </head>
 <body>
 	<br>
@@ -235,7 +53,7 @@
 	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
 		<input type="hidden" name="category_id" value="${category_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
-		<table style="width: 100%">
+		<table style="width: 100%; height: 100%">
 			<tr>
 				<td width="20"></td>
 				<td>
@@ -245,7 +63,7 @@
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen;">
+					<table style="background-color: YellowGreen; width: 80%; height: 70%">
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피
 								이름</td>
@@ -258,7 +76,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
+							<td width="120" align="center" bgcolor="E6ECDE" height="auto">재료
 								정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
 								<c:forEach var="i" begin="1" end="5">
@@ -287,16 +105,29 @@
 
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
-							<td width="470" height="200" bgcolor="ffffff"
-								style="padding-left: 10px"><c:forEach var="i" begin="1"
-									end="5">
-									<p>
-										<strong>${i}</strong> &nbsp;<input type="text"
-											name="proc_text" placeholder="ex) 재료를 손질한다."> <input
-											type="text" name="proc_id" size="10" placeholder="ex) ${i}">
-									</p>
-								</c:forEach> <!-- 나중에 DOM으로 동적 input 추가하면,
+							<td width="15%" align="center" bgcolor="E6ECDE">조리 과정</td>
+							<td width="85%" height="auto" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
+								<table style="height: 100%; width: 100%">
+									<c:forEach var="i" begin="1" end="5">
+										<tr height="120px">
+											<td width="60%" height="auto" style="vertical-align: top">
+												<strong>${i}</strong> &nbsp; <br>
+												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text" placeholder="ex) 재료를 손질한다." size="40"><br><br>
+												&nbsp;&nbsp;&nbsp;순서 <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+											</td>
+											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
+												<div class="field" align="left">
+													<input type="file" id="files${i}" name="img_url" accept="image/*" onchange="loadImage(${i})"/>
+													<img id="preview${i}"/> 
+												</div>
+											</td>	
+										</tr>
+									</c:forEach>
+								</table>
+								<script type="text/javascript" src="../../js/addForm.js"></script>
+									
+									
+								<!-- 나중에 DOM으로 동적 input 추가하면,
 								<div id="addProcedure"></div> <br> <input type="button"
 								id="add_procedure" value="추가" onclick="addInput(this.id);" /> <input
 								type="button" id="delete_procedure" value="삭제"

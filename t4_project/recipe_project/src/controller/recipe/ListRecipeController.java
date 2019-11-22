@@ -26,6 +26,7 @@ public class ListRecipeController implements Controller {
 		request.setAttribute("recipeList", recipeList);
 		request.setAttribute("category_id", category_id);
 		request.setAttribute("currentPage", "listRecipe");
+		request.setAttribute("deleteComplete", -1);	
 		
 		return "/recipe/list.jsp";	
 	}

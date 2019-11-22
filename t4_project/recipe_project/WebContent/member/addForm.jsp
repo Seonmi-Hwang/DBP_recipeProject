@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<link rel="icon" href="images/favicon.ico">
 </head>
 <script>
 function categoryChange(e) {

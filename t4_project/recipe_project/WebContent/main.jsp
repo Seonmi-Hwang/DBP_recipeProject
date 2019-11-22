@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
  
-    <!-- <link rel="icon" type="image/x-icon" href="<img src="<c:url value='/images/moduFavicon.png' />" /> -->
-
+	<link rel="icon" href="images/favicon.ico">
+ 
     <title>모두의 레시피</title> 
 
     <link href="css/main.css" rel="stylesheet" />
@@ -36,8 +36,8 @@ td img {
 
 <div class="container">
 	<div class="masthead">
-		<br> 
-        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/moduRecipe.png' />" alt="모두의 레시피"/></a></p>
+		<br><br>
+        <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피"/></a></p>
         <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
         <p align="right"><a href="<c:url value='/member/logout' />">로그아웃</a></p>
           

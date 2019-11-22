@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="icon" href="images/favicon.ico">
 <title>마이페이지</title>
 <script>
 function memberRemove() {
