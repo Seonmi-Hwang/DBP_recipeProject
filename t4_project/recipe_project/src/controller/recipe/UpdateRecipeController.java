@@ -49,6 +49,8 @@ public class UpdateRecipeController implements Controller {
 					MemberSessionUtils.getLoginMemberId(request.getSession()));		
 			return "/recipe/updateForm.jsp";
 	    }	
+		
+		// POST request
     	
 		/* writer 설정 위해 */
 		MemberManager mManager = MemberManager.getInstance();
@@ -88,27 +90,27 @@ public class UpdateRecipeController implements Controller {
 			pList.add(proc);
 		}
 		/* 조리 과정을 proc_id를 기준으로 오름차순으로 정렬*/
-		pList.sort(new Comparator<Procedure>() {
-
-			@Override
-			public int compare(Procedure arg0, Procedure arg1) {
-				// TODO Auto-generated method stub
-				 int age0 = arg0.getProc_Id();
-                 int age1 = arg1.getProc_Id();
-                 if (age0 == age1)
-                       return 0;
-                 else if (age0 > age1)
-                       return 1;
-                 else
-                       return -1;
-			}
-			
-		});
+//		pList.sort(new Comparator<Procedure>() {
+//
+//			@Override
+//			public int compare(Procedure arg0, Procedure arg1) {
+//				// TODO Auto-generated method stub
+//				 int age0 = arg0.getProc_Id();
+//                 int age1 = arg1.getProc_Id();
+//                 if (age0 == age1)
+//                       return 0;
+//                 else if (age0 > age1)
+//                       return 1;
+//                 else
+//                       return -1;
+//			}
+//			
+//		});
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe updateRecipe = new Recipe(
-				Integer.parseInt(request.getParameter("recipt_id")), //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
-				Integer.parseInt(request.getParameter("category_id")),
+				Integer.parseInt(request.getParameter("recipe_id")), //recipe_id는 DAO에서 시퀀스로 설정. 그래서 필요 X.
+				30,
 				request.getParameter("rname"),
 				Integer.parseInt(request.getParameter("time")),
 				null,	//result_img는 파일 업로드 하고..

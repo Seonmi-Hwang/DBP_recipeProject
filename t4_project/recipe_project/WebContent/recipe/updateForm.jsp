@@ -17,23 +17,37 @@
 <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 <script>
 function recipeModify() {
-	if (form.recipeName.value == "") {
-		form.recipeName.value = "레시피 이름을 입력하십시오.";
+	if (form.rname.value == "") {
+		form.rname.placeholder = "레시피 이름을 입력하세요.";
+		alert('레시피 이름을 입력하세요.');
 		return false;
 	}
-	if (form.ingredient.value == "") {
-		form.ingredient.value = "재료를 입력하세요.";
+	if (form.iname.value == "") {
+		form.iname.placeholder = "ex) 계란";
+		alert('재료를 입력하세요.');
+		return false;
+	}
+	if (form.quantity.value == "") {
+		form.quantity.placeholder = "ex) 1알";
+		alert('수량을 입력하세요.');
 		return false;
 	}
 	if (form.time.value == "") {
-		form.time.value = "소요 시간을 입력하십시오.";
+		form.time.placeholder = "10";
+		alert('소요 시간을 입력하세요.');
 		return false;
 	}
-	if (form.procedure1.value == "") {
-		form.procedure1.value = "조리 과정을 입력하십시오.";
+	if (form.proc_text.value == "") {
+		form.proc_text.placeholder = "ex) 재료를 손질한다.";
+		alert('조리 과정을 입력하세요.');
 		return false;
 	}
-	
+	if (form.proc_id.value == "") {
+		form.proc_id.placeholder = "ex) 1";
+		alert('조리 순서를 입력하세요.');
+		return false;
+	}
+
 	form.submit();
 }
 </script>
@@ -235,14 +249,13 @@ function recipeModify() {
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료
-								정보</td>
+							<td width="120" align="center" bgcolor="E6ECDE" height="22">재료 정보</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
-									<c:forEach var="ingredient" items="${recipe.ingredients}">
-									<p>
-										<input type="text" name="iname" value="${ingredient.iname}" placeholder="ex) 계란">
-										<input type="text" name="quantity" value="${ingredient.quantity}" size="10" placeholder="ex) 1알">
-									</p>
+								<c:forEach var="ingredient" items="${recipe.ingredients}">
+								<p>
+									<input type="text" name="iname" value="${ingredient.iname}" placeholder="ex) 계란">
+									<input type="text" name="quantity" value="${ingredient.quantity}" size="10" placeholder="ex) 1알">
+								</p>
 								</c:forEach>									
 								
 								<!-- 나중에 DOM으로 동적 input 추가하면,
@@ -264,11 +277,10 @@ function recipeModify() {
 						<tr>
 							<td width="120" align="center" bgcolor="E6ECDE">조리 과정</td>
 							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
-							<c:forEach var="proc" items="${recipe.procedure}">
+									<c:forEach var="proc" items="${recipe.procedure}">
 									<p>
-										<input type="text"
-											name="proc_text" value="${proc.text}" placeholder="ex) 재료를 손질한다."> <input
-											type="text" name="proc_id" value="${proc.proc_Id}" size="10" placeholder="ex) ${proc.proc_Id}">
+										<input type="text" name="proc_text" value="${proc.text}" placeholder="ex) 재료를 손질한다.">
+										<input type="text" name="proc_id" value="${proc.proc_Id}" size="10" placeholder="ex) ${proc.proc_Id}">
 									</p>
 								</c:forEach>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
