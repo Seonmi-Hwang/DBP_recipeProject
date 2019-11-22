@@ -1,22 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<link rel="icon" href="images/favicon.ico">
-<title>·Î±×ÀÎ</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<link rel="icon" href="../images/favicon.ico">
+
+<title>ëª¨ë‘ì˜ ë ˆì‹œí”¼ - ë¡œê·¸ì¸</title>
+
+<link href="../css/signin.css" rel="stylesheet">
+<link href="../../css/signin.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<script src="../js/ie-emulation-modes-warning.js"></script>
+<script src="../../js/ie-emulation-modes-warning.js"></script>
+
 </head>
 <script>
 function login() {
 	if (form.email_id.value == "") {
-		alert("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì‚¬ìš©ì IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.email_id.focus();
 		return false;
 	} 
 	if (form.pw.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.pw.focus();
 		return false;
 	}		
@@ -29,50 +41,42 @@ function memberCreate(targetUri) {
 }
 </script>
 <body>
-<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <br>
+<div class="container">
+	<div class="masthead">
+		<br><br>
+		<p align="center">
+			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="ëª¨ë‘ì˜ ë ˆì‹œí”¼" /></a>
+		</p>
+	</div>
 <!-- login form  -->
-<form name="form" method="POST" action="<c:url value='/member/login' />">
-  <table style="width:100%">
-	<tr>
-	  <td width="20"></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>»ç¿ëÀÚ °ü¸® - ·Î±×ÀÎ</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
-	    <!-- ·Î±×ÀÎÀÌ ½ÇÆĞÇÑ °æ¿ì exception °´Ã¼¿¡ ÀúÀåµÈ ¿À·ù ¸Ş½ÃÁö¸¦ Ãâ·Â -->
+<form class="form-signin" name="form" method="POST" action="<c:url value='/member/login' />">
+  <h3 class="form-signin-heading" align="center">ë¡œê·¸ì¸</h3>
+	    <!-- ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í•œ ê²½ìš° exception ê°ì²´ì— ì €ì¥ëœ ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥ -->
         <c:if test="${loginFailed}">
-	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
+	  	  <font color="red" size="2"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>
-	    <br>	  
-	    <table style="background-color: YellowGreen">
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">»ç¿ëÀÚ ID</td>
-			<td width="250" bgcolor="ffffff" style="padding-left:10">
-				<input type="text" style="width:240" name="email_id">
-			</td>
-		  </tr>
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">ºñ¹Ğ¹øÈ£</td>
-			<td width="250" bgcolor="ffffff" style="padding-left:10">
-				<input type="password" style="width:240" name="pw">
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	    <table style="width:100%">
-		  <tr>
-			<td align=left>
-			<input type="button" value="·Î±×ÀÎ" onClick="login()"> &nbsp;
-			<input type="button" value="È¸¿ø°¡ÀÔ" onClick="memberCreate('<c:url value='/member/register/form' />')">
-			</td>						
-		  </tr>
-	    </table>
-	  </td>	  
-	</tr>
-  </table>  
+	    <br>	
+	    <label for="inputEmail" class="sr-only">ì´ë©”ì¼ ì•„ì´ë””</label>
+	    <input type="email" id="inputEmail" class="form-control" name="email_id" placeholder="ì´ë©”ì¼ ì•„ì´ë””" required autofocus>
+
+		<label for="inputPassword" class="sr-only">ë¹„ë°€ë²ˆí˜¸</label>
+		<input type="password" id="inputPassword" class="form-control" name="pw" placeholder="ë¹„ë°€ë²ˆí˜¸" required>
+		<div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>  
+		<button class="btn btn-lg btn-primary btn-block" type="button" onClick="login()">ë¡œê·¸ì¸</button>
+		<button class="btn btn-lg btn-primary btn-block" type="button" onClick="memberCreate('<c:url value='/member/register/form' />')">íšŒì›ê°€ì…</button>
 </form>
+</div>
+	<script src="../js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>

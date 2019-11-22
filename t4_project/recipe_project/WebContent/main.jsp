@@ -29,17 +29,14 @@ td img {
 }
 
 </style>
-<script>
-
-</script>
 <body>
 
 <div class="container">
 	<div class="masthead">
 		<br><br>
         <p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피"/></a></p>
-        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a></p>
-        <p align="right"><a href="<c:url value='/member/logout' />">로그아웃</a></p>
+        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">로그아웃</a></p>
           
     <div class="s003"> <!-- 검색창 -->
       <form name="search" method="POST" action="<c:url value='/recipe/search' />" >
@@ -104,18 +101,24 @@ td img {
           <h3>오늘의 추천 레시피</h3><br>
           <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
 				<tr>
-					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
+					<td colspan="2" style="text-align:center;">
+					<h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${commonTopRecipe.recipe_id}'/>
 			 		 			 </c:url>"> ${commonTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2"><img src="${commonTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" style="text-align: center;"><img src="${commonTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2" height="30px">
-						&nbsp;재료 : ${commonTopRecipe.ingredientsName}
-					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+					<td colspan="2">
+						<table>
+							<tr>
+								<td width="20%">&nbsp; 재료 : </td>
+								<td>&nbsp; ${commonTopRecipe.ingredientsName}</td>
+							</tr>
+						</table>
+					</td>
 				</tr>  
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${commonTopRecipe.time}분 </td> <!--  recipe.getTime() -->
@@ -137,12 +140,17 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2"><img src="${snsTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" style="text-align: center;"><img src="${snsTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2" height="30px">
-						&nbsp;재료 : ${snsTopRecipe.ingredientsName}
-					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+					<td colspan="2">
+						<table>
+							<tr>
+								<td width="20%">&nbsp; 재료 : </td>
+								<td>&nbsp; ${snsTopRecipe.ingredientsName}</td>
+							</tr>
+						</table>
+					</td>
 				</tr>  
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${snsTopRecipe.time}분 </td> <!--  recipe.getTime() -->
@@ -164,12 +172,17 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2"><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" style="text-align: center;"><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2" height="30px">
-						&nbsp;재료 : ${myTopRecipe.ingredientsName}
-					 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+					<td colspan="2">
+						<table>
+							<tr>
+								<td width="20%">&nbsp; 재료 : </td>
+								<td>&nbsp; ${myTopRecipe.ingredientsName}</td>
+							</tr>
+						</table>
+					</td>
 				</tr>  
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${myTopRecipe.time}분 </td> <!--  recipe.getTime() -->
@@ -184,7 +197,7 @@ td img {
       </div>
 
       <!-- Site footer -->
-      <br><br>
+      <br><hr>
       <footer class="footer">
         <p align="center">© TEAM4 Sommangchi</p>
       </footer>

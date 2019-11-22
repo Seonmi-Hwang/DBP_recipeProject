@@ -31,6 +31,11 @@ public class MyPageController implements Controller {
 		List<Recipe> recipeList = rManager.findUserRecipeList(email_id);
 		request.setAttribute("recipeList", recipeList);
 		
+		// 오른쪽 상단에 myPage 링크 띄우기 위한 코드
+		request.setAttribute("curMemberId", 
+				MemberSessionUtils.getLoginMemberId(request.getSession()));	
+		request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
+		
 		return "/member/myPage.jsp";				// 사용자 보기 화면으로 이동
     }
 }
