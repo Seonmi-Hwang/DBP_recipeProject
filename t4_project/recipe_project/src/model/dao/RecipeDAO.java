@@ -98,9 +98,8 @@ public class RecipeDAO {
 			/* ingredient에 수정 */
 			List<Ingredient> iList = recipe.getIngredients();
 			for (int i = 0; i < iList.size(); i++) {
-				sql = "UPDATE ingredient SET ingredient_id = ?, quantity = ? " + "WHERE recipe_id = ?";
-				param = new Object[] { iList.get(i).getIngredient_id(), iList.get(i).getQuantity(),
-						recipe.getRecipe_id() };
+				sql = "UPDATE ingredient SET quantity = ? " + "WHERE recipe_id = ? and ingredient_id = ?";
+				param = new Object[] { iList.get(i).getQuantity(), recipe.getRecipe_id(), iList.get(i).getIngredient_id() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				jdbcUtil.executeUpdate();
 			}
@@ -108,9 +107,9 @@ public class RecipeDAO {
 			/* recipe_procedure에 수정 */
 			List<Procedure> pList = recipe.getProcedure();
 			for (int i = 0; i < pList.size(); i++) {
-				sql = "UPDATE recipe_procedure SET proc_id = ?, text = ?, img_url = ? " + "WHERE recipe_id = ?";
-				param = new Object[] { pList.get(i).getProc_Id(), pList.get(i).getText(), pList.get(i).getImg_url(),
-						recipe.getRecipe_id() };
+				sql = "UPDATE recipe_procedure SET text=?, img_url=? " + "WHERE recipe_id=? and proc_id=?";
+				param = new Object[] { pList.get(i).getText(), pList.get(i).getImg_url(),
+						recipe.getRecipe_id(), (i + 1)};
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 				jdbcUtil.executeUpdate();
 			}

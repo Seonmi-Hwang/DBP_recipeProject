@@ -90,22 +90,22 @@ public class UpdateRecipeController implements Controller {
 			pList.add(proc);
 		}
 		/* 조리 과정을 proc_id를 기준으로 오름차순으로 정렬*/
-//		pList.sort(new Comparator<Procedure>() {
-//
-//			@Override
-//			public int compare(Procedure arg0, Procedure arg1) {
-//				// TODO Auto-generated method stub
-//				 int age0 = arg0.getProc_Id();
-//                 int age1 = arg1.getProc_Id();
-//                 if (age0 == age1)
-//                       return 0;
-//                 else if (age0 > age1)
-//                       return 1;
-//                 else
-//                       return -1;
-//			}
-//			
-//		});
+		pList.sort(new Comparator<Procedure>() {
+
+			@Override
+			public int compare(Procedure arg0, Procedure arg1) {
+				// TODO Auto-generated method stub
+				 int age0 = arg0.getProc_Id();
+                 int age1 = arg1.getProc_Id();
+                 if (age0 == age1)
+                       return 0;
+                 else if (age0 > age1)
+                       return 1;
+                 else
+                       return -1;
+			}
+			
+		});
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe updateRecipe = new Recipe(
@@ -128,6 +128,11 @@ public class UpdateRecipeController implements Controller {
 		manager.update(updateRecipe);
 		Recipe recipe = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id")));
 		request.setAttribute("recipe", recipe);
+		
+		String emailId = MemberSessionUtils.getLoginMemberId(request.getSession());
+		request.setAttribute("memberName", writer);
+		request.setAttribute("curMemberId", 
+				MemberSessionUtils.getLoginMemberId(request.getSession()));		
 		return "/recipe/view.jsp";
 	}
 
