@@ -68,11 +68,12 @@ public class RecipeManager {
 		return recipe;
 	}
 	
+	/* category_id별 레시피 리스트를 따로 가져오기 위한 메소드 (list.jsp에서 사용)*/
 	public List<Recipe> findRecipeList(int category_id) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getRecipeList(category_id);
 		
 		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
+			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
 			
 			if (ingredients == null) ingredients = "없음";
 			
@@ -91,12 +92,15 @@ public class RecipeManager {
 		return recipeList;
 	}
 
-	
+	/* search를 위한 메소드 */
 	public List<Recipe> searchRecipeList(int categoryId, String keyword) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.searchRecipeList(categoryId, keyword);
 		
 		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
+			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
+			
+			if (ingredients == null) ingredients = "없음";
+			
 			recipe.setIngredientsName(ingredients);
 		}
 		
@@ -126,18 +130,19 @@ public class RecipeManager {
 //	}
 
 	public List<Ingredient> findIngredients(int recipeId) throws SQLException {
-		return recipeDAO.getIngredientsName(recipeId);
+		return recipeDAO.getIngredients(recipeId);
 	}
 	
 	public RecipeDAO getRecipeDAO() {
 		return this.recipeDAO;
 	}
 	
+	/*  */
 	public List<Recipe> findUserRecipeList(String email_id) throws SQLException, RecipeNotFoundException {
 		List<Recipe> recipeList = recipeDAO.getUserRecipeList(email_id);
 		
 		for (Recipe recipe : recipeList) {
-			String ingredients = recipeDAO.getIngredients(recipe.getRecipe_id());
+			String ingredients = recipeDAO.getIngredientsName(recipe.getRecipe_id());
 			
 			if (ingredients == null) ingredients = "없음";
 			

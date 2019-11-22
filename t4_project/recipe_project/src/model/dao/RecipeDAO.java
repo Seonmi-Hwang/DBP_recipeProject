@@ -186,7 +186,7 @@ public class RecipeDAO {
 				Recipe recipe = new Recipe( // Recipe 객체를 생성하여 레시피 정보를 저장
 						recipe_id, rs.getInt("category_id"), rs.getString("rname"), rs.getInt("time"),
 						rs.getString("result_img"), rs.getInt("hits"), getProcedures(recipe_id),
-						getIngredientsName(recipe_id), null, getRecipeWriter(recipe_id), getCreatedDate(recipe_id));
+						getIngredients(recipe_id), null, getRecipeWriter(recipe_id), getCreatedDate(recipe_id));
 				return recipe;
 			}
 		} catch (Exception ex) {
@@ -274,7 +274,8 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public String getIngredients(int recipe_id) throws SQLException {
+	/* list.jsp에서 재료들 이름의 배열을 나타내기 위한 메소드 */
+	public String getIngredientsName(int recipe_id) throws SQLException {
 		String sql = "SELECT DISTINCT iname " // 여기서 ingredient 목록을 ingredientDAO에서 출력
 				+ "FROM ingredient_info info, ingredient ingr " + "WHERE info.ingredient_id = ingr.ingredient_id "
 				+ "AND recipe_id=? ";
@@ -395,7 +396,8 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public List<Ingredient> getIngredientsName(int recipe_id) throws SQLException {
+	/* ingredient 객체(이름, 양)를 가져오기 위한 메소드  */
+	public List<Ingredient> getIngredients(int recipe_id) throws SQLException {
 		String sql = "SELECT iname, quantity " + "FROM ingredient igre, ingredient_info info "
 				+ "WHERE igre.ingredient_id = info.ingredient_id " + "AND recipe_id = ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { recipe_id }); // JDBCUtil에 query문 설정
