@@ -19,26 +19,24 @@
 
 </head>
 <style>
-h3, h4 {
-	text-align: center;
-}
-
-td img {
-	width: 240px;
-	height: 192px;
-}
-
-.row {
-	margin-left : 50px;
-}
-
-.pagination > li > a { 
-	border-radius: 50% !important;
-	margin: 0 5px;
-	text-align : center;
-}
-
-<<<<<<< HEAD
+	h3, h4 {
+		text-align: center;
+	}
+	
+	td img {
+		width: 240px;
+		height: 192px;
+	}
+	
+	.row {
+		margin-left : 50px;
+	}
+	
+	.pagination > li > a { 
+		border-radius: 50% !important;
+		margin: 0 5px;
+		text-align : center;
+	}
 	.Rul {
 		display: block;
 		width: 1000px;
@@ -87,8 +85,6 @@ td img {
     	float:left;
     	margin: 5px;
     }
-=======
->>>>>>> seonmi
 </style>
 <c:choose>
 	<c:when test="${deleteComplete == 1}">
@@ -276,6 +272,15 @@ td img {
             				<c:param name='category_id' value='30' />
             			 </c:url>"
 				role="button">레시피 추가</a></p>
+	</c:if>
+	
+	<!-- 재료 맞춤 레시피 카테고리일 경우 -->
+	<c:if test="${category_id == 0}">
+		<form name="form"  method="POST"  action="<c:url value='/ingredient/list'>
+									<c:param name='category_id' value='0'/>
+								  </c:url>">
+			<input type="text" name="ingre">&nbsp;<input type="submit" value="재료입력">
+		</form>
 	</c:if>
 
 	<!-- 검색 결과를 나타내는 창일 경우 -->

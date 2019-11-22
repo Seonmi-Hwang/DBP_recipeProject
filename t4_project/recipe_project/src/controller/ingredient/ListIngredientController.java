@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.ingredient.*;
+import controller.member.MemberSessionUtils;
 import model.Ingredient;
 import model.Recipe;
 import model.service.IngredientManager;
@@ -23,6 +24,7 @@ public class ListIngredientController implements Controller{
 //		List<Ingredient> ingreList = manager.findIngredientList(category);
 		List<Integer> recipeidList = manager.findRecommendRecipe(ingr);
 		List<Recipe> recipeList = new ArrayList<Recipe>();
+		String category_id = request.getParameter("category_id");
 		Recipe r;
 		for(int i:recipeidList) {
 			r = manager.findRecipe(i);
@@ -32,10 +34,13 @@ public class ListIngredientController implements Controller{
 			}
 			recipeList.add(r);
 		}
-		
+
+		// 현재 로그인한 사용자 ID를 request에 저장하여 전달
+		request.setAttribute("curMemberId", 
+				MemberSessionUtils.getLoginMemberId(request.getSession()));		
+		request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
 		request.setAttribute("recipeList", recipeList);
-//		request.setAttribute("category", 
-//				IngredientSessionUtils.getcategory(request.getSession()));	
+		request.setAttribute("category_id", category_id);	
 		return "/recipe/list.jsp";	
 	}
 }
