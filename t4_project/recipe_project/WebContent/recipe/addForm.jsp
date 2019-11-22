@@ -65,20 +65,30 @@
 					</table> <br>
 					<table style="background-color: YellowGreen; width: 80%; height: 70%">
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="auto">레시피
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">레시피
 								이름</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<p>
-									<input type="text"
-										style="width: 60%; height: 30px; font-size: 20px;"
+									<input type="text" style="width: 60%; height: 30px; font-size: 20px;"
 										name="rname" placeholder="레시피 이름을 입력하세요">
 								</p>
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="auto">재료
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">대표 사진</td>
+							<td width="85%" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
+								<div class="field" align="left">
+									<input type="file" id="resultImgFile" accept="image/*"/>
+									<img id="resultImg"/> 
+									<input type="hidden" name="result_url">
+								</div>
+								
+							</td>
+						</tr>
+						<tr>
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">재료
 								정보</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<c:forEach var="i" begin="1" end="5">
 									<p>
 										<strong>${i}</strong> &nbsp;
@@ -96,9 +106,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="40px">소요
+							<td width="15%" align="center" bgcolor="E6ECDE" height="40px">소요
 								시간</td>
-							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
+							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<input type="text" style="width: 40px;" name="time"
 								placeholder="10">&nbsp;&nbsp;<strong>분</strong>
 							</td>

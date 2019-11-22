@@ -26,8 +26,8 @@ public class AddRecipeController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (request.getMethod().equals("GET")) {	
-    		// GET request: 회원정보 수정 form 요청	
-    		// 원래는 UpdateRecipeFormController가 처리하던 작업을 여기서 수행
+    		// GET request: 레시피 추가 form 요청	
+    		// 원래는 AddRecipeFormController가 처리하던 작업을 여기서 수행
     		String category_id = request.getParameter("category_id");
 
     		log.debug("AddForm(Recipe) Request : {}", category_id);
@@ -51,6 +51,7 @@ public class AddRecipeController implements Controller {
 		String[] quantity = request.getParameterValues("quantity");
 		String[] procText = request.getParameterValues("proc_text");
 		String[] procId = request.getParameterValues("proc_id");
+		String[] img_url = request.getParameterValues("img_url");
 		
 		IngredientManager imanager = IngredientManager.getInstance();
 		List<Ingredient> iList = new ArrayList<>();
@@ -73,7 +74,7 @@ public class AddRecipeController implements Controller {
 			}
 			proc.setProc_Id(Integer.valueOf(procId[i]));
 			proc.setText(procText[i]);
-			proc.setImg_url(null);
+			proc.setImg_url(img_url[i]);
 			pList.add(proc);
 		}
 		/* 조리 과정을 proc_id를 기준으로 오름차순으로 정렬*/
@@ -100,7 +101,7 @@ public class AddRecipeController implements Controller {
 				Integer.parseInt(request.getParameter("category_id")),
 				request.getParameter("rname"),
 				Integer.parseInt(request.getParameter("time")),
-				null,	//result_img는 파일 업로드 하고..
+				request.getParameter("result_img"),
 				0,
 				pList,
 				iList,
