@@ -46,7 +46,7 @@ td img {
         <div class="inner-form">
           <div class="input-field first-wrap">
             <div class="input-select">
-              <select data-trigger="" name="category_id">    
+              <select data-trigger="" name="category_id">
                 <option value="5">전체 레시피</option>
                 <option value="10">일반 레시피</option>
                 <option value="20">SNS 인기 레시피</option>

@@ -96,7 +96,7 @@ CREATE TABLE recipe_info
 	category_id          VARCHAR2(18) NOT NULL ,
 	rname                VARCHAR2(30) NOT NULL ,
 	time                 NUMBER DEFAULT  0  NULL ,
-	result_img           VARCHAR2(100) NULL ,
+	result_img           VARCHAR2(1000) NULL ,
 	hits                 NUMBER DEFAULT  0  NULL 
 );
 

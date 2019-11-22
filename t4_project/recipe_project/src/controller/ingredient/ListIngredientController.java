@@ -36,6 +36,6 @@ public class ListIngredientController implements Controller{
 		request.setAttribute("recipeList", recipeList);
 //		request.setAttribute("category", 
 //				IngredientSessionUtils.getcategory(request.getSession()));	
-		return "/ingredient/Recommend.jsp";	
+		return "/recipe/list.jsp";	
 	}
 }
