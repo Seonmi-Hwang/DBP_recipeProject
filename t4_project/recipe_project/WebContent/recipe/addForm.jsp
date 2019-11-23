@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>레시피 추가</title>
+<title>모두의 레시피: 레시피 추가</title>
 <link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
@@ -50,7 +50,7 @@
 <body>
 	<br>
 	<!-- Add Form  -->
-	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
+	<form name="form" method="POST" action="<c:url value='/recipe/add' />" enctype="multipart/form-data">
 		<input type="hidden" name="category_id" value="${category_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
 		<table style="width: 100%; height: 100%">
