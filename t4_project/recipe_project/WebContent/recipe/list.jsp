@@ -19,13 +19,19 @@
 
 </head>
 <style>
-	h3, h4 {
+	h3, h4  {
 		text-align: center;
 	}
 	
+	.ingre {
+		text-align: center;
+		height: 100px;
+	}
 	td img {
+		position: relative;  
 		width: 330px;
 		height: 250px;
+		background-size: contain;
 	}
 	
 	.row {
@@ -330,13 +336,7 @@
 					<td colspan="2" style="text-align: center;"><img src="${recipe.result_img}" alt="Recipe Image" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<table>
-							<tr>
-								<td style="text-align: center;">&nbsp; ${recipe.ingredientsName}</td>
-							</tr>
-						</table>
-					</td>
+					<td colspan="2" class="ingre" >&nbsp; ${recipe.ingredientsName}</td>
 				</tr>
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${recipe.time}분</td>
@@ -362,8 +362,6 @@
 	    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 	</jsp:include>
 
-
-출처: https://blog.whitelife.co.kr/215 [White Life Story]
 	<!-- Site footer -->
 	<br>
 	<footer class="footer">

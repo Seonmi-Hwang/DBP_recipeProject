@@ -28,6 +28,12 @@ td img {
 	text-align : center;
 }
 
+.ingre {
+	height: 100px;
+	text-align: center;
+
+}
+
 </style>
 <body>
 
@@ -111,14 +117,8 @@ td img {
 					<td colspan="2" style="text-align: center;"><img src="${commonTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<table>
-							<tr>
-								<td style="text-align: center;">&nbsp; ${commonTopRecipe.ingredientsName}</td>
-							</tr>
-						</table>
-					</td>
-				</tr>  
+					<td colspan="2" class="ingre">&nbsp; ${commonTopRecipe.ingredientsName}</td>
+				</tr>
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${commonTopRecipe.time}분 </td> <!--  recipe.getTime() -->
 					<td width="110px">&nbsp;조회수 : ${commonTopRecipe.hits}회 </td> <!--  recipe.getHits() -->
@@ -142,14 +142,8 @@ td img {
 					<td colspan="2" style="text-align: center;"><img src="${snsTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<table>
-							<tr>
-								<td style="text-align: center;">&nbsp; ${snsTopRecipe.ingredientsName}</td>
-							</tr>
-						</table>
-					</td>
-				</tr>  
+					<td colspan="2" class="ingre">&nbsp; ${snsTopRecipe.ingredientsName}</td>
+				</tr>
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${snsTopRecipe.time}분 </td> <!--  recipe.getTime() -->
 					<td width="110px">&nbsp;조회수 : ${snsTopRecipe.hits}회 </td> <!--  recipe.getHits() -->
@@ -170,16 +164,10 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" ><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<table>
-							<tr>
-								<td style="text-align: center;">&nbsp; ${myTopRecipe.ingredientsName}</td>
-							</tr>
-						</table>
-					</td>
+					<td colspan="2" class="ingre">&nbsp; ${myTopRecipe.ingredientsName}</td>
 				</tr>  
 				<tr>
 					<td width="130px">&nbsp;소요시간 : ${myTopRecipe.time}분 </td> <!--  recipe.getTime() -->

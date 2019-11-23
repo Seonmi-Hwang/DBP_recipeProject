@@ -311,19 +311,15 @@ public class RecipeDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
 			String ingredients = "";
 			int count = 0;
-			int to = 0;
+
 			while (rs.next()) {
 				ingredients += rs.getString("iname") + " | ";
 				count++;
 				if(count==4) {
 					ingredients += "<br>";
-					to++;
+
 					count=0;
 				}
-			}
-			while(to!=4) {
-				ingredients += "<br>";
-				to++;
 			}
 			return ingredients;
 		} catch (Exception ex) {
@@ -385,6 +381,9 @@ public class RecipeDAO {
 				}
 				if (p != "")
 					sql += "and ingredient_info.iname IN (" + p + ")";
+				else {
+					sql+="and 1=2";
+				} 
 			}
 			System.out.printf("%s\n", p);
 		}

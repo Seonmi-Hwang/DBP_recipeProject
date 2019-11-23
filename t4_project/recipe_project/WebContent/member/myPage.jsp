@@ -38,14 +38,12 @@ function memberRemove() {
         background-size: cover;
 	}
 	
-	td {
-		text-alig: center;
+	.ingre {
+		height:100px;
+		text-align: center;
 	
 	}
-	.recipeinfo{
-    	width:100px;
-    	height:50px;
-    }
+	
 	    
 </style>
 </head>
@@ -266,13 +264,7 @@ function memberRemove() {
 						<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align:center;">
-							<table>
-								<tr>
-									<td>&nbsp; ${recipe.ingredientsName}</td>
-								</tr>
-							</table>
-						</td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+						<td colspan="2" class="ingre">&nbsp; ${recipe.ingredientsName}</td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
 					</tr>  
 					<tr>
 						<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
