@@ -73,8 +73,9 @@ public class MemberManager {
 		return true;
 	}
 	
-	public MemberDAO getMemberDAO() {
-		return this.memberDAO;
-	}
+	//필요한지 모르겠는데 private이 맞아서 public에서 private으로 고침 -> 안쓰는것 같아서 뺌 by MH 쓰면 꼭 말해주기!
+//	private MemberDAO getMemberDAO() {
+//		return this.memberDAO;
+//	}
 
 }

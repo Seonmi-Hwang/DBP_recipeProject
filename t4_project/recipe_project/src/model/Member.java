@@ -65,12 +65,12 @@ public class Member {
 		boolean result = pw.equals(password);
 		return result;
 	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Member [member_id=" + member_id + ", email_id=" + email_id + ", pw=" + pw + "mname=" + mname + "]";
-	}
-	
-	
+//	안쓸것같아서 없앰 by MH
+//	@Override
+//	public String toString() {
+//		// TODO Auto-generated method stub
+//		return "Member [member_id=" + member_id + ", email_id=" + email_id + ", pw=" + pw + "mname=" + mname + "]";
+//	}
+//	
+//	
 }
