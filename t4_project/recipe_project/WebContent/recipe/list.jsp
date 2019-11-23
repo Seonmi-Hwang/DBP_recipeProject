@@ -362,15 +362,48 @@
 	
 	<!-- Page Navigation -->
 	<br>
-	<jsp:include page="paging.jsp" flush="true">
-	    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-	    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-	    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-	    <jsp:param name="pageNo" value="${paging.pageNo}" />
-	    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-	    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-	    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-	</jsp:include>
+
+	  <!--<nav aria-label="Page navigation example"> -->
+	<!-- 	  <ul class="pagination">
+				<li class="page-item"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${prevPageNo}" />
+		    															</c:url>"></a></li>
+		    	<li class="page-item active"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${pageNo}" />
+		    															</c:url>"></a></li>
+		    	<li class="page-item"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${nextPageNo}" />
+		    															</c:url>"></a></li>														
+		  </ul> 
+	</nav> -->
+	<!-- <div class="paginate">
+	    <a href="<c:url value="/recipe/list">
+	    	<c:param name="firstPageNo" value="${paging.firstPageNo}" />
+	    </c:url>" class="first">처음 페이지</a>
+	    <a href="<c:url value="/recipe/list">
+	    	<c:param name="prevPageNo" value="${paging.prevPageNo}" />
+	    </c:url>" class="prev">이전 페이지</a>
+	    <span>
+	        <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+	            <c:choose>
+	                <c:when test="${i eq paging.pageNo}"><a href="<c:url value="/recipe/list">
+				    						<c:param name="i" value="${i}" />
+				    					</c:url>" class="choice">${i}</a>
+				    </c:when>
+	                <c:otherwise><a href="<c:url value="/recipe/list">
+				    						<c:param name="i" value="${i}" />
+				    					</c:url>">${i}</a>
+	    			</c:otherwise>
+	            </c:choose>
+	        </c:forEach>
+	    </span>
+	    <a href="<c:url value="/recipe/list">
+				    						<c:param name="nextPageNo" value="${paging.nextPageNo}" />
+				    					</c:url>" class="next">다음 페이지</a>
+	    <a href="<c:url value="/recipe/list">
+				    	<c:param name="finalPageNo" value="${paging.finalPageNo}" />
+				 </c:url>" class="last">마지막 페이지</a>
+	</div> -->
 
 	<!-- Site footer -->
 	<br>
@@ -382,7 +415,7 @@
 <script src="../js/extention/choices.js"></script>
 <script>
 	const choices = new Choices('[data-trigger]', {
-		searchEnabled : false,
+		searchEnabled : true,
 		itemSelectText : '',
 	});
 </script>
