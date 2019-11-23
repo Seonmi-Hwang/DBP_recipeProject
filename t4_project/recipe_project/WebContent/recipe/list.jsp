@@ -24,8 +24,8 @@
 	}
 	
 	td img {
-		width: 240px;
-		height: 192px;
+		width: 330px;
+		height: 250px;
 	}
 	
 	.row {
@@ -47,15 +47,6 @@
 	.imgt{                                                         
 		heght: 250px;
 	}
-	
-	.img{
-        position: relative;  
-        width: 200px;                                                          
-		heght: 250px;
-        background-size: contain;
-		
-        padding:5px;
-    }
     
     .hits {
     	position: absolute;
@@ -342,8 +333,7 @@
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="20%">&nbsp; 재료 : </td>
-								<td>&nbsp; ${recipe.ingredientsName}</td>
+								<td style="text-align: center;">&nbsp; ${recipe.ingredientsName}</td>
 							</tr>
 						</table>
 					</td>

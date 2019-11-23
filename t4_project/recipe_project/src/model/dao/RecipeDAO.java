@@ -310,8 +310,20 @@ public class RecipeDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
 			String ingredients = "";
+			int count = 0;
+			int to = 0;
 			while (rs.next()) {
 				ingredients += rs.getString("iname") + " | ";
+				count++;
+				if(count==4) {
+					ingredients += "<br>";
+					to++;
+					count=0;
+				}
+			}
+			while(to!=4) {
+				ingredients += "<br>";
+				to++;
 			}
 			return ingredients;
 		} catch (Exception ex) {

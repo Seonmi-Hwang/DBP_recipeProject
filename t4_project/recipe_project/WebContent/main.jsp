@@ -23,8 +23,8 @@ h3, h4 {
 }
 
 td img {
-	width: 240px; 
-	height: 192px;
+	width: 330px; 
+	height: 250px;
 	text-align : center;
 }
 
@@ -114,8 +114,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="20%">&nbsp; 재료 : </td>
-								<td>&nbsp; ${commonTopRecipe.ingredientsName}</td>
+								<td style="text-align: center;">&nbsp; ${commonTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>
 					</td>
@@ -146,8 +145,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="20%">&nbsp; 재료 : </td>
-								<td>&nbsp; ${snsTopRecipe.ingredientsName}</td>
+								<td style="text-align: center;">&nbsp; ${snsTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>
 					</td>
@@ -178,8 +176,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="20%">&nbsp; 재료 : </td>
-								<td>&nbsp; ${myTopRecipe.ingredientsName}</td>
+								<td style="text-align: center;">&nbsp; ${myTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>
 					</td>

@@ -22,6 +22,32 @@ function memberRemove() {
 	return confirm("정말 삭제하시겠습니까?");		
 }
 </script>
+<style type="text/css">
+	h3, h4 {
+		text-align: center;
+	}
+	
+	.row {
+		margin-left : 50px;
+	}
+	
+	td img {
+		position: relative;  
+        width: 330px;                                                          
+		heght: 250px;
+        background-size: cover;
+	}
+	
+	td {
+		text-alig: center;
+	
+	}
+	.recipeinfo{
+    	width:100px;
+    	height:50px;
+    }
+	    
+</style>
 </head>
 <body>
 <div class="container">
@@ -246,9 +272,13 @@ function memberRemove() {
 						<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
 					</tr>
 					<tr>
-						<td colspan="2" height="30px">
-							&nbsp;재료 : ${recipe.ingredientsName}
-						 </td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
+						<td colspan="2" style="text-align:center;">
+							<table>
+								<tr>
+									<td>&nbsp; ${recipe.ingredientsName}</td>
+								</tr>
+							</table>
+						</td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
 					</tr>  
 					<tr>
 						<td width="130px">&nbsp;소요시간 : ${recipe.time}분 </td> <!--  recipe.getTime() -->
