@@ -26,6 +26,8 @@ public class SearchRecipeController implements Controller {
 		// 현재 로그인한 사용자 ID를 request에 저장하여 전달
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));	
+		request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
+		
 		request.setAttribute("recipeList", recipeList);
 		request.setAttribute("keyword", keyword); 
 		request.setAttribute("category_id", category_id);
