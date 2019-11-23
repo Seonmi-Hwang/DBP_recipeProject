@@ -16,9 +16,9 @@
 <script src="../js/ie-emulation-modes-warning.js"></script>
 	
 <style>
-div img {
-	width: 240px;
-	height: 192px;
+.rimg {
+	width: 300px;
+	height: 300px;
 }
 </style>	
 </head>
@@ -221,7 +221,7 @@ div img {
 			<td width="15%" align="center" bgcolor="E6ECDE" height="auto">대표 사진</td>
 			<td width="85%" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
 				<div class="field" align="left">
-					<img src="${recipe.result_img}">
+					<img src="${recipe.result_img}" class="rimg">
 				</div>	
 			</td>
 		  </tr>
