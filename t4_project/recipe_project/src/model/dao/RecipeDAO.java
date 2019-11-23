@@ -122,13 +122,21 @@ public class RecipeDAO {
 
 			/* recipe_procedure에 수정 */
 			List<Procedure> pList = recipe.getProcedure();
-			for (int i = 0; i < pList.size(); i++) {
+			int i; //밑에서 삭제
+			for (i = 0; i < pList.size(); i++) {
 				sql = "UPDATE recipe_procedure SET text=?, img_url=? " + "WHERE recipe_id=? and proc_id=?";
 				param = new Object[] { pList.get(i).getText(), pList.get(i).getImg_url(),
 						recipe.getRecipe_id(), (i + 1)};
 				jdbcUtil.setSqlAndParameters(sql, param);
 				jdbcUtil.executeUpdate();
 			}
+			
+			sql = "DELETE FROM recipe_procedure WHERE recipe_id = ? and proc_id > ?";
+			param = new Object[] { recipe.getRecipe_id(), i };
+			jdbcUtil.setSqlAndParameters(sql, param);
+			jdbcUtil.executeUpdate();
+			
+			
 
 			/* users_recipe에 수정은 안하는걸로? update 날짜로 수정 해야될까? */
 		} catch (Exception ex) {

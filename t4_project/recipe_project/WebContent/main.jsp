@@ -14,7 +14,7 @@
 
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-	<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+	<script src="js/ie-emulation-modes-warning.js"></script>
 	
 </head>
 <style>
