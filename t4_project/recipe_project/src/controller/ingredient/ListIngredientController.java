@@ -7,11 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.ingredient.*;
 import controller.member.MemberSessionUtils;
-import model.Ingredient;
 import model.Recipe;
-import model.service.IngredientManager;
 import model.service.RecipeManager;
 
 

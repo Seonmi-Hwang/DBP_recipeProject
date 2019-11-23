@@ -362,28 +362,18 @@
 	
 	<!-- Page Navigation -->
 	<br>
-	<div>
-		<nav class="nav nav-tabs centered" aria-label="Page navigation example">
-		  <ul class="pagination">
-		    <li class="page-item">
-		      <a class="page-link" href="#" aria-label="Previous">
-		        <span aria-hidden="true">«</span>
-		        <span class="sr-only">Previous</span>
-		      </a>
-		    </li>
-		    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item">
-		      <a class="page-link" href="#" aria-label="Next">
-		        <span aria-hidden="true">»</span>
-		        <span class="sr-only">Next</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>
-	</div>
+	<jsp:include page="paging.jsp" flush="true">
+	    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+	    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+	    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+	    <jsp:param name="pageNo" value="${paging.pageNo}" />
+	    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+	    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+	    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+	</jsp:include>
 
+
+출처: https://blog.whitelife.co.kr/215 [White Life Story]
 	<!-- Site footer -->
 	<br>
 	<footer class="footer">
