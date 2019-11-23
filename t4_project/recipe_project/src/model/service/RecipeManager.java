@@ -49,6 +49,13 @@ public class RecipeManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+				String ingredients = recipeDAO.getIngredientsName(recipeId);
+				
+				if (ingredients == null) ingredients = "없음";
+				
+				recipe.setIngredientsName(ingredients);
+			
 		}		
 		return recipe;
 	}
@@ -69,7 +76,7 @@ public class RecipeManager {
 			if (ingredients == null) ingredients = "없음";
 			
 			recipe.setIngredientsName(ingredients);
-		}
+		} 
 		
 		return recipe;
 	}

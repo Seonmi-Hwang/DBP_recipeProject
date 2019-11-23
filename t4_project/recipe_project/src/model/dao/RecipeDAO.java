@@ -191,8 +191,9 @@ public class RecipeDAO {
 
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getRecipe(int recipe_id) throws SQLException {
-		String sql = "SELECT category_id, rname, time,  NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg'), hits " // recipe_procedure
-				+ "FROM recipe_info " + "WHERE recipe_id=? ";
+		String sql = "SELECT category_id, rname, time,  "
+				+ "NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits  "
+				+ " FROM recipe_info " + "WHERE recipe_id=? ";   // recipe_procedure
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { recipe_id }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
