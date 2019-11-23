@@ -96,13 +96,29 @@ public class RecipeDAO {
 			jdbcUtil.executeUpdate();
 
 			/* ingredient에 수정 */
+//			List<Ingredient> iList = recipe.getIngredients();
+//			for (int i = 0; i < iList.size(); i++) {
+//				sql = "UPDATE ingredient SET quantity = ? " + "WHERE recipe_id = ? and ingredient_id = ?";
+//				param = new Object[] { iList.get(i).getQuantity(), recipe.getRecipe_id(), iList.get(i).getIngredient_id() };
+//				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+//				jdbcUtil.executeUpdate();
+//			}
+			
+			sql = "DELETE FROM ingredient WHERE recipe_id = ?";
+			param = new Object[] { recipe.getRecipe_id() };
+			jdbcUtil.setSqlAndParameters(sql, param);
+			jdbcUtil.executeUpdate();
+			
 			List<Ingredient> iList = recipe.getIngredients();
 			for (int i = 0; i < iList.size(); i++) {
-				sql = "UPDATE ingredient SET quantity = ? " + "WHERE recipe_id = ? and ingredient_id = ?";
-				param = new Object[] { iList.get(i).getQuantity(), recipe.getRecipe_id(), iList.get(i).getIngredient_id() };
+				sql = "INSERT INTO ingredient (recipe_id, ingredient_id, quantity) "
+						+ "VALUES (?, ?, ?) ";
+				param = new Object[] { recipe.getRecipe_id(), iList.get(i).getIngredient_id(), iList.get(i).getQuantity() };
 				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-				jdbcUtil.executeUpdate();
-			}
+				if (jdbcUtil.executeUpdate() != 1) {
+					throw new SQLException();
+				}
+			}			
 
 			/* recipe_procedure에 수정 */
 			List<Procedure> pList = recipe.getProcedure();
@@ -110,7 +126,7 @@ public class RecipeDAO {
 				sql = "UPDATE recipe_procedure SET text=?, img_url=? " + "WHERE recipe_id=? and proc_id=?";
 				param = new Object[] { pList.get(i).getText(), pList.get(i).getImg_url(),
 						recipe.getRecipe_id(), (i + 1)};
-				jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+				jdbcUtil.setSqlAndParameters(sql, param);
 				jdbcUtil.executeUpdate();
 			}
 
@@ -142,7 +158,7 @@ public class RecipeDAO {
 			sql = "DELETE FROM recipe_procedure WHERE recipe_id=? ";
 			param = new Object[] { recipe_id };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			if (jdbcUtil.executeUpdate() != 1) {
+			if (jdbcUtil.executeUpdate() == 0) {
 				throw new SQLException();
 			}
 
@@ -150,7 +166,7 @@ public class RecipeDAO {
 			sql = "DELETE FROM ingredient WHERE recipe_id=? ";
 			param = new Object[] { recipe_id };
 			jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-			if (jdbcUtil.executeUpdate() != 1) {
+			if (jdbcUtil.executeUpdate() == 0) {
 				throw new SQLException();
 			}
 
