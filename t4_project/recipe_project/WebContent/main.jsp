@@ -14,7 +14,7 @@
 
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-	<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+	<script src="js/ie-emulation-modes-warning.js"></script>
 	
 </head>
 <style>
@@ -114,7 +114,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="25%">&nbsp; 재료 : </td>
+								<td width="20%">&nbsp; 재료 : </td>
 								<td>&nbsp; ${commonTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>
@@ -146,7 +146,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="25%">&nbsp; 재료 : </td>
+								<td width="20%">&nbsp; 재료 : </td>
 								<td>&nbsp; ${snsTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>
@@ -178,7 +178,7 @@ td img {
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="25%">&nbsp; 재료 : </td>
+								<td width="20%">&nbsp; 재료 : </td>
 								<td>&nbsp; ${myTopRecipe.ingredientsName}</td>
 							</tr>
 						</table>

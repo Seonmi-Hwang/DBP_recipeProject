@@ -22,32 +22,11 @@ function recipeModify() {
 		alert('레시피 이름을 입력하세요.');
 		return false;
 	}
-	if (form.iname.value == "") {
-		form.iname.placeholder = "ex) 계란";
-		alert('재료를 입력하세요.');
-		return false;
-	}
-	if (form.quantity.value == "") {
-		form.quantity.placeholder = "ex) 1알";
-		alert('수량을 입력하세요.');
-		return false;
-	}
 	if (form.time.value == "") {
 		form.time.placeholder = "10";
 		alert('소요 시간을 입력하세요.');
 		return false;
 	}
-	if (form.proc_text.value == "") {
-		form.proc_text.placeholder = "ex) 재료를 손질한다.";
-		alert('조리 과정을 입력하세요.');
-		return false;
-	}
-	if (form.proc_id.value == "") {
-		form.proc_id.placeholder = "ex) 1";
-		alert('조리 순서를 입력하세요.');
-		return false;
-	}
-
 	form.submit();
 }
 </script>

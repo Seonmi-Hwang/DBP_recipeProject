@@ -26,14 +26,19 @@ public class DeleteRecipeController implements Controller {
 		// list.jsp 출력 준비
 		int category_id = recipe.getCategory_id();
 		List<Recipe> recipeList = manager.findRecipeList(category_id);
-
+		
+		MemberManager mManager = MemberManager.getInstance();
+		String email_id = MemberSessionUtils.getLoginMemberId(request.getSession());
+		String writer = mManager.findMember(email_id).getMname();
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		
 		request.setAttribute("recipeList", recipeList);	
 		request.setAttribute("category_id", category_id);
 		request.setAttribute("currentPage", "listRecipe");
 		request.setAttribute("deleteComplete", rslt);	
-		
+		request.setAttribute("memberName", writer);
+		request.setAttribute("curMemberId", 
+				MemberSessionUtils.getLoginMemberId(request.getSession()));	
 		return "/recipe/list.jsp";
 	}
 

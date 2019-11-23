@@ -342,7 +342,7 @@
 					<td colspan="2">
 						<table>
 							<tr>
-								<td width="25%">&nbsp; 재료 : </td>
+								<td width="20%">&nbsp; 재료 : </td>
 								<td>&nbsp; ${recipe.ingredientsName}</td>
 							</tr>
 						</table>

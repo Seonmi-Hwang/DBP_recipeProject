@@ -55,7 +55,6 @@ public class UpdateRecipeController implements Controller {
 		/* writer 설정 위해 */
 		MemberManager mManager = MemberManager.getInstance();
 		String email_id = MemberSessionUtils.getLoginMemberId(request.getSession());
-		int writerId = mManager.findMember(email_id).getMember_id();
 		String writer = mManager.findMember(email_id).getMname();
 		Date nowTime = new Date();
 		
@@ -129,7 +128,6 @@ public class UpdateRecipeController implements Controller {
 		Recipe recipe = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id")));
 		request.setAttribute("recipe", recipe);
 		
-		String emailId = MemberSessionUtils.getLoginMemberId(request.getSession());
 		request.setAttribute("memberName", writer);
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		

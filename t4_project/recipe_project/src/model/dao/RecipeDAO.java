@@ -122,13 +122,21 @@ public class RecipeDAO {
 
 			/* recipe_procedure에 수정 */
 			List<Procedure> pList = recipe.getProcedure();
-			for (int i = 0; i < pList.size(); i++) {
+			int i; //밑에서 삭제
+			for (i = 0; i < pList.size(); i++) {
 				sql = "UPDATE recipe_procedure SET text=?, img_url=? " + "WHERE recipe_id=? and proc_id=?";
 				param = new Object[] { pList.get(i).getText(), pList.get(i).getImg_url(),
 						recipe.getRecipe_id(), (i + 1)};
 				jdbcUtil.setSqlAndParameters(sql, param);
 				jdbcUtil.executeUpdate();
 			}
+			
+			sql = "DELETE FROM recipe_procedure WHERE recipe_id = ? and proc_id > ?";
+			param = new Object[] { recipe.getRecipe_id(), i };
+			jdbcUtil.setSqlAndParameters(sql, param);
+			jdbcUtil.executeUpdate();
+			
+			
 
 			/* users_recipe에 수정은 안하는걸로? update 날짜로 수정 해야될까? */
 		} catch (Exception ex) {
@@ -191,9 +199,14 @@ public class RecipeDAO {
 
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getRecipe(int recipe_id) throws SQLException {
+<<<<<<< HEAD
 		String sql = "SELECT category_id, rname, time,  "
 				+ "NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits  "
 				+ " FROM recipe_info " + "WHERE recipe_id=? ";   // recipe_procedure
+=======
+		String sql = "SELECT category_id, rname, time, NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits " // recipe_procedure
+				+ "FROM recipe_info " + "WHERE recipe_id=? ";
+>>>>>>> 79ae163025b8405cf840fefff7159b872ba9a2c9
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { recipe_id }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
@@ -216,7 +229,7 @@ public class RecipeDAO {
 	// 주어진 recipe_id에 해당하는 레시피 정보를 데이터베이스에서 조회수 Top1을 찾아서 Recipe 도메인 클래스에 저장하여 반환.
 	public Recipe getTopRecipe(int category_id) throws SQLException {
 
-		String sql = "SELECT recipe_id, category_id, rname, time, result_img, hits " // recipe_procedure
+		String sql = "SELECT recipe_id, category_id, rname, time, NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits " // recipe_procedure
 				+ "FROM (SELECT recipe_id, category_id, rname, time, result_img, hits FROM recipe_info ORDER BY hits DESC) "
 				+ "WHERE category_id=? " + "AND rownum = 1 ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { category_id }); // JDBCUtil에 query문과 매개 변수 설정
@@ -240,7 +253,7 @@ public class RecipeDAO {
 
 	// 주어진 category_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
 	public List<Recipe> getRecipeList(int category_id) throws SQLException {
-		String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+		String sql = "SELECT recipe_id, rname, time, NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
 				+ "FROM recipe_info " + "WHERE category_id=? " + "ORDER BY hits DESC ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { category_id }); // JDBCUtil에 query문 설정
 
@@ -266,7 +279,7 @@ public class RecipeDAO {
 
 	// 주어진 email_id에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
 	public List<Recipe> getUserRecipeList(String email_id) throws SQLException {
-		String sql = "SELECT r.recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+		String sql = "SELECT r.recipe_id, rname, time, NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
 				+ "FROM users_recipe u JOIN recipe_info r ON u.recipe_id = r.recipe_id "
 				+ "WHERE r.category_id = 30 and member_id=(SELECT member_id FROM member where email_id=?)";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { email_id }); // JDBCUtil에 query문 설정
@@ -316,7 +329,7 @@ public class RecipeDAO {
 	// 주어진 category_id와 rname 부분값에 따라 레시피들의 정보를 List<Recipe>의 형태로 출력
 	public List<Recipe> searchRecipeList(int category_id, String keyword) throws SQLException {
 		String inputKey = "%" + keyword + "%";
-		String sql = "SELECT recipe_id, rname, time, result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
+		String sql = "SELECT recipe_id, rname, time, NVL(result_img,'https://image.flaticon.com/icons/svg/1609/1609793.svg') AS result_img, hits " // 여기서 ingredient 목록을 ingredientDAO에서 출력
 				+ "FROM recipe_info " + "WHERE category_id IN (?, ?, ?) AND rname LIKE ?" + "ORDER BY hits DESC ";
 
 		if (category_id == 5) { // 전체 레시피에서 검색
