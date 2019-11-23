@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="images/favicon.ico">
+<link rel="icon" href="../images/favicon.ico">
 <title>사용자 정보 수정</title>
 <script>
 function memberModify() {
