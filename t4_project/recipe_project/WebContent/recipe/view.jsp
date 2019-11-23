@@ -15,21 +15,21 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <script src="../js/ie-emulation-modes-warning.js"></script>
 	
+<style>
+div img {
+	width: 240px;
+	height: 192px;
+}
+</style>	
 </head>
 <body>
 <div class="container">
 	<div class="masthead">
 		<br><br>
-		<p align="center">
-			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a>
-		</p>
-		<p align="right">
-			<a
-				href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a>
-		</p>
-		<p align="right">
-			<a href="<c:url value='/member/logout' />">로그아웃</a>
-		</p>
+		<p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a></p>
+		<p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">로그아웃</a></p>
+
 
 		<div class="s003">
 			<!--검색창 -->
@@ -202,9 +202,10 @@
 	    		<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">
 	    			<c:choose>
 	    				<c:when test="${recipe.category_id eq '30'}">
-	    					작성일: ${recipe.createdDate} </td>
-						</c:when>
+	    					작성일: ${recipe.createdDate}
+						</c:when> 
 					</c:choose>
+			    </td>
 			<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
 		  </tr>
 	    </table>  

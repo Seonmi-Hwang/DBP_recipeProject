@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Ingredient;
-import model.Recipe;
 import model.dao.IngredientDAO;
 
 public class IngredientManager {
@@ -48,9 +47,10 @@ public class IngredientManager {
 		return ingre;
 	}
 	
-	public IngredientDAO getIngredientDAO() {
-		return this.IngreDAO;
-	}
+	//안쓰는것같아서 없애버림 by MH
+//	public IngredientDAO getIngredientDAO() {
+//		return this.IngreDAO;
+//	}
 	
 	public int findIdByName(String iname) throws SQLException {
 		return IngreDAO.findIdByName(iname);

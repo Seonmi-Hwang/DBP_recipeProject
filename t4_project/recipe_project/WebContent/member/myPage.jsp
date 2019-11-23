@@ -226,12 +226,6 @@ function memberRemove() {
 	    <br>	  	    
 	  	<table>
 	  	  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">ID</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${member.member_id}
-			</td>
-		  </tr>
-	  	  <tr>
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">이메일 ID</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				${member.email_id}

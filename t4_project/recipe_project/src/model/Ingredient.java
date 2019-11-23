@@ -56,12 +56,12 @@ public class Ingredient {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-
-	@Override
-	public String toString() {
-		return "Ingredient [recipe_id=" + recipe_id + ", ingredient_id=" + ingredient_id + ", quantity=" + quantity
-				+ ", icategory=" + icategory + ", iname=" + iname + "]";
-	}
+//  안쓰는것같아서 없앰
+//	@Override
+//	public String toString() {
+//		return "Ingredient [recipe_id=" + recipe_id + ", ingredient_id=" + ingredient_id + ", quantity=" + quantity
+//				+ ", icategory=" + icategory + ", iname=" + iname + "]";
+//	}
 
 	
 
