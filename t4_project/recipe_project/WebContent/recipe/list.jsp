@@ -271,6 +271,16 @@
 				role="button">레시피 추가</a></p>
 	</c:if>
 	
+	<!-- 관리자의 경우, 항상 레시피 추가 버튼 보기 by YJ -->
+	<c:if test="${curMemberId == 'admin@dongduk.ac.kr' && category_id != 0}">
+		<p align="right">
+			<a class="btn btn-lg btn-success"
+				href="<c:url value='/recipe/add/form'>
+			            		<c:param name='category_id' value='${category_id}' />
+		            	</c:url>"
+				role="button">레시피 추가</a></p>
+	</c:if>	
+			
 	<!-- 재료 맞춤 레시피 카테고리일 경우 -->
 	<c:if test="${category_id == 0}">
 	<div class="s003">
