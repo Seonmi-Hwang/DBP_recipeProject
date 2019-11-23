@@ -92,8 +92,8 @@
 								<c:forEach var="i" begin="1" end="5">
 									<p>
 										<strong>${i}</strong> &nbsp;
-										<input type="text" name="iname" placeholder="ex) 계란">
-										<input type="text" name="quantity" size="10" placeholder="ex) ${i}알">
+										<input type="text" name="iname${i}" placeholder="ex) 계란">
+										<input type="text" name="quantity${i}" size="10" placeholder="ex) ${i}알">
 									</p>
 								</c:forEach>
 								<!-- 나중에 DOM으로 동적 input 추가하면,
@@ -122,8 +122,8 @@
 										<tr height="120px">
 											<td width="60%" height="auto" style="vertical-align: top">
 												<strong>${i}</strong> &nbsp; <br>
-												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text" placeholder="ex) 재료를 손질한다." size="40"><br><br>
-												&nbsp;&nbsp;&nbsp;순서 <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text${i}" placeholder="ex) 재료를 손질한다." size="40"><br><br>
+												&nbsp;&nbsp;&nbsp;순서 <input type="text" name="proc_id${i}" size="10" placeholder="ex) ${i}">
 											</td>
 											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
 												<div class="field" align="left">

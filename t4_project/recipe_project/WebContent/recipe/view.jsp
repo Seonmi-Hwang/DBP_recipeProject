@@ -195,18 +195,33 @@
     <tr>
 	  <td width="20"></td>
 	  <td>
-	    <table> 
+	    <table style="width:100%"> 
 		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td> 
+			<td width="55%">
+			<div style="height:22;"><b style="background-color: f4f4f4">&nbsp;&nbsp;${recipe.rname} </b>&nbsp;&nbsp;</div>
+			</td> 
+	    	<td>
+	    		<table style="width: 100%">
+	    			<tr>
+	    				<td width="40%" bgcolor="ffffff" style="padding-right: 10; text-align: left">
+				    		<c:choose>
+				    			<c:when test="${recipe.category_id eq '30'}">
+				    				작성일: ${recipe.createdDate}
+								</c:when> 
+							</c:choose>
+						</td>
+						<td width="35%" bgcolor="ffffff" style="padding-right: 10; text-align: left">
+				    		<c:choose>
+				    			<c:when test="${recipe.category_id eq '30'}">
+				    				작성자: ${recipe.writer}
+								</c:when> 
+							</c:choose>
+						</td>
+						<td width="25%" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
+	    			</tr>
+	    		</table>
+	    	</td>
 	    	
-	    		<td width="15%" bgcolor="ffffff" style="padding-right: 10; text-align: right">
-	    			<c:choose>
-	    				<c:when test="${recipe.category_id eq '30'}">
-	    					작성일: ${recipe.createdDate}
-						</c:when> 
-					</c:choose>
-			    </td>
-			<td width="85%" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
 		  </tr>
 	    </table>  
 	    <br>	  	    
