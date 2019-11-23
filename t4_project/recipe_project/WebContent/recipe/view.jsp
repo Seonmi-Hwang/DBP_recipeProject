@@ -199,14 +199,14 @@
 		  <tr>
 			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td> 
 	    	
-	    		<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">
+	    		<td width="15%" bgcolor="ffffff" style="padding-right: 10; text-align: right">
 	    			<c:choose>
 	    				<c:when test="${recipe.category_id eq '30'}">
 	    					작성일: ${recipe.createdDate}
 						</c:when> 
 					</c:choose>
 			    </td>
-			<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
+			<td width="85%" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
 		  </tr>
 	    </table>  
 	    <br>	  	    
