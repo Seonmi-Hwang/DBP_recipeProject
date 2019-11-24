@@ -8,7 +8,46 @@
 <title>모두의 레시피: 레시피 추가</title>
 <link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="../../js/addForm.js"></script>
+<script>
+function recipeAdd() {
+	if (form.rname.value == "") {
+		form.rname.placeholder = "레시피 이름을 입력하세요.";
+		alert('레시피 이름을 입력하세요.');
+		return false;
+	}
+	
+	var inameLength = 0;
+	$('input[name*="iname"]').map(function(i, item) {
+		if (item.value != "")
+			inameLength++;
+	});
+	if (inameLength == 0) {
+		$('input[name*="iname"]').attr('placeholder', '재료 이름을 입력하세요.');
+		alert('재료 이름을 입력하세요.');
+		return false;
+	}
+	
+	if (form.time.value == "") {
+		form.time.placeholder = "10";
+		alert('소요 시간을 입력하세요.');
+		return false;
+	}
+	
+	var proctextLength = 0;
+	$('input[name*="proc_text"]').map(function(i, item) {
+		if (item.value != "")
+			proctextLength++;
+	});
+	if (proctextLength == 0) {
+		$('input[name*="proc_text"]').attr('placeholder', '조리 과정을 입력하세요.');
+		alert('조리 과정을 입력하세요.');
+		return false;
+	}
+
+	form.submit();
+}
+
+</script>
 </head>
 <body>
 	<br>
@@ -97,6 +136,7 @@
 										</tr>
 									</c:forEach>
 								</table>
+								<script type="text/javascript" src="../../js/addForm.js"></script>
 									
 									
 								<!-- 나중에 DOM으로 동적 input 추가하면,
