@@ -267,6 +267,7 @@ function memberRemove() {
 					<tr>
 						<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 						   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+						   				<c:param name='category_id' value='${recipe.category_id}'/>
 				 		 			 </c:url>"> ${recipe.rname} </a></h4>  
 				  		</td> <!--  recipe.getRecipeName() -->
 					</tr>
