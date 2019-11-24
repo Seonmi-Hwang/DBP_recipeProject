@@ -110,6 +110,7 @@ td img {
 					<td colspan="2" style="text-align:center;">
 					<h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${commonTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='10' />
 			 		 			 </c:url>"> ${commonTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
@@ -135,6 +136,7 @@ td img {
 				<tr>
 					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${snsTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='20' />
 			 		 			 </c:url>"> ${snsTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
@@ -160,6 +162,7 @@ td img {
 				<tr>
 					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${myTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='30' />
 			 		 			 </c:url>"> ${myTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
