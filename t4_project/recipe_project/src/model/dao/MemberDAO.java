@@ -109,6 +109,29 @@ private JDBCUtil jdbcUtil = null;
 	}
 	
 	/**
+	 * 주어진 사용자 ID에 해당하는 닉네임 반환
+	 */
+	public String findMname(String email_id) throws SQLException {
+        String sql = "SELECT mname " //pw를 전달해도 되는지는 의문
+        			+ "FROM member "
+        			+ "WHERE email_id=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						// 학생 정보 발견
+				String mname = rs.getString("pw");
+				return mname;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
 	public List<Member> findMemberList() throws SQLException {
