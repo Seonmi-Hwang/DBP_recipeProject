@@ -23,8 +23,11 @@ public class ViewRecipeController implements Controller {
 		
 		RecipeManager manager = RecipeManager.getInstance();
 		Recipe recipe= manager.findRecipe(recipe_id);	// 수정하려는 사용자 정보 검색
-		recipe.setHits(recipe.getHits()+1);
-		manager.updateHits(recipe);
+		
+		if (!recipe.getWriter().equals(MemberSessionUtils.getLoginMemberName(request.getSession()))) {
+			recipe.setHits(recipe.getHits()+1);
+			manager.updateHits(recipe);
+		}
 		request.setAttribute("recipe", recipe);		
 
 		MemberManager mManager = MemberManager.getInstance();

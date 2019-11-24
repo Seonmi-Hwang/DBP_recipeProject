@@ -236,13 +236,13 @@ function recipeAdd() {
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen; width: 70%; height: 70%">
+					<table style="background-color: YellowGreen; width: 90%; height: 70%">
 						<tr>
 							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">레시피
 								이름</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<p>
-									<input type="text" style="width: 60%; height: 30px; font-size: 20px;"
+									<input type="text" style="width: 50%; height: 30px; font-size: 20px;"
 										name="rname" placeholder="레시피 이름을 입력하세요">
 								</p>
 							</td>
@@ -293,12 +293,12 @@ function recipeAdd() {
 								<table style="height: 100%; width: 100%">
 									<c:forEach var="i" begin="1" end="5">
 										<tr height="120px">
-											<td width="60%" height="auto" style="vertical-align: top">
+											<td width="65%" height="auto" style="vertical-align: top">
 												<strong>${i}</strong> &nbsp; <br>
-												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text" placeholder="ex) 재료를 손질한다." size="40"><br><br>
+												&nbsp;&nbsp;&nbsp;과정 <input type="text" name="proc_text" placeholder="ex) 재료를 손질한다." size="50"><br><br>
 												&nbsp;&nbsp;&nbsp;순서 <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
 											</td>
-											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
+											<td width="35%" height="auto" style="vertical-align: top; padding-top: 22px">
 												<div class="field" align="left">
 													<input type="file" id="files${i}" name="img_url" accept="image/*" onchange="loadImage(${i})"/>
 														<img id="preview${i}"/>   
