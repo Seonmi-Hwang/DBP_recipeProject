@@ -280,6 +280,7 @@ function recipeRemove() {
 								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
 								 	  <c:param name='email_id' value='${curMemberId}'/>
 							</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+
 						
 	    				</c:if>
 				 	    <a href="<c:url value='/recipe/list'>

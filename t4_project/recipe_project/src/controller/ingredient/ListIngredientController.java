@@ -17,16 +17,16 @@ public class ListIngredientController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		RecipeManager manager = RecipeManager.getInstance();
-		String[] ingr = request.getParameterValues("ingre");
-		String rslt = infoSelector(ingr);
+		String[] ingredientsList = request.getParameterValues("ingredients");
+		String keywords = infoSelector(ingredientsList);
 		
 //		List<Ingredient> ingreList = manager.findIngredientList(category);
-		List<Integer> recipeidList = manager.findRecommendRecipe(ingr);
+		List<Integer> recipeIdList = manager.findRecommendRecipe(ingredientsList);
 		List<Recipe> recipeList = new ArrayList<Recipe>();
 		String category_id = request.getParameter("category_id");
 		
 		Recipe r;
-		for (int i : recipeidList) {
+		for (int i : recipeIdList) {
 			r = manager.findRecipe(i);
 			recipeList.add(r);
 		}
@@ -36,19 +36,19 @@ public class ListIngredientController implements Controller{
 				MemberSessionUtils.getLoginMemberId(request.getSession()));
 		request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
 		request.setAttribute("currentPage", "searchRecRecipe");
-		request.setAttribute("keywords", rslt);
+		request.setAttribute("keywords", keywords);
 		request.setAttribute("recipeList", recipeList);
 		request.setAttribute("category_id", category_id);
 		return "/recipe/list.jsp";	
 	}
 	
-	private String infoSelector(String[] ingr) {
+	private String infoSelector(String[] ingredientsList) {
 		String value = "";
 		
-		for (int i = 0; i < ingr.length; i++) {
-			value += ingr[i];
+		for (int i = 0; i < ingredientsList.length; i++) {
+			value += ingredientsList[i];
 			
-			if (i < ingr.length - 1)
+			if (i < ingredientsList.length - 1)
 				value += ", ";
 		}
 		return value;

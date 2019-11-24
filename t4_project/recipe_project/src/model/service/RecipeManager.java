@@ -34,23 +34,23 @@ public class RecipeManager {
 		return recipeDAO.update(recipe);
 	}	
 
-	public int remove(int recipeId) throws SQLException {
-		return recipeDAO.remove(recipeId);
+	public int remove(int recipe_id) throws SQLException {
+		return recipeDAO.remove(recipe_id);
 	}
 
-	public Recipe findRecipe(int recipeId)
+	public Recipe findRecipe(int recipe_id)
 		throws SQLException, RecipeNotFoundException {
-		Recipe recipe = recipeDAO.getRecipe(recipeId);
+		Recipe recipe = recipeDAO.getRecipe(recipe_id);
 		
 		if (recipe == null) {
 			try {
-				throw new RecipeNotFoundException(recipeId + "는 존재하지 않는 레시피입니다.");
+				throw new RecipeNotFoundException(recipe_id + "는 존재하지 않는 레시피입니다.");
 			} catch (RecipeNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-				String ingredients = recipeDAO.getIngredientsName(recipeId);
+				String ingredients = recipeDAO.getIngredientsName(recipe_id);
 				
 				if (ingredients == null) ingredients = "없음";
 				
