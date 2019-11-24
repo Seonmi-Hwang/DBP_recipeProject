@@ -292,9 +292,9 @@
 									<c:param name='category_id' value='${category_id}'/>
 								  </c:url>">
 			<div class="inner-form" style="width:400px;">
-			<input type="text" name="ingre" style="width:100px; margin-left:5px;">&nbsp;
-			<input type="text" name="ingre" style="width:100px;">&nbsp;
-			<input type="text" name="ingre" style="width:100px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px; margin-left:5px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px;">&nbsp;
 			<div class="input-field third-wrap">
 			<button class="btn-search" type="submit" style="background: #3399ff;">
               <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
