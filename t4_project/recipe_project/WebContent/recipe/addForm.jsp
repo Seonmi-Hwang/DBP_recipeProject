@@ -65,7 +65,7 @@ function recipeAdd() {
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen; width: 80%; height: 70%">
+					<table style="background-color: YellowGreen; width: 70%; height: 70%">
 						<tr>
 							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">레시피
 								이름</td>
