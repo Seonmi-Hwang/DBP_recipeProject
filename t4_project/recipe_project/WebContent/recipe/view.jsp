@@ -274,6 +274,7 @@
 							 		 </c:url>">수정</a> &nbsp;
 				 	    	<a href="<c:url value='/recipe/delete'>
 								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
+								 	  <c:param name='category_id' value='${recipe.category_id}' />
 							 	 	</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
 						
 	    				</c:if>

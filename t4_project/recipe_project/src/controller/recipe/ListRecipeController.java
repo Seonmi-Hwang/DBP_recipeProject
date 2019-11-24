@@ -22,41 +22,6 @@ public class ListRecipeController implements Controller {
 		
 		try {
 			List<Recipe> recipeList = manager.findRecipeList(category_id);
-			/*
-			List<Recipe> pageRecipeList = new ArrayList<Recipe>();
-			int totalCount = recipeList.size();
-			
-			// paging
-			String prevPageNum = request.getParameter("prevPageNo");
-			String pageNum = request.getParameter("pageNo");
-			String nextPageNum = request.getParameter("nextPageNo");
-			
-			int pageSize = 9;
-			int maxPage = (totalCount + (pageSize - 1)) / pageSize;
-			
-			int prevPageNo;
-			int pageNo;			
-			int nextPageNo;
-			
-			if (prevPageNum != null) {
-				pageNo = Integer.parseInt(prevPageNum);
-			} else if (pageNum != null) {
-				pageNo = Integer.parseInt(pageNum);
-			} else if (nextPageNum != null) {
-				pageNo = Integer.parseInt(nextPageNum);
-			} else {
-				pageNo = 1;
-				for (int i = 0; i < 9; i++)
-				pageRecipeList.add(recipeList.get(i));
-			}
-			
-			if (pageNo - 1 != 0) prevPageNo = pageNo - 1; // prevPageNo 없으면 null(0) return
-			
-			if (pageNo + 1 != maxPage) nextPageNo = pageNo + 1;
-
-			// paging attribute 전달
-			*/
-			
 			
 			// 현재 로그인한 사용자 ID를 request에 저장하여 전달
 			request.setAttribute("curMemberId", 
