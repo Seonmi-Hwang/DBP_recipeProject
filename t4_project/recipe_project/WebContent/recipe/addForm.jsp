@@ -7,12 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<link rel="icon" href="../images/favicon.ico">
+<link rel="icon" href="../../images/favicon.ico">
 
 <title>모두의 레시피: 레시피 추가</title>
-<link href="../css/main.css" rel="stylesheet" />
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-<script src="../js/ie-emulation-modes-warning.js"></script>
+<link href="../../css/main.css" rel="stylesheet" />
+<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+<script src="../../js/ie-emulation-modes-warning.js"></script>
 <link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
@@ -106,7 +106,7 @@ function recipeAdd() {
 
 				<!-- 메뉴 카테고리 바 -->
 				<c:choose>
-					<c:when test="${recipe.category_id == 0}">
+					<c:when test="${category_id == 0}">
 						<li class="nav-item"><a class="nav-link active"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
@@ -128,7 +128,7 @@ function recipeAdd() {
             			 </c:url>">나만의
 								레시피</a></li>
 					</c:when>
-					<c:when test="${recipe.category_id == 10}">
+					<c:when test="${category_id == 10}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
@@ -151,7 +151,7 @@ function recipeAdd() {
 								레시피</a></li>
 
 					</c:when>
-					<c:when test="${recipe.category_id == 20}">
+					<c:when test="${category_id == 20}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
@@ -173,7 +173,7 @@ function recipeAdd() {
             			 </c:url>">나만의
 								레시피</a></li>
 					</c:when>
-					<c:when test="${recipe.category_id == 30}">
+					<c:when test="${category_id == 30}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
@@ -301,7 +301,7 @@ function recipeAdd() {
 											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
 												<div class="field" align="left">
 													<input type="file" id="files${i}" name="img_url" accept="image/*" onchange="loadImage(${i})"/>
-													<img id="preview${i}"/> 
+														<img id="preview${i}"/>   
 												</div>
 											</td>	
 										</tr>
@@ -330,7 +330,7 @@ function recipeAdd() {
 		</table>
 	</form>
 </div>
-    <script src="../js/extention/choices.js"></script>
+    <script src="../../js/extention/choices.js"></script>
     <script>
       const choices = new Choices('[data-trigger]',
       {
@@ -343,6 +343,6 @@ function recipeAdd() {
       <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>
