@@ -39,7 +39,7 @@ public class RequestMapping {
         mappings.put("/recipe/search", new SearchRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());
         
-        mappings.put("/ingredient/list", new ListIngredientController());
+        mappings.put("/ingredient/list", new SearchIngredientController());
         
 
 //        mappings.put("", value);

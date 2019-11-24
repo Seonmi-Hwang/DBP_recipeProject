@@ -12,7 +12,7 @@ import model.Recipe;
 import model.service.RecipeManager;
 
 
-public class ListIngredientController implements Controller{
+public class SearchIngredientController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
