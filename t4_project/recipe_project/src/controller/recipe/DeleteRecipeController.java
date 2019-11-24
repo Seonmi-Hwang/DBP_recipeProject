@@ -24,7 +24,7 @@ public class DeleteRecipeController implements Controller {
 		// 레시피 삭제 수행
 		int rslt = rManager.remove(recipe_id);
 		
-//		// list.jsp 출력 준비
+//		// list.jsp 출력 준비 (return "/recipe/list.jsp" 할 경우)
 //		int category_id = Integer.parseInt(request.getParameter("category_id")); // 이 코드를 쓰려면 <c:param>에 category_id 실어줘야 함 
 //		List<Recipe> recipeList = manager.findRecipeList(category_id);
 //		

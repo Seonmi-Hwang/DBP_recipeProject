@@ -283,9 +283,16 @@ function recipeRemove() {
 
 						
 	    				</c:if>
-				 	    <a href="<c:url value='/recipe/list'>
-				 	    			<c:param name='category_id' value='${recipe.category_id}'/>
-				 	    		</c:url>">목록</a>
+	    				<c:choose>
+		    				<c:when test='${category_id == 0}'>
+						 	    <a href="#" onclick="history.back()">목록</a>
+					 	    </c:when>
+					 	    <c:otherwise>
+						 	    <a href="<c:url value='/recipe/list'>
+						 	    			<c:param name='category_id' value='${category_id}'/>
+						 	    		</c:url>">목록</a>
+					 	    </c:otherwise>
+				 	    </c:choose>
 				 	    <br>
 				 	       <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 				        <c:if test="${updateFailed || deleteFailed}">
