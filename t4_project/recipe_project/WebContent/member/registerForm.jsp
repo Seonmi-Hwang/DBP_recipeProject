@@ -10,7 +10,7 @@
 
 <link rel="icon" href="../../images/favicon.ico">
 
-<title>모두의 레시피 - 회원가입</title>
+<title>모두의 레시피: 회원가입</title>
 
 <link href="../css/signin.css" rel="stylesheet">
 <link href="../../css/signin.css" rel="stylesheet">

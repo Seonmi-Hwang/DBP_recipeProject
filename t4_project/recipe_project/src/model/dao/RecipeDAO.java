@@ -177,7 +177,7 @@ public class RecipeDAO {
 			if (jdbcUtil.executeUpdate() == 0) {
 				throw new SQLException();
 			}
-
+			
 			/* recipe_info에서 삭제 */
 			sql = "DELETE FROM recipe_info WHERE recipe_id=?";
 			param = new Object[] { recipe_id };

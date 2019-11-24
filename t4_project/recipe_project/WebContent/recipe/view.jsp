@@ -14,7 +14,11 @@
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <script src="../js/ie-emulation-modes-warning.js"></script>
-	
+<script>
+function recipeRemove() {
+	return confirm("정말 삭제하시겠습니까?");
+}
+</script>
 <style>
 .rimg {
 	width: 300px;
@@ -274,7 +278,8 @@
 							 		 </c:url>">수정</a> &nbsp;
 				 	    	<a href="<c:url value='/recipe/delete'>
 								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
-							 	 	</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+								 	  <c:param name='email_id' value='${curMemberId}'/>
+							</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
 						
 	    				</c:if>
 				 	    <a href="<c:url value='/recipe/list'>

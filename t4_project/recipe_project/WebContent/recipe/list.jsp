@@ -263,12 +263,15 @@
 	<br>
 
 	<c:if test="${category_id == 30 && currentPage != 'searchRecipe'}">
-		<p align="right">
-			<a class="btn btn-lg btn-success"
-				href="<c:url value='/recipe/add/form'>
-            				<c:param name='category_id' value='30' />
-            			 </c:url>"
-				role="button">레시피 추가</a></p>
+		<!-- 관리자일때 추가버튼 두개 나와서 추가한 if 조건! by MH -->
+		<c:if test="${curMemberId != 'admin@dongduk.ac.kr'}">
+			<p align="right">
+				<a class="btn btn-lg btn-success"
+					href="<c:url value='/recipe/add/form'>
+	            				<c:param name='category_id' value='30' />
+	            			 </c:url>"
+					role="button">레시피 추가</a></p>
+		</c:if>
 	</c:if>
 	
 	<!-- 관리자의 경우, 항상 레시피 추가 버튼 보기 by YJ -->

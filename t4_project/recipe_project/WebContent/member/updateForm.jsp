@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="../images/favicon.ico">
-<title>사용자 정보 수정</title>
+<title>모두의 레시피: 프로필 설정</title>
 <script>
 function memberModify() {
 	if (form.pw.value == "") {

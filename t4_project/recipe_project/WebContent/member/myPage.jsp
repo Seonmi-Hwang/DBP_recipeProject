@@ -11,7 +11,7 @@
 
 <link rel="icon" href="../images/favicon.ico">
 
-<title>모두의 레시피</title>
+<title>모두의 레시피: 마이페이지</title>
 
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,17 @@ function memberRemove() {
 	    
 </style>
 </head>
-<body>
+<c:choose>
+	<c:when test="${deleteComplete == 1}">
+		<body onLoad="alert('삭제가 완료되었습니다.')">
+	</c:when>
+	<c:when test="${deleteComplete == 0}">
+		<body onLoad="alert('삭제에 실패했습니다.')">
+	</c:when>
+	<c:otherwise>
+		<body>
+	</c:otherwise>
+</c:choose>
 <div class="container">
 	<div class="masthead">
 		<br><br>
