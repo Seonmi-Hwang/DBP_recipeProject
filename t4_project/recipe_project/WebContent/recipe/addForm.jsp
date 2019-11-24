@@ -329,6 +329,11 @@ function recipeAdd() {
 			</tr>
 		</table>
 	</form>
+	      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">© TEAM4 Sommangchi</p>
+      </footer>
 </div>
     <script src="../../js/extention/choices.js"></script>
     <script>

@@ -409,11 +409,11 @@
 				 </c:url>" class="last">마지막 페이지</a>
 	</div> -->
 
-	<!-- Site footer -->
-	<br>
-	<footer class="footer">
-		<p align="center">© TEAM4 Sommangchi</p>
-	</footer>
+      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">© TEAM4 Sommangchi</p>
+      </footer>
 
 </div>
 <script src="../js/extention/choices.js"></script>
