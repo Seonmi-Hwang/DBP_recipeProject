@@ -10,7 +10,7 @@
 
 <link rel="icon" href="../images/favicon.ico">
 
-<title>레시피-${recipe.rname} </title>
+<title>모두의 레시피: ${recipe.rname} </title>
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <script src="../js/ie-emulation-modes-warning.js"></script>
