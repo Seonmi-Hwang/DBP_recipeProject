@@ -284,7 +284,7 @@ function recipeRemove() {
 						
 	    				</c:if>
 	    				<c:choose>
-		    				<c:when test='${recipe.category_id == 0}'>
+		    				<c:when test='${category_id == 0}'>
 						 	    <a href="#" onclick="history.back()">목록</a>
 					 	    </c:when>
 					 	    <c:otherwise>
