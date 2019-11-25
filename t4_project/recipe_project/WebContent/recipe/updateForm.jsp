@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -11,20 +10,20 @@
 
 <link rel="icon" href="../images/favicon.ico">
 
-<title>·¹½ÃÇÇ¼öÁ¤-${recipe.rname} </title>
+<title>ë ˆì‹œí”¼ìˆ˜ì •-${recipe.rname} </title>
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <script src="../js/ie-emulation-modes-warning.js"></script>
 <script>
 function recipeModify() {
 	if (form.rname.value == "") {
-		form.rname.placeholder = "·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.";
-		alert('·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.');
+		form.rname.placeholder = "ë ˆì‹œí”¼ ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”.";
+		alert('ë ˆì‹œí”¼ ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”.');
 		return false;
 	}
 	if (form.time.value == "") {
 		form.time.placeholder = "10";
-		alert('¼Ò¿ä ½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä.');
+		alert('ì†Œìš” ì‹œê°„ì„ ìž…ë ¥í•˜ì„¸ìš”.');
 		return false;
 	}
 	form.submit();
@@ -36,35 +35,35 @@ function recipeModify() {
 	<div class="masthead">
 		<br><br>
 		<p align="center">
-			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="¸ðµÎÀÇ ·¹½ÃÇÇ" /></a>
+			<a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="ëª¨ë‘ì˜ ë ˆì‹œí”¼" /></a>
 		</p>
 		<p align="right">
 			<a
 				href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${curMemberId}</a>
 		</p>
 		<p align="right">
-			<a href="<c:url value='/member/logout' />">·Î±×¾Æ¿ô</a>
+			<a href="<c:url value='/member/logout' />">ë¡œê·¸ì•„ì›ƒ</a>
 		</p>
 
 		<div class="s003">
-			<!--°Ë»öÃ¢ -->
+			<!--ê²€ìƒ‰ì°½ -->
 			<form name="search" method="POST"
 				action="<c:url value='/recipe/search' />">
 				<div class="inner-form">
 					<div class="input-field first-wrap">
 						<div class="input-select">
 							<select data-trigger="" name="category_id">
-								<!-- request.getParameter("category_id")·Î ¹ÞÀ¸¸é µÊ -->
-								<option value="5">ÀüÃ¼ ·¹½ÃÇÇ</option>
-								<option value="10">ÀÏ¹Ý ·¹½ÃÇÇ</option>
-								<option value="20">SNS ÀÎ±â ·¹½ÃÇÇ</option>
-								<option value="30">³ª¸¸ÀÇ ·¹½ÃÇÇ</option>
+								<!-- request.getParameter("category_id")ë¡œ ë°›ìœ¼ë©´ ë¨ -->
+								<option value="5">ì „ì²´ ë ˆì‹œí”¼</option>
+								<option value="10">ì¼ë°˜ ë ˆì‹œí”¼</option>
+								<option value="20">SNS ì¸ê¸° ë ˆì‹œí”¼</option>
+								<option value="30">ë‚˜ë§Œì˜ ë ˆì‹œí”¼</option>
 							</select>
 						</div>
 					</div>
 					<div class="input-field second-wrap">
 						<input type="search" name="keyword" autocomplete="on"
-							placeholder="°Ë»öÇÏ½Ç ·¹½ÃÇÇ¸¦ ÀÔ·ÂÇÏ¼¼¿ä" />
+							placeholder="ê²€ìƒ‰í•˜ì‹¤ ë ˆì‹œí”¼ë¥¼ ìž…ë ¥í•˜ì„¸ìš”" />
 					</div>
 					<div class="input-field third-wrap">
 						<button class="btn-search" type="submit">
@@ -85,118 +84,118 @@ function recipeModify() {
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value='/main' />">Home</a></li>
 
-				<!-- ¸Þ´º Ä«Å×°í¸® ¹Ù -->
+				<!-- ë©”ë‰´ ì¹´í…Œê³ ë¦¬ ë°” -->
 				<c:choose>
 					<c:when test="${recipe.category_id == 0}">
 						<li class="nav-item"><a class="nav-link active"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
-            			 </c:url>">Àç·á
-								¸ÂÃã ·¹½ÃÇÇ</a></li>
+            			 </c:url>">ìž¬ë£Œ
+								ë§žì¶¤ ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
-            			 </c:url>">ÀÏ¹Ý
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>">SNS
-								ÀÎ±â ·¹½ÃÇÇ</a></li>
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
-            			 </c:url>">³ª¸¸ÀÇ
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
 					</c:when>
 					<c:when test="${recipe.category_id == 10}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
-            			 </c:url>">Àç·á
-								¸ÂÃã ·¹½ÃÇÇ</a></li>
+            			 </c:url>">ìž¬ë£Œ
+								ë§žì¶¤ ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
-            			 </c:url>">ÀÏ¹Ý
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>">SNS
-								ÀÎ±â ·¹½ÃÇÇ</a></li>
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
-            			 </c:url>">³ª¸¸ÀÇ
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
 
 					</c:when>
 					<c:when test="${recipe.category_id == 20}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
-            			 </c:url>">Àç·á
-								¸ÂÃã ·¹½ÃÇÇ</a></li>
+            			 </c:url>">ìž¬ë£Œ
+								ë§žì¶¤ ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
-            			 </c:url>">ÀÏ¹Ý
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>">SNS
-								ÀÎ±â ·¹½ÃÇÇ</a></li>
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
-            			 </c:url>">³ª¸¸ÀÇ
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
 					</c:when>
 					<c:when test="${recipe.category_id == 30}">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
-            			 </c:url>">Àç·á
-								¸ÂÃã ·¹½ÃÇÇ</a></li>
+            			 </c:url>">ìž¬ë£Œ
+								ë§žì¶¤ ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
-            			 </c:url>">ÀÏ¹Ý
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>">SNS
-								ÀÎ±â ·¹½ÃÇÇ</a></li>
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
-            			 </c:url>">³ª¸¸ÀÇ
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='0' />
-            			 </c:url>">Àç·á
-								¸ÂÃã ·¹½ÃÇÇ</a></li>
+            			 </c:url>">ìž¬ë£Œ
+								ë§žì¶¤ ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='10' />
-            			 </c:url>">ÀÏ¹Ý
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='20' />
             			 </c:url>">SNS
-								ÀÎ±â ·¹½ÃÇÇ</a></li>
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='/recipe/list'>
             				<c:param name='category_id' value='30' />
-            			 </c:url>">³ª¸¸ÀÇ
-								·¹½ÃÇÇ</a></li>
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -206,66 +205,66 @@ function recipeModify() {
 	<!-- Add Form  -->
 	<form name="form" method="POST" action="<c:url value='/recipe/update' />">
 		<input type="hidden" name="recipe_id" value="${recipe.recipe_id}" />
-		<!-- AddRecipeController.java¿¡¼­ list.jsp·ÎºÎÅÍ ¹Þ¾Æ¿Â -->
+		<!-- AddRecipeController.javaì—ì„œ list.jspë¡œë¶€í„° ë°›ì•„ì˜¨ -->
 		<table style="width: 100%">
 			<tr>
 				<td width="20"></td>
 				<td>
 					<table>
 						<tr>
-							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>·¹½ÃÇÇ ¼öÁ¤</b>&nbsp;&nbsp;
+							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>ë ˆì‹œí”¼ ìˆ˜ì •</b>&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table> <br>
 					<table style="background-color: YellowGreen;">
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="auto">·¹½ÃÇÇ ÀÌ¸§</td>
+							<td width="120" align="center" bgcolor="E6ECDE" height="auto">ë ˆì‹œí”¼ ì´ë¦„</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px" >
 								<p>
 									<input type="text" style="width: 60%; height: 30px; font-size:20px;" name="rname"
-										value="${recipe.rname}" placeholder="·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä">
+										value="${recipe.rname}" placeholder="ë ˆì‹œí”¼ ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”">
 								</p>
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="22">Àç·á Á¤º¸</td>
+							<td width="120" align="center" bgcolor="E6ECDE" height="22">ìž¬ë£Œ ì •ë³´</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
 								<c:forEach var="ingredient" items="${recipe.ingredients}">
 								<p>
-									<input type="text" name="iname" value="${ingredient.iname}" placeholder="ex) °è¶õ">
-									<input type="text" name="quantity" value="${ingredient.quantity}" size="10" placeholder="ex) 1¾Ë">
+									<input type="text" name="iname" value="${ingredient.iname}" placeholder="ex) ê³„ëž€">
+									<input type="text" name="quantity" value="${ingredient.quantity}" size="10" placeholder="ex) 1ì•Œ">
 								</p>
 								</c:forEach>									
 								
-								<!-- ³ªÁß¿¡ DOMÀ¸·Î µ¿Àû input Ãß°¡ÇÏ¸é,
+								<!-- ë‚˜ì¤‘ì— DOMìœ¼ë¡œ ë™ì  input ì¶”ê°€í•˜ë©´,
 								<div id="addIngredient"></div> <br> <input type="button"
-								id="add_ingredient" value="Ãß°¡" onclick="addInput(this.id);" />
-								<input type="button" id="delete_ingredient" value="»èÁ¦"
+								id="add_ingredient" value="ì¶”ê°€" onclick="addInput(this.id);" />
+								<input type="button" id="delete_ingredient" value="ì‚­ì œ"
 								onclick="deleteInput(this.id);" />
 								 -->
 
 							</td>
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE" height="40px">¼Ò¿ä ½Ã°£</td>
+							<td width="120" align="center" bgcolor="E6ECDE" height="40px">ì†Œìš” ì‹œê°„</td>
 							<td width="470" bgcolor="ffffff" style="padding-left: 10px">
-								<input type="text" style="width: 40px; " name="time" value="${recipe.time}" placeholder="10">&nbsp;&nbsp;<strong>ºÐ</strong>
+								<input type="text" style="width: 40px; " name="time" value="${recipe.time}" placeholder="10">&nbsp;&nbsp;<strong>ë¶„</strong>
 							</td>
 								
 						</tr>
 						<tr>
-							<td width="120" align="center" bgcolor="E6ECDE">Á¶¸® °úÁ¤</td>
+							<td width="120" align="center" bgcolor="E6ECDE">ì¡°ë¦¬ ê³¼ì •</td>
 							<td width="470" height="200" bgcolor="ffffff" style="padding-left: 10px">
 									<c:forEach var="proc" items="${recipe.procedure}">
 									<p>
-										<input type="text" name="proc_text" value="${proc.text}" placeholder="ex) Àç·á¸¦ ¼ÕÁúÇÑ´Ù.">
+										<input type="text" name="proc_text" value="${proc.text}" placeholder="ex) ìž¬ë£Œë¥¼ ì†ì§ˆí•œë‹¤.">
 										<input type="text" name="proc_id" value="${proc.proc_Id}" size="10" placeholder="ex) ${proc.proc_Id}">
 									</p>
 								</c:forEach>
-								<!-- ³ªÁß¿¡ DOMÀ¸·Î µ¿Àû input Ãß°¡ÇÏ¸é,
+								<!-- ë‚˜ì¤‘ì— DOMìœ¼ë¡œ ë™ì  input ì¶”ê°€í•˜ë©´,
 								<div id="addProcedure"></div> <br> <input type="button"
-								id="add_procedure" value="Ãß°¡" onclick="addInput(this.id);" /> <input
-								type="button" id="delete_procedure" value="»èÁ¦"
+								id="add_procedure" value="ì¶”ê°€" onclick="addInput(this.id);" /> <input
+								type="button" id="delete_procedure" value="ì‚­ì œ"
 								onclick="deleteInput(this.value);" />
 								-->
 							</td>
@@ -275,8 +274,8 @@ function recipeModify() {
 					<table style="width: 100%;">
 						<tr>
 							<td align="left">
-								<input type="button" value="¼öÁ¤" onClick="recipeModify()"> &nbsp; 
-								<input type="button" value="Ãë¼Ò" onClick="history.back()">
+								<input type="button" value="ìˆ˜ì •" onClick="recipeModify()"> &nbsp; 
+								<input type="button" value="ì·¨ì†Œ" onClick="history.back()">
 							</td>
 						</tr>
 					</table>
@@ -284,6 +283,11 @@ function recipeModify() {
 			</tr>
 		</table>
 	</form>
+	      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">Â© TEAM4 Sommangchi</p>
+      </footer>
 </div>
 
     <script src="../js/extention/choices.js"></script>
@@ -296,9 +300,9 @@ function recipeModify() {
 
     </script>
   
-      <!-- jQuery (ºÎÆ®½ºÆ®·¦ÀÇ ÀÚ¹Ù½ºÅ©¸³Æ® ÇÃ·¯±×ÀÎÀ» À§ÇØ ÇÊ¿äÇÕ´Ï´Ù) -->
+      <!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ëž©ì˜ ìžë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- ¸ðµç ÄÄÆÄÀÏµÈ ÇÃ·¯±×ÀÎÀ» Æ÷ÇÔÇÕ´Ï´Ù (¾Æ·¡), ¿øÇÏÁö ¾Ê´Â´Ù¸é ÇÊ¿äÇÑ °¢°¢ÀÇ ÆÄÀÏÀ» Æ÷ÇÔÇÏ¼¼¿ä -->
+    <!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ëž˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

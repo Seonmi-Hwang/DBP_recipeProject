@@ -11,7 +11,7 @@
 
 <link rel="icon" href="../images/favicon.ico">
 
-<title>모두의 레시피</title>
+<title>모두의 레시피: 마이페이지</title>
 
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -33,9 +33,9 @@ function memberRemove() {
 	
 	td img {
 		position: relative;  
-        width: 330px;                                                          
-		heght: 250px;
-        background-size: cover;
+		width: 330px;
+		height: 250px;
+		background-size: contain;
 	}
 	
 	.ingre {
@@ -47,7 +47,17 @@ function memberRemove() {
 	    
 </style>
 </head>
-<body>
+<c:choose>
+	<c:when test="${deleteComplete == 1}">
+		<body onLoad="alert('삭제가 완료되었습니다.')">
+	</c:when>
+	<c:when test="${deleteComplete == 0}">
+		<body onLoad="alert('삭제에 실패했습니다.')">
+	</c:when>
+	<c:otherwise>
+		<body>
+	</c:otherwise>
+</c:choose>
 <div class="container">
 	<div class="masthead">
 		<br><br>
@@ -250,18 +260,19 @@ function memberRemove() {
 	  </td>
 	</tr>
   </table>
- 	<br>
 	 <div class="row"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
 		<c:forEach var="recipe" items="${recipeList}" varStatus="status">
-				<table border="1"> <!-- 레시피 한 개를 표현할 테이블 -->
+			<div class="col-lg-4">
+				<table border="1" style="margin-top : 20px;"> <!-- 레시피 한 개를 표현할 테이블 -->
 					<tr>
 						<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 						   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+						   				<c:param name='category_id' value='${recipe.category_id}'/>
 				 		 			 </c:url>"> ${recipe.rname} </a></h4>  
 				  		</td> <!--  recipe.getRecipeName() -->
 					</tr>
 					<tr>
-						<td colspan="2"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
+						<td colspan="2" style="text-align: center;"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="ingre">&nbsp; ${recipe.ingredientsName}</td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>
@@ -271,10 +282,14 @@ function memberRemove() {
 						<td width="110px">&nbsp;조회수 : ${recipe.hits}회 </td> <!--  recipe.getHits() -->
 					</tr>
 				</table>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<c:if test="${status.index % 4 == 0}"><br><br></c:if>
+			</div>
 		</c:forEach>
 	</div>
+	      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">© TEAM4 Sommangchi</p>
+      </footer>
 </div>
 <script src="../js/extention/choices.js"></script>
 <script>

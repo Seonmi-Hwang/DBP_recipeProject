@@ -10,11 +10,15 @@
 
 <link rel="icon" href="../images/favicon.ico">
 
-<title>레시피-${recipe.rname} </title>
+<title>모두의 레시피: ${recipe.rname} </title>
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <script src="../js/ie-emulation-modes-warning.js"></script>
-	
+<script>
+function recipeRemove() {
+	return confirm("정말 삭제하시겠습니까?");
+}
+</script>
 <style>
 .rimg {
 	width: 300px;
@@ -195,18 +199,33 @@
     <tr>
 	  <td width="20"></td>
 	  <td>
-	    <table> 
+	    <table style="width:100%"> 
 		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>${recipe.rname} </b>&nbsp;&nbsp;</td> 
+			<td width="55%">
+			<div style="height:22;"><b style="background-color: f4f4f4">&nbsp;&nbsp;${recipe.rname} </b>&nbsp;&nbsp;</div>
+			</td> 
+	    	<td>
+	    		<table style="width: 100%">
+	    			<tr>
+	    				<td width="40%" bgcolor="ffffff" style="padding-right: 10; text-align: left">
+				    		<c:choose>
+				    			<c:when test="${recipe.category_id eq '30'}">
+				    				작성일: ${recipe.createdDate}
+								</c:when> 
+							</c:choose>
+						</td>
+						<td width="35%" bgcolor="ffffff" style="padding-right: 10; text-align: left">
+				    		<c:choose>
+				    			<c:when test="${recipe.category_id eq '30'}">
+				    				작성자: ${recipe.writer}
+								</c:when> 
+							</c:choose>
+						</td>
+						<td width="25%" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
+	    			</tr>
+	    		</table>
+	    	</td>
 	    	
-	    		<td width="270" bgcolor="ffffff" style="padding-right: 10; text-align: right">
-	    			<c:choose>
-	    				<c:when test="${recipe.category_id eq '30'}">
-	    					작성일: ${recipe.createdDate}
-						</c:when> 
-					</c:choose>
-			    </td>
-			<td width="200" bgcolor="ffffff" style="padding-right: 10; text-align: right">조회수: ${recipe.hits} </td> 
 		  </tr>
 	    </table>  
 	    <br>	  	    
@@ -259,12 +278,21 @@
 							 		 </c:url>">수정</a> &nbsp;
 				 	    	<a href="<c:url value='/recipe/delete'>
 								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
-							 	 	</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+								 	  <c:param name='email_id' value='${curMemberId}'/>
+							</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+
 						
 	    				</c:if>
-				 	    <a href="<c:url value='/recipe/list'>
-				 	    			<c:param name='category_id' value='${recipe.category_id}'/>
-				 	    		</c:url>">목록</a>
+	    				<c:choose>
+		    				<c:when test='${category_id == 0}'>
+						 	    <a href="#" onclick="history.back()">목록</a>
+					 	    </c:when>
+					 	    <c:otherwise>
+						 	    <a href="<c:url value='/recipe/list'>
+						 	    			<c:param name='category_id' value='${recipe.category_id}'/>
+						 	    		</c:url>">목록</a>
+					 	    </c:otherwise>
+				 	    </c:choose>
 				 	    <br>
 				 	       <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 				        <c:if test="${updateFailed || deleteFailed}">
@@ -274,11 +302,14 @@
 				</tr>
 			</table>
  	    <br><br>	   
- 	    
- 	     
 	  </td>
 	</tr>
   </table>  
+        <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">© TEAM4 Sommangchi</p>
+      </footer>
 </div>
     <script src="../js/extention/choices.js"></script>
     <script>

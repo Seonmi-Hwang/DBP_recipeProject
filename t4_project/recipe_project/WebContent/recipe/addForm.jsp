@@ -1,81 +1,254 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@page contentType="text/html; charset=utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<meta charset="utf-8">
-<title>¸ğµÎÀÇ ·¹½ÃÇÇ: ·¹½ÃÇÇ Ãß°¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<link rel="icon" href="../../images/favicon.ico">
+
+<title>ëª¨ë‘ì˜ ë ˆì‹œí”¼: ë ˆì‹œí”¼ ì¶”ê°€</title>
+<link href="../../css/main.css" rel="stylesheet" />
+<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+<script src="../../js/ie-emulation-modes-warning.js"></script>
 <link type="text/css" rel="stylesheet" href="../../css/addForm.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-
-	function recipeAdd() {
-		if (form.rname.value == "") {
-			form.rname.placeholder = "·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.";
-			alert('·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-		if (form.iname[0].value == "") {
-			form.iname[0].placeholder = "ex) °è¶õ";
-			alert('Àç·á¸¦ ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-		if (form.quantity[0].value == "") {
-			form.quantity[0].placeholder = "ex) 1¾Ë";
-			alert('¼ö·®À» ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-		if (form.time.value == "") {
-			form.time.placeholder = "10";
-			alert('¼Ò¿ä ½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-		if (form.proc_text[0].value == "") {
-			form.proc_text[0].placeholder = "ex) Àç·á¸¦ ¼ÕÁúÇÑ´Ù.";
-			alert('Á¶¸® °úÁ¤À» ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-		if (form.proc_id[0].value == "") {
-			form.proc_id[0].placeholder = "ex) 1";
-			alert('Á¶¸® ¼ø¼­¸¦ ÀÔ·ÂÇÏ¼¼¿ä.');
-			return false;
-		}
-
-		form.submit();
+<script>
+function recipeAdd() {
+	if (form.rname.value == "") {
+		form.rname.placeholder = "ë ˆì‹œí”¼ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.";
+		alert('ë ˆì‹œí”¼ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		return false;
 	}
-</script>
+	
+	var inameLength = 0;
+	$('input[name*="iname"]').map(function(i, item) {
+		if (item.value != "")
+			inameLength++;
+	});
+	if (inameLength == 0) {
+		$('input[name*="iname"]').attr('placeholder', 'ì¬ë£Œ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		alert('ì¬ë£Œ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		return false;
+	}
+	
+	if (form.time.value == "") {
+		form.time.placeholder = "10";
+		alert('ì†Œìš” ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		return false;
+	}
+	
+	var proctextLength = 0;
+	$('input[name*="proc_text"]').map(function(i, item) {
+		if (item.value != "")
+			proctextLength++;
+	});
+	if (proctextLength == 0) {
+		$('input[name*="proc_text"]').attr('placeholder', 'ì¡°ë¦¬ ê³¼ì •ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		alert('ì¡°ë¦¬ ê³¼ì •ì„ ì…ë ¥í•˜ì„¸ìš”.');
+		return false;
+	}
 
+	form.submit();
+}
+
+</script>
 </head>
 <body>
+<div class="container">
+	<div class="masthead">
+		<br><br>
+		<p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="ëª¨ë‘ì˜ ë ˆì‹œí”¼" /></a></p>
+		<p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">ë¡œê·¸ì•„ì›ƒ</a></p>
+
+
+		<div class="s003">
+			<!--ê²€ìƒ‰ì°½ -->
+			<form name="search" method="POST"
+				action="<c:url value='/recipe/search' />">
+				<div class="inner-form">
+					<div class="input-field first-wrap">
+						<div class="input-select">
+							<select data-trigger="" name="category_id">
+								<!-- request.getParameter("category_id")ë¡œ ë°›ìœ¼ë©´ ë¨ -->
+								<option value="5">ì „ì²´ ë ˆì‹œí”¼</option>
+								<option value="10">ì¼ë°˜ ë ˆì‹œí”¼</option>
+								<option value="20">SNS ì¸ê¸° ë ˆì‹œí”¼</option>
+								<option value="30">ë‚˜ë§Œì˜ ë ˆì‹œí”¼</option>
+							</select>
+						</div>
+					</div>
+					<div class="input-field second-wrap">
+						<input type="search" name="keyword" autocomplete="on"
+							placeholder="ê²€ìƒ‰í•˜ì‹¤ ë ˆì‹œí”¼ë¥¼ ì…ë ¥í•˜ì„¸ìš”" />
+					</div>
+					<div class="input-field third-wrap">
+						<button class="btn-search" type="submit">
+							<svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true"
+								data-prefix="fas" data-icon="search" role="img"
+								xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor"
+									d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+              </svg>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<br>
+		<nav>
+			<ul class="nav nav-pills nav-justified">
+				<li class="nav-item"><a class="nav-link"
+					href="<c:url value='/main' />">Home</a></li>
+
+				<!-- ë©”ë‰´ ì¹´í…Œê³ ë¦¬ ë°” -->
+				<c:choose>
+					<c:when test="${category_id == 0}">
+						<li class="nav-item"><a class="nav-link active"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='0' />
+            			 </c:url>">ì¬ë£Œ
+								ë§ì¶¤ ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='10' />
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>">SNS
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
+					</c:when>
+					<c:when test="${category_id == 10}">
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='0' />
+            			 </c:url>">ì¬ë£Œ
+								ë§ì¶¤ ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='10' />
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>">SNS
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
+
+					</c:when>
+					<c:when test="${category_id == 20}">
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='0' />
+            			 </c:url>">ì¬ë£Œ
+								ë§ì¶¤ ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='10' />
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>">SNS
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
+					</c:when>
+					<c:when test="${category_id == 30}">
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='0' />
+            			 </c:url>">ì¬ë£Œ
+								ë§ì¶¤ ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='10' />
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>">SNS
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='0' />
+            			 </c:url>">ì¬ë£Œ
+								ë§ì¶¤ ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='10' />
+            			 </c:url>">ì¼ë°˜
+								ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='20' />
+            			 </c:url>">SNS
+								ì¸ê¸° ë ˆì‹œí”¼</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='/recipe/list'>
+            				<c:param name='category_id' value='30' />
+            			 </c:url>">ë‚˜ë§Œì˜
+								ë ˆì‹œí”¼</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</nav>
+	</div>
 	<br>
 	<!-- Add Form  -->
-	<form name="form" method="POST" action="<c:url value='/recipe/add' />" enctype="multipart/form-data">
+	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
 		<input type="hidden" name="category_id" value="${category_id}" />
-		<!-- AddRecipeController.java¿¡¼­ list.jsp·ÎºÎÅÍ ¹Ş¾Æ¿Â -->
+		<!-- AddRecipeController.javaì—ì„œ list.jspë¡œë¶€í„° ë°›ì•„ì˜¨ -->
 		<table style="width: 100%; height: 100%">
 			<tr>
 				<td width="20"></td>
 				<td>
 					<table>
 						<tr>
-							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>·¹½ÃÇÇ Ãß°¡</b>&nbsp;&nbsp;
+							<td bgcolor="f4f4f4" height="25">&nbsp;&nbsp;<b>ë ˆì‹œí”¼ ì¶”ê°€</b>&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table> <br>
-					<table style="background-color: YellowGreen; width: 80%; height: 70%">
+					<table style="background-color: YellowGreen; width: 90%; height: 70%">
 						<tr>
-							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">·¹½ÃÇÇ
-								ÀÌ¸§</td>
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">ë ˆì‹œí”¼
+								ì´ë¦„</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<p>
-									<input type="text" style="width: 60%; height: 30px; font-size: 20px;"
-										name="rname" placeholder="·¹½ÃÇÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä">
+									<input type="text" style="width: 50%; height: 30px; font-size: 20px;"
+										name="rname" placeholder="ë ˆì‹œí”¼ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”">
 								</p>
 							</td>
 						</tr>
 						<tr>
-							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">´ëÇ¥ »çÁø</td>
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">ëŒ€í‘œ ì‚¬ì§„</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
 								<div class="field" align="left">
 									<input type="file" id="resultImgFile" accept="image/*"/>
@@ -86,49 +259,49 @@
 							</td>
 						</tr>
 						<tr>
-							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">Àç·á
-								Á¤º¸</td>
+							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">ì¬ë£Œ
+								ì •ë³´</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<c:forEach var="i" begin="1" end="5">
 									<p>
 										<strong>${i}</strong> &nbsp;
-										<input type="text" name="iname" placeholder="ex) °è¶õ">
-										<input type="text" name="quantity" size="10" placeholder="ex) ${i}¾Ë">
+										<input type="text" name="iname" placeholder="ex) ê³„ë€">
+										<input type="text" name="quantity" size="10" placeholder="ex) ${i}ì•Œ">
 									</p>
 								</c:forEach>
-								<!-- ³ªÁß¿¡ DOMÀ¸·Î µ¿Àû input Ãß°¡ÇÏ¸é,
+								<!-- ë‚˜ì¤‘ì— DOMìœ¼ë¡œ ë™ì  input ì¶”ê°€í•˜ë©´,
 								<div id="addIngredient"></div> <br> <input type="button"
-								id="add_ingredient" value="Ãß°¡" onclick="addInput(this.id);" />
-								<input type="button" id="delete_ingredient" value="»èÁ¦"
+								id="add_ingredient" value="ì¶”ê°€" onclick="addInput(this.id);" />
+								<input type="button" id="delete_ingredient" value="ì‚­ì œ"
 								onclick="deleteInput(this.id);" />
 								 -->
 
 							</td>
 						</tr>
 						<tr>
-							<td width="15%" align="center" bgcolor="E6ECDE" height="40px">¼Ò¿ä
-								½Ã°£</td>
+							<td width="15%" align="center" bgcolor="E6ECDE" height="40px">ì†Œìš”
+								ì‹œê°„</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px">
 								<input type="text" style="width: 40px;" name="time"
-								placeholder="10">&nbsp;&nbsp;<strong>ºĞ</strong>
+								placeholder="10">&nbsp;&nbsp;<strong>ë¶„</strong>
 							</td>
 
 						</tr>
 						<tr>
-							<td width="15%" align="center" bgcolor="E6ECDE">Á¶¸® °úÁ¤</td>
+							<td width="15%" align="center" bgcolor="E6ECDE">ì¡°ë¦¬ ê³¼ì •</td>
 							<td width="85%" height="auto" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
 								<table style="height: 100%; width: 100%">
 									<c:forEach var="i" begin="1" end="5">
 										<tr height="120px">
-											<td width="60%" height="auto" style="vertical-align: top">
+											<td width="65%" height="auto" style="vertical-align: top">
 												<strong>${i}</strong> &nbsp; <br>
-												&nbsp;&nbsp;&nbsp;°úÁ¤ <input type="text" name="proc_text" placeholder="ex) Àç·á¸¦ ¼ÕÁúÇÑ´Ù." size="40"><br><br>
-												&nbsp;&nbsp;&nbsp;¼ø¼­ <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
+												&nbsp;&nbsp;&nbsp;ê³¼ì • <input type="text" name="proc_text" placeholder="ex) ì¬ë£Œë¥¼ ì†ì§ˆí•œë‹¤." size="50"><br><br>
+												&nbsp;&nbsp;&nbsp;ìˆœì„œ <input type="text" name="proc_id" size="10" placeholder="ex) ${i}">
 											</td>
-											<td width="40%" height="auto" style="vertical-align: top; padding-top: 22px">
+											<td width="35%" height="auto" style="vertical-align: top; padding-top: 22px">
 												<div class="field" align="left">
 													<input type="file" id="files${i}" name="img_url" accept="image/*" onchange="loadImage(${i})"/>
-													<img id="preview${i}"/> 
+														<img id="preview${i}"/>   
 												</div>
 											</td>	
 										</tr>
@@ -137,10 +310,10 @@
 								<script type="text/javascript" src="../../js/addForm.js"></script>
 									
 									
-								<!-- ³ªÁß¿¡ DOMÀ¸·Î µ¿Àû input Ãß°¡ÇÏ¸é,
+								<!-- ë‚˜ì¤‘ì— DOMìœ¼ë¡œ ë™ì  input ì¶”ê°€í•˜ë©´,
 								<div id="addProcedure"></div> <br> <input type="button"
-								id="add_procedure" value="Ãß°¡" onclick="addInput(this.id);" /> <input
-								type="button" id="delete_procedure" value="»èÁ¦"
+								id="add_procedure" value="ì¶”ê°€" onclick="addInput(this.id);" /> <input
+								type="button" id="delete_procedure" value="ì‚­ì œ"
 								onclick="deleteInput(this.value);" />
 								--></td>
 						</tr>
@@ -148,13 +321,33 @@
 					<table style="width: 100%;">
 						<tr>
 							<td align="left">
-								<input type="button" value="Ãß°¡" onClick="recipeAdd()"> &nbsp;
-								<input type="button" value="Ãë¼Ò" onClick="history.back()"></td>
+								<input type="button" value="ì¶”ê°€" onClick="recipeAdd()"> &nbsp;
+								<input type="button" value="ì·¨ì†Œ" onClick="history.back()"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
 	</form>
+	      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">Â© TEAM4 Sommangchi</p>
+      </footer>
+</div>
+    <script src="../../js/extention/choices.js"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+  
+      <!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
+    <script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -23,9 +23,10 @@ h3, h4 {
 }
 
 td img {
-	width: 330px; 
+	position: relative;  
+	width: 330px;
 	height: 250px;
-	text-align : center;
+	background-size: contain;
 }
 
 .ingre {
@@ -110,6 +111,7 @@ td img {
 					<td colspan="2" style="text-align:center;">
 					<h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${commonTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='10' />
 			 		 			 </c:url>"> ${commonTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
@@ -130,11 +132,12 @@ td img {
             			 </c:url>" role="button">더 알아보기 »</a></p>
         </div>
         <div class="col-lg-4">
-          <h3>SNS 인기 레시피</h3><br>
+          <h3>오늘의 SNS 인기 레시피</h3><br>
            <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
 				<tr>
 					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${snsTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='20' />
 			 		 			 </c:url>"> ${snsTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
@@ -155,11 +158,12 @@ td img {
             			 </c:url>" role="button">더 알아보기 »</a></p>
        </div>
         <div class="col-lg-4">
-          <h3>나만의 레시피</h3><br>
+          <h3>오늘의 나만의 레시피</h3><br>
            <table border="1" style="margin-left: auto; margin-right: auto;"> <!-- 레시피 한 개를 표현할 테이블 -->
 				<tr>
 					<td colspan="2" style="text-align:center;"><h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${myTopRecipe.recipe_id}'/>
+					   				<c:param name='category_id' value='30' />
 			 		 			 </c:url>"> ${myTopRecipe.rname} </a></h4>  
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>

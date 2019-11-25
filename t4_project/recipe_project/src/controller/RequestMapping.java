@@ -39,14 +39,19 @@ public class RequestMapping {
         mappings.put("/recipe/search", new SearchRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());
         
+<<<<<<< HEAD
         mappings.put("/ingredient/list", new SearchIngredientController());
         
 
 //        mappings.put("", value);
 //        
 //        logger.info("Initialized Request Mapping!");
+=======
+        mappings.put("/ingredient/list", new ListIngredientController());
+    
+>>>>>>> 3f2d83e1b7f7f9b58d919f45f0b5d2dbf401681a
     }
-//
+    
     public Controller findController(String uri) {	
 //    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
         return mappings.get(uri);

@@ -9,7 +9,7 @@ import model.Ingredient;
 import model.service.IngredientManager;
 import model.service.IngredientNotFoundException;
 
-public class ViewIngredientController implements Controller{
+public class ListIngredientController implements Controller{
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {	
 		IngredientManager manager = IngredientManager.getInstance();

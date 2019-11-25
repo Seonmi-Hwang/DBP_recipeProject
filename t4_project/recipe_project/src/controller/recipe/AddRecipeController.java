@@ -32,6 +32,10 @@ public class AddRecipeController implements Controller {
 
     		log.debug("AddForm(Recipe) Request : {}", category_id);
     		
+			// 현재 로그인한 사용자 ID를 request에 저장하여 전달
+			request.setAttribute("curMemberId", 
+					MemberSessionUtils.getLoginMemberId(request.getSession()));		
+			request.setAttribute("memberName", MemberSessionUtils.getLoginMemberName(request.getSession()));
     		request.setAttribute("category_id", category_id); // recipe/addForm
     		return "/recipe/addForm.jsp";
 	    }	
@@ -118,6 +122,7 @@ public class AddRecipeController implements Controller {
 		recipe = rmanager.findRecipe(recipe_id);
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("memberName", writer);
+		request.setAttribute("curMemberId", email_id);	
 		return "/recipe/view.jsp"; // 성공 시 작성한 레시피 보기 jsp로 redirect
 	}
 

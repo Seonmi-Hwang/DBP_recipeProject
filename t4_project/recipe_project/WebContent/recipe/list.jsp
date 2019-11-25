@@ -263,14 +263,27 @@
 	<br>
 
 	<c:if test="${category_id == 30 && currentPage != 'searchRecipe'}">
+		<!-- 관리자일때 추가버튼 두개 나와서 추가한 if 조건! by MH -->
+		<c:if test="${curMemberId != 'admin@dongduk.ac.kr'}">
+			<p align="right">
+				<a class="btn btn-lg btn-success"
+					href="<c:url value='/recipe/add/form'>
+	            				<c:param name='category_id' value='30' />
+	            			 </c:url>"
+					role="button">레시피 추가</a></p>
+		</c:if>
+	</c:if>
+	
+	<!-- 관리자의 경우, 항상 레시피 추가 버튼 보기 by YJ -->
+	<c:if test="${curMemberId == 'admin@dongduk.ac.kr' && category_id != 0}">
 		<p align="right">
 			<a class="btn btn-lg btn-success"
 				href="<c:url value='/recipe/add/form'>
-            				<c:param name='category_id' value='30' />
-            			 </c:url>"
+			            		<c:param name='category_id' value='${category_id}' />
+		            	</c:url>"
 				role="button">레시피 추가</a></p>
-	</c:if>
-	
+	</c:if>	
+			
 	<!-- 재료 맞춤 레시피 카테고리일 경우 -->
 	<c:if test="${category_id == 0}">
 	<div class="s003">
@@ -279,9 +292,9 @@
 									<c:param name='category_id' value='${category_id}'/>
 								  </c:url>">
 			<div class="inner-form" style="width:400px;">
-			<input type="text" name="ingre" style="width:100px; margin-left:5px;">&nbsp;
-			<input type="text" name="ingre" style="width:100px;">&nbsp;
-			<input type="text" name="ingre" style="width:100px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px; margin-left:5px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px;">&nbsp;
+			<input type="text" name="ingredients" style="width:100px;">&nbsp;
 			<div class="input-field third-wrap">
 			<button class="btn-search" type="submit" style="background: #3399ff;">
               <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -329,6 +342,7 @@
 					<td colspan="2" style="text-align: center;">
 					<h4><a href="<c:url value='/recipe/view'>
 					   				<c:param name='recipe_id' value='${recipe.recipe_id}'/>
+					   				<c:param name='category_id' value='${category_id}' />
 			 		 			 </c:url>"> ${recipe.rname} </a></h4>
 			 		</td><!--  recipe.getRecipeName() -->
 				</tr>
@@ -352,27 +366,60 @@
 	
 	<!-- Page Navigation -->
 	<br>
-	<jsp:include page="paging.jsp" flush="true">
-	    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-	    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-	    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-	    <jsp:param name="pageNo" value="${paging.pageNo}" />
-	    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-	    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-	    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-	</jsp:include>
 
-	<!-- Site footer -->
-	<br>
-	<footer class="footer">
-		<p align="center">© TEAM4 Sommangchi</p>
-	</footer>
+	  <!--<nav aria-label="Page navigation example"> -->
+	<!-- 	  <ul class="pagination">
+				<li class="page-item"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${prevPageNo}" />
+		    															</c:url>"></a></li>
+		    	<li class="page-item active"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${pageNo}" />
+		    															</c:url>"></a></li>
+		    	<li class="page-item"><a class="page-link" href="<c:url value="/recipe/list">
+		    																<c:param name="pageNo" value="${nextPageNo}" />
+		    															</c:url>"></a></li>														
+		  </ul> 
+	</nav> -->
+	<!-- <div class="paginate">
+	    <a href="<c:url value="/recipe/list">
+	    	<c:param name="firstPageNo" value="${paging.firstPageNo}" />
+	    </c:url>" class="first">처음 페이지</a>
+	    <a href="<c:url value="/recipe/list">
+	    	<c:param name="prevPageNo" value="${paging.prevPageNo}" />
+	    </c:url>" class="prev">이전 페이지</a>
+	    <span>
+	        <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+	            <c:choose>
+	                <c:when test="${i eq paging.pageNo}"><a href="<c:url value="/recipe/list">
+				    						<c:param name="i" value="${i}" />
+				    					</c:url>" class="choice">${i}</a>
+				    </c:when>
+	                <c:otherwise><a href="<c:url value="/recipe/list">
+				    						<c:param name="i" value="${i}" />
+				    					</c:url>">${i}</a>
+	    			</c:otherwise>
+	            </c:choose>
+	        </c:forEach>
+	    </span>
+	    <a href="<c:url value="/recipe/list">
+				    						<c:param name="nextPageNo" value="${paging.nextPageNo}" />
+				    					</c:url>" class="next">다음 페이지</a>
+	    <a href="<c:url value="/recipe/list">
+				    	<c:param name="finalPageNo" value="${paging.finalPageNo}" />
+				 </c:url>" class="last">마지막 페이지</a>
+	</div> -->
+
+      <!-- Site footer -->
+      <br><hr>
+      <footer class="footer">
+        <p align="center">© TEAM4 Sommangchi</p>
+      </footer>
 
 </div>
 <script src="../js/extention/choices.js"></script>
 <script>
 	const choices = new Choices('[data-trigger]', {
-		searchEnabled : false,
+		searchEnabled : true,
 		itemSelectText : '',
 	});
 </script>
