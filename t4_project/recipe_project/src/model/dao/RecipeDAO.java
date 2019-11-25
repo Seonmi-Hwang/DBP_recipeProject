@@ -364,8 +364,8 @@ public class RecipeDAO {
 
 	// 재료 맞춤 레시피 출력
 	public List<Integer> getRecommendRecipe(String[] ingredients) throws SQLException {
-		String p = "";
-		String sql = "SELECT DISTINCT ingredient.recipe_id " + "FROM ingredient,ingredient_info "
+		String p = "'a'";
+		String sql = "SELECT DISTINCT recipe_id " + "FROM ingredient,ingredient_info "
 				+ "WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
 		int count = 0;
 		System.out.printf("%s\n", ingredients);
@@ -373,19 +373,18 @@ public class RecipeDAO {
 			for (String i : ingredients) {
 				if (i != "") {
 					if (count == 0) {
-						p += "'" + i + "'";
+						p = "'" + i + "'";
 					} else {
 						p += ",'" + i + "'";
 					}
 					count++;
 				}
-				if (p != "")
-					sql += "and ingredient_info.iname IN (" + p + ")";
-				else {
-					sql+="and 1=2";
-				} 
+				
 			}
 			System.out.printf("%s\n", p);
+			if (p != "")
+				sql += "and ingredient_info.iname IN (" + p + ")"; 
+			
 		}
 
 		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil에 query문과 매개 변수 설정
