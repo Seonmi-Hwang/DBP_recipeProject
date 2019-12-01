@@ -1,5 +1,7 @@
 package controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.Member;
+import model.Recipe;
 import model.service.MemberManager;
+import model.service.RecipeManager;
 
 public class DeleteMemberController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(DeleteMemberController.class);
@@ -20,14 +24,19 @@ public class DeleteMemberController implements Controller {
     	log.debug("Delete User : {}", deleteId);
 
     	MemberManager manager = MemberManager.getInstance();		
-		HttpSession session = request.getSession();	
-	
+		HttpSession session = request.getSession();
+		
 		if ((MemberSessionUtils.isLoginMember("admin", session) && 	// 로그인한 사용자가 관리자이고 	
 			 !deleteId.equals("admin"))							// 삭제 대상이 일반 사용자인 경우, 
 			   || 												// 또는 
 			(!MemberSessionUtils.isLoginMember("admin", session) &&  // 로그인한 사용자가 관리자가 아니고 
 			 MemberSessionUtils.isLoginMember(deleteId, session))) { // 로그인한 사용자가 삭제 대상인 경우 (자기 자신을 삭제)
-				
+			
+			RecipeManager rManager = RecipeManager.getInstance();
+			List<Recipe> recipeList = rManager.findUserRecipeList(deleteId);
+			for (Recipe r : recipeList) {
+				rManager.remove(r.getRecipe_id());
+			}
 			manager.remove(deleteId);				// 사용자 정보 삭제
 			if (MemberSessionUtils.isLoginMember("admin", session))	// 로그인한 사용자가 관리자 	
 				return "redirect:/member/list";		// 사용자 리스트로 이동
