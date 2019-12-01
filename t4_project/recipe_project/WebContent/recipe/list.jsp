@@ -287,21 +287,29 @@
 	<!-- 재료 맞춤 레시피 카테고리일 경우 -->
 	<c:if test="${category_id == 0}">
 	<div class="s003">
-		<h5 style="margin-left : 120px; width:700px;">냉장고 속 남은 재료를 입력해보세요!</h5>&nbsp;&nbsp;&nbsp;&nbsp;
+		<h5 style="margin-left : 80px; width:700px;">냉장고 속 남은 재료를 입력해보세요!</h5>
 		<form name="form"  method="POST"  action="<c:url value='/ingredient/list'>
 									<c:param name='category_id' value='${category_id}'/>
 								  </c:url>">
-			<div class="inner-form" style="width:400px;">
-			<input type="text" name="ingredients" style="width:100px; margin-left:5px;">&nbsp;
-			<input type="text" name="ingredients" style="width:100px;">&nbsp;
-			<input type="text" name="ingredients" style="width:100px;">&nbsp;
-			<div class="input-field third-wrap">
-			<button class="btn-search" type="submit" style="background: #3399ff;">
-              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-              </svg>
-            </button>
-            </div>
+			<div class="inner-form" style="width:600px;">
+				<c:forEach var="i" begin="1" end="3">
+					<div class="input-field first-wrap">
+						<div class="input-select" style="width:180px;">
+							<select data-trigger="" name="ingredients">
+								<c:forEach var="ingredient" items="${ingredientList}">
+									<option>${ingredient.iname}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				</c:forEach>
+					<div class="input-field third-wrap">
+					<button class="btn-search" type="submit" style="background: #3399ff;">
+		              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+		                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+		              </svg>
+		            </button>
+		            </div>
             </div>
 		</form>
 	</div>

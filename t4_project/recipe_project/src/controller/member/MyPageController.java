@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.Member;
 import model.Recipe;
+import model.service.IngredientManager;
 import model.service.MemberManager;
-import model.service.MemberNotFoundException;
 import model.service.RecipeManager;
 
 public class MyPageController implements Controller {
@@ -25,6 +25,11 @@ public class MyPageController implements Controller {
 		String email_id = request.getParameter("email_id");
     	Member member = manager.findMember(email_id);
     	request.setAttribute("member", member);		// 사용자 정보 저장
+    	
+    	// for 비선호 재료 출력
+    	IngredientManager imanager = IngredientManager.getInstance();
+    	String nonPrefer = imanager.findIngredient(member.getNonPrefer());
+    	request.setAttribute("nonPrefer", nonPrefer);
     	
     	// for 레시피 출력
 		RecipeManager rManager = RecipeManager.getInstance();

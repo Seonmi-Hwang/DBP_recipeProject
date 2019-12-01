@@ -129,8 +129,8 @@ public class RecipeManager {
 		return recipeList;
 	}
 	
-	public List<Integer> findRecommendRecipe(String[] ingredients) throws SQLException {
-		return recipeDAO.getRecommendRecipe(ingredients);
+	public List<Integer> findRecommendRecipe(String[] ingredients, int nonPrefer) throws SQLException {
+		return recipeDAO.getRecommendRecipe(ingredients, nonPrefer);
 	}
 	
 	public List<Procedure> findProcedure(int recipeId) throws SQLException {

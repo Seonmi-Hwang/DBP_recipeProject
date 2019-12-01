@@ -268,6 +268,13 @@ function memberModify() {
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
 				<input type="text" style="width: 240" name="mname" value="${member.mname}">
 			</td>
+		  </tr>
+		  <tr height="40">
+			<td width="150" align="center" bgcolor="E6ECDE">비선호 재료</td>
+			<td width="250" bgcolor="ffffff" style="padding-left: 10">
+				<input type="text" style="width: 240" name="nonPrefer" value="${nonPrefer}">
+			</td>
+		  </tr>
 	    </table>
 	    <br>	  
 	    <table style="width: 100%">

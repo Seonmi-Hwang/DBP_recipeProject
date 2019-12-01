@@ -5,18 +5,20 @@ public class Member {
 	private String email_id;
 	private String pw;
 	private String mname;
+	private int nonPrefer;
 	
 	public Member() {}
 	
-	public Member(int member_id, String email_id, String pw, String mname) {
-		this(email_id, pw, mname);
+	public Member(int member_id, String email_id, String pw, String mname, int nonPrefer) {
+		this(email_id, pw, mname, nonPrefer);
 		this.member_id = member_id;
 	}
 	
-	public Member(String email_id, String pw, String mname) {
+	public Member(String email_id, String pw, String mname, int nonPrefer) {
 		this.email_id = email_id;
 		this.pw = pw;
 		this.mname = mname;
+		this.nonPrefer = nonPrefer;
 	}
 
 	public void update(Member upmember) {
@@ -65,6 +67,15 @@ public class Member {
 		boolean result = pw.equals(password);
 		return result;
 	}
+
+	public int getNonPrefer() {
+		return nonPrefer;
+	}
+
+	public void setNonPreferIngredient(int nonPrefer) {
+		this.nonPrefer = nonPrefer;
+	}
+	
 //	안쓸것같아서 없앰 by MH
 //	@Override
 //	public String toString() {

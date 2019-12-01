@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
 import model.Member;
-import model.dao.MemberDAO;
 import model.service.MemberManager;
 import model.service.MemberNotFoundException;
 

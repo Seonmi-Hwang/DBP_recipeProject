@@ -26,9 +26,9 @@ public class IngredientManager {
 		return IngreDAO.create(ingredient);
 	}
 
-	public Ingredient findIngredient(int ingreId)
+	public String findIngredient(int ingreId)
 			throws SQLException, IngredientNotFoundException {
-			Ingredient ingre = IngreDAO.findIngredientname(ingreId);
+			String ingre = IngreDAO.findIngredientname(ingreId);
 			
 			if (ingre == null) {
 				throw new IngredientNotFoundException(ingreId + "는 존재하지 않는 아이디입니다.");
@@ -54,5 +54,9 @@ public class IngredientManager {
 	
 	public int findIdByName(String iname) throws SQLException {
 		return IngreDAO.findIdByName(iname);
+	}
+	
+	public List<Ingredient> findAllingredientList() throws SQLException {
+		return IngreDAO.findAllingredientList();
 	}
 }
