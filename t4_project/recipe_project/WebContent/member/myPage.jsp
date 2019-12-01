@@ -245,6 +245,12 @@ function memberRemove() {
 				${member.mname}
 			</td>
 		  </tr>
+		   <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">비선호 재료</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				${nonPrefer}
+			</td>
+		  </tr>
 	 	</table>
 	    <br>
 	    <a href="<c:url value='/member/update'>

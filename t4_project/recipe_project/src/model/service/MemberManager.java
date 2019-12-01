@@ -58,10 +58,10 @@ public class MemberManager {
 			return memberDAO.findMemberList();
 	}
 	
-	public List<Member> findMemberList(int currentPage, int countPerPage)
-		throws SQLException {
-		return memberDAO.findMemberList(currentPage, countPerPage);
-	}
+//	public List<Member> findMemberList(int currentPage, int countPerPage)
+//		throws SQLException {
+//		return memberDAO.findMemberList(currentPage, countPerPage);
+//	}
 
 	public boolean login(String MemberId, String password)
 		throws SQLException, MemberNotFoundException, PasswordMismatchException {

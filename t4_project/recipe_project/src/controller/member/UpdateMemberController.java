@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import model.Member;
 import model.Recipe;
+import model.service.IngredientManager;
 import model.service.MemberManager;
 import model.service.RecipeManager;
 
@@ -32,6 +33,11 @@ public class UpdateMemberController implements Controller {
 			Member member = manager.findMember(updateId);	// 수정하려는 사용자 정보 검색
 			request.setAttribute("member", member);
 
+			// for 비선호 재료 출력
+	    	IngredientManager imanager = IngredientManager.getInstance();
+	    	String nonPrefer = imanager.findIngredient(member.getNonPrefer());
+	    	request.setAttribute("nonPrefer", nonPrefer);
+			
 			HttpSession session = request.getSession();
 			if (MemberSessionUtils.isLoginMember(updateId, session) ||
 				MemberSessionUtils.isLoginMember("admin", session)) {
@@ -47,10 +53,15 @@ public class UpdateMemberController implements Controller {
 	    }	
     	
     	// POST request (회원정보가 parameter로 전송됨)
+    	IngredientManager imanager = IngredientManager.getInstance();
+    	String ingredientInput = request.getParameter("nonPrefer");
+    	int nonPrefer = imanager.findIdByName(ingredientInput);
+    	
     	Member updateMember = new Member(
     		request.getParameter("email_id"),
     		request.getParameter("pw"),
-    		request.getParameter("mname"));
+    		request.getParameter("mname"),
+    		nonPrefer);
 
     	log.debug("Update User : {}", updateMember);
     	
@@ -61,6 +72,9 @@ public class UpdateMemberController implements Controller {
 		String email_id = request.getParameter("email_id");
     	Member member = manager.findMember(email_id);
     	request.setAttribute("member", member);		// 사용자 정보 저장
+    	
+    	// for 비선호 재료 출력
+    	request.setAttribute("nonPrefer", ingredientInput);
     	
     	// for 레시피 출력
 		RecipeManager rManager = RecipeManager.getInstance();
