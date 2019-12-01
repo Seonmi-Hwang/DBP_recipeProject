@@ -55,4 +55,8 @@ public class IngredientManager {
 	public int findIdByName(String iname) throws SQLException {
 		return IngreDAO.findIdByName(iname);
 	}
+	
+	public List<Ingredient> findAllingredientList() throws SQLException {
+		return IngreDAO.findAllingredientList();
+	}
 }
