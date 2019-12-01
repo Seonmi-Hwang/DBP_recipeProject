@@ -1,5 +1,10 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	
+
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -223,7 +228,7 @@ function recipeAdd() {
 	</div>
 	<br>
 	<!-- Add Form  -->
-	<form name="form" method="POST" action="<c:url value='/recipe/add' />">
+	<form name="form" method="POST" enctype="multipart/form-data" action="<c:url value='/recipe/add' />">
 		<input type="hidden" name="category_id" value="${category_id}" />
 		<!-- AddRecipeController.java에서 list.jsp로부터 받아온 -->
 		<table style="width: 100%; height: 100%">
@@ -251,8 +256,8 @@ function recipeAdd() {
 							<td width="15%" align="center" bgcolor="E6ECDE" height="auto">대표 사진</td>
 							<td width="85%" bgcolor="ffffff" style="padding-left: 10px; padding-top: 10px">
 								<div class="field" align="left">
-									<input type="file" id="resultImgFile" accept="image/*"/>
-									<img id="resultImg"/> 
+									<input type="file" id="resultImgFile" accept="image/*" name="resultimg">
+									<img id="resultImg"/>
 									<input type="hidden" name="result_url">
 								</div>
 								
