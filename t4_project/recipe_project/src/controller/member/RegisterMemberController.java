@@ -17,7 +17,7 @@ public class RegisterMemberController implements Controller 	{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	IngredientManager imanager = IngredientManager.getInstance();
-    	String ingredientInput = request.getParameter("nonPerfer");
+    	String ingredientInput = request.getParameter("nonPrefer");
     	int nonPrefer = imanager.findIdByName(ingredientInput);
     	
 		Member member = new Member(
