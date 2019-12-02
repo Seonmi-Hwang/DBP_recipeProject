@@ -11,6 +11,7 @@
 <link rel="icon" href="../images/favicon.ico">
 <title>모두의 레시피: 프로필 설정</title>
 
+<link href="../css/signin.css" rel="stylesheet">
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/ie-emulation-modes-warning.js"></script>
@@ -63,7 +64,9 @@ function memberModify() {
 	
 	}
 	
-	    
+	form {
+		margin : 0 auto;
+	}    
 </style>
 </head>
 <body>
@@ -71,7 +74,7 @@ function memberModify() {
 	<div class="masthead">
 		<br><br>
 		<p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a></p>
-        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>" role="button" class="btn btn-primary">My Page</a>
         &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">로그아웃</a></p>
 
 		<div class="s003">
@@ -232,63 +235,29 @@ function memberModify() {
 	</div>
 <br>
 <!-- Update Form  -->
-<form name="form" method="POST" action="<c:url value='/member/update' />">
+<form name="form" method="POST" action="<c:url value='/member/update' />" style="width:30%;">
   <input type="hidden" name="email_id" value="${member.email_id}"/>	  
-  <table style="width: 100%">
-	<tr>
-	  <td width="20"></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 정보 수정</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
+ 	  <h3 class="form-signin-heading" align="center">사용자 정보 수정</h3> 
 	    <br>	  
-	    <table style="background-color: YellowGreen">
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">이메일 ID</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				${member.email_id}
-			</td>
-		  </tr>
-		  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">비밀번호</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw" value="${member.pw}">
-			</td>
-		  </tr>
-		  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">비밀번호 확인</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="password" style="width: 240" name="pw2" value="${member.pw}">
-			</td>
-		  </tr>
-		  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">이름</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="mname" value="${member.mname}">
-			</td>
-		  </tr>
-		  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">비선호 재료</td>
-			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="nonPrefer" value="${nonPrefer}">
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	    <table style="width: 100%">
-		  <tr>
-			<td align="left">
-			<input type="button" value="수정" onClick="memberModify()"> &nbsp;
-			<input type="button" value="취소" onClick="history.back()">
-			</td>
-		  </tr>
-	    </table>
-	  </td>
-	</tr>
-  </table>  
+	    <label for="inputEmail" class="sr-only">이메일 아이디</label>
+	      <p>이메일 아이디</p> <input type="email" id="inputEmail" class="form-control" value="${member.email_id}" disabled><br>
+
+		<label for="inputPassword" class="sr-only">비밀번호</label>
+		<p>비밀번호</p> <input type="password" id="inputPassword" class="form-control" name="pw" value="${member.pw}" required><br>
+
+		<label for="inputPassword" class="sr-only">비밀번호 확인</label>
+		<p>비밀번호 확인</p> <input type="password" id="inputPassword" class="form-control" name="pw2" value="${member.pw}" required><br>
+		
+		<label for="inputName" class="sr-only">닉네임</label>
+		<p>이름</p> <input type="text" id="inputName" class="form-control" name="mname" value="${member.mname}" required><br>
+		
+		<label for="inputNonPrefer" class="sr-only">비선호 재료</label>
+		<p>비선호 재료</p> <input type="text" id="inputNonPrefer" class="form-control" name="nonPrefer" value="${nonPrefer}"><br>
+
+		<button class="btn btn-info" type="button" onClick="memberModify()" style="width:163px">수정</button>
+		<button class="btn btn-danger" type="button" onClick="history.back()" style="width:163px">취소</button>
 </form>
+
       <!-- Site footer -->
       <br><hr>
       <footer class="footer">
