@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -79,8 +80,9 @@ public class AddRecipeController implements Controller {
 		
 		if(check) {//파일 전송이 포함된 상태가 맞다면
 			ServletContext context = request.getServletContext();
-			path = context.getRealPath("upload");
+			path = context.getRealPath("/upload");
 			dir = new File(path);
+			System.out.println("dir"+dir);
 			if(!dir.exists()) dir.mkdir();
 			//전송된 파일을 저장할 실제 경로를 만든다.
 			
@@ -111,7 +113,7 @@ public class AddRecipeController implements Controller {
                 	//넘어온 값에 대한 한글 처리를 한다.
                 	
                 	if(item.isFormField()) {//일반 폼 데이터라면...        
-                		System.out.println("ss");
+                		System.out.println(item.getFieldName()+value);
                 		if(item.getFieldName().equals("category_id")) category_id = value;
 //                		//key 값이 name이면 name 변수에 값을 저장한다.
                 		else if(item.getFieldName().equals("rname")) rname = value;
@@ -135,7 +137,8 @@ public class AddRecipeController implements Controller {
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
                 			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
                 			//실제 C:\Web_Java\aaa.gif라고 하면 aaa.gif만 추출하기 위한 코드이다.
-                			File file = new File(dir, filename);
+                			File file = new File("./images/20170724_174558.jpg");//dir, filename);
+                			System.out.println("file  "+file);
                 			item.write(file);
                 			//파일을 upload 경로에 실제로 저장한다.
                 			//FileItem 객체를 통해 바로 출력 저장할 수 있다.
@@ -233,7 +236,8 @@ public class AddRecipeController implements Controller {
 //				Integer.parseInt(request.getParameter("time")),
 				Integer.parseInt(time),
 //				request.getParameter("resultimg"),
-				"jsp/upload/"+filename,
+				//"images/20170724_174558.jpg",+"/"+filename,
+				"../upload/"+filename,
 				0,
 				pList,
 				iList,

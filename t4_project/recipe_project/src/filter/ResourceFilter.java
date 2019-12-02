@@ -23,6 +23,8 @@ public class ResourceFilter implements Filter {
         resourcePrefixs.add("/js");
         resourcePrefixs.add("/fonts");
         resourcePrefixs.add("/images");
+        resourcePrefixs.add("/upload");
+
 //        resourcePrefixs.add("/ingredient");
     }
 
