@@ -116,7 +116,7 @@ public class IngredientDAO {
 		} finally {
 			jdbcUtil.close();		// resource 반환
 		}
-		return null;
+		return "없음";
 	}
 	
 	//전체리스트
