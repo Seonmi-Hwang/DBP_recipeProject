@@ -275,22 +275,22 @@ function recipeRemove() {
 						<c:if test="${memberName eq recipe.writer}">
 							<a href="<c:url value='/recipe/update'>	<!-- Get 요청 -->
 					     			   <c:param name='recipe_id' value='${recipe.recipe_id}'/>
-							 		 </c:url>">수정</a> &nbsp;
+							 		 </c:url>" role="button" class="btn btn-success">수정</a> &nbsp;
 				 	    	<a href="<c:url value='/recipe/delete'>
 								 	  <c:param name='recipe_id' value='${recipe.recipe_id}'/>
 								 	  <c:param name='email_id' value='${curMemberId}'/>
-							</c:url>" onclick="return recipeRemove();">삭제</a> &nbsp;
+							</c:url>" onclick="return recipeRemove();" role="button" class="btn btn-danger">삭제</a> &nbsp;
 
 						
 	    				</c:if>
 	    				<c:choose>
 		    				<c:when test='${category_id == 0}'>
-						 	    <a href="#" onclick="history.back()">목록</a>
+						 	    <a href="#" onclick="history.back()" role="button" class="btn btn-info">목록</a>
 					 	    </c:when>
 					 	    <c:otherwise>
 						 	    <a href="<c:url value='/recipe/list'>
 						 	    			<c:param name='category_id' value='${recipe.category_id}'/>
-						 	    		</c:url>">목록</a>
+						 	    		</c:url>" role="button" class="btn btn-info">목록</a>
 					 	    </c:otherwise>
 				 	    </c:choose>
 				 	    <br>

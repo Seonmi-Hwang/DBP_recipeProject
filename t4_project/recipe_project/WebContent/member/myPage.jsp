@@ -62,7 +62,7 @@ function memberRemove() {
 	<div class="masthead">
 		<br><br>
 		<p align="center"><a href="<c:url value="/main" />"><img src="<c:url value='/images/logo.png' />" alt="모두의 레시피" /></a></p>
-        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>">${memberName}</a>
+        <p align="right"><a href="<c:url value='/member/myPage'><c:param name='email_id' value='${curMemberId}'/></c:url>" role="button" class="btn btn-primary">My Page</a>
         &nbsp;&nbsp;&nbsp;<a href="<c:url value='/member/logout' />">로그아웃</a></p>
 
 		<div class="s003">
@@ -222,50 +222,25 @@ function memberRemove() {
 		</nav>
 	</div>
 <br>
-  <table style="width:100%">
-    <tr>
-	  <td width="20"></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>My page</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
-	    <br>	  	    
-	  	<table>
-	  	  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">이메일 ID</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${member.email_id}
-			</td>
-		  </tr>
-		  <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">이름</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${member.mname}
-			</td>
-		  </tr>
-		   <tr>
-			<td width="120" align="center" bgcolor="E6ECDE" height="22">비선호 재료</td>
-			<td width="470" bgcolor="ffffff" style="padding-left: 10">
-				${nonPrefer}
-			</td>
-		  </tr>
-	 	</table>
+  <div style="text-align:center;">
+	<h1>My page</h1><br>	  	    
+		<p>이메일 ID : &nbsp;&nbsp;${member.email_id}</p>
+		<p>닉네임 : &nbsp;&nbsp;${member.mname}</p>
+		<p>비선호 재료 : &nbsp;&nbsp;${nonPrefer}</p>
+
 	    <br>
 	    <a href="<c:url value='/member/update'>
 	     		   <c:param name='email_id' value='${member.email_id}'/>
-			 	 </c:url>">프로필 설정</a>&nbsp;
+			 	 </c:url>" role="button" class="btn btn-info">프로필 설정</a>&nbsp;
  	    <a href="<c:url value='/member/delete'>
 				   <c:param name='email_id' value='${member.email_id}'/>
-			 	 </c:url>" onclick="return memberRemove();">회원 탈퇴</a>
+			 	 </c:url>" onclick="return memberRemove();" role="button" class="btn btn-danger">회원 탈퇴</a>
 		<c:if test="${updateFailed || deleteFailed}}">
 	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
 	    </c:if>    
  	    <br><br>
-	  </td>
-	</tr>
-  </table>
+  </div>
+  	 	<br><h3 align="center">내가 작성한 레시피</h3>
 	 <div class="row"> <!-- 한 카테고리의 레시피들을 표현해줄 테이블 -->
 		<c:forEach var="recipe" items="${recipeList}" varStatus="status">
 			<div class="col-lg-4">

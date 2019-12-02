@@ -76,13 +76,11 @@ function memberCreate() {
 		<label for="inputPassword" class="sr-only">비밀번호 확인</label>
 		<input type="password" id="inputPassword" class="form-control" name="pw2" placeholder="비밀번호 확인" required>
 
-		<label for="inputNonPrefer" class="sr-only">비선호 재료</label>
-		<input type="text" id="inputNonPrefer" class="form-control" name="nonPerfer" placeholder="비선호 재료" required> 
-		
-		
 		<label for="inputName" class="sr-only">이름</label>
 		<input type="text" id="inputName" class="form-control" name="mname" placeholder="닉네임" required> 
 		
+		<label for="inputNonPrefer" class="sr-only">비선호 재료</label>
+		<input type="text" id="inputNonPrefer" class="form-control" name="nonPrefer" placeholder="비선호 재료" required> 
 		
 		<!-- <c:if test="${registerFailed}">value="${user.mname}"</c:if> 이건 왜 들어가는거지?!-->
 		<br>
