@@ -233,7 +233,7 @@ public class AddRecipeController implements Controller {
 //				Integer.parseInt(request.getParameter("time")),
 				Integer.parseInt(time),
 //				request.getParameter("resultimg"),
-				"jsp/upload/"+filename,
+				"../upload/"+filename,
 				0,
 				pList,
 				iList,
