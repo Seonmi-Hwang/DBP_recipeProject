@@ -236,10 +236,6 @@ public class AddRecipeController implements Controller {
 //				Integer.parseInt(request.getParameter("time")),
 				Integer.parseInt(time),
 //				request.getParameter("resultimg"),
-<<<<<<< HEAD
-				//"images/20170724_174558.jpg",+"/"+filename,
-=======
->>>>>>> y
 				"../upload/"+filename,
 				0,
 				pList,

@@ -24,10 +24,6 @@ public class ResourceFilter implements Filter {
         resourcePrefixs.add("/fonts");
         resourcePrefixs.add("/images");
         resourcePrefixs.add("/upload");
-<<<<<<< HEAD
-
-=======
->>>>>>> y
 //        resourcePrefixs.add("/ingredient");
     }
 
