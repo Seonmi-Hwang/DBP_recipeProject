@@ -296,6 +296,7 @@
 					<div class="input-field first-wrap">
 						<div class="input-select" style="width:180px;">
 							<select data-trigger="" name="ingredients">
+								<option></option>
 								<c:forEach var="ingredient" items="${ingredientList}">
 									<option>${ingredient.iname}</option>
 								</c:forEach>
