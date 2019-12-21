@@ -137,7 +137,7 @@ public class AddRecipeController implements Controller {
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
                 			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
                 			//실제 C:\Web_Java\aaa.gif라고 하면 aaa.gif만 추출하기 위한 코드이다.
-                			File file = new File("./images/20170724_174558.jpg");//dir, filename);
+                			File file = new File(dir, filename);//dir, filename);
                 			System.out.println("file  "+file);
                 			item.write(file);
                 			//파일을 upload 경로에 실제로 저장한다.
