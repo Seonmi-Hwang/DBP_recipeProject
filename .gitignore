@@ -1,6 +1,5 @@
 ### Eclipse ###
 .metadata/*
-.metadata/**
 !.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/recipe_project/recipei
 bin/
 tmp/
