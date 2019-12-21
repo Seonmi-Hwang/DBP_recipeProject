@@ -253,7 +253,7 @@ function memberRemove() {
 				  		</td> <!--  recipe.getRecipeName() -->
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align: center;"><img src="${recipe.result_img}" alt="Recipe Image"  /></td>
+						<td colspan="2" style="text-align: center;"><img src="${recipe.result_img}" onerror="this.src='https://image.flaticon.com/icons/svg/1609/1609793.svg'"  /></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="ingre">&nbsp; ${recipe.ingredientsName}</td> <%-- 모든 원소들을 출력 | recipe.getIngredients() --%>

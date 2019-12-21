@@ -116,7 +116,7 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><img src="${commonTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" style="text-align: center;"><img src="${commonTopRecipe.result_img}" onerror="this.src='https://image.flaticon.com/icons/svg/1609/1609793.svg'"  /></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="ingre">&nbsp; ${commonTopRecipe.ingredientsName}</td>
@@ -142,7 +142,7 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><img src="${snsTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" style="text-align: center;"><img src="${snsTopRecipe.result_img}" onerror="this.src='https://image.flaticon.com/icons/svg/1609/1609793.svg'"  /></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="ingre">&nbsp; ${snsTopRecipe.ingredientsName}</td>
@@ -168,7 +168,7 @@ td img {
 			  		</td> <!--  recipe.getRecipeName() -->
 				</tr>
 				<tr>
-					<td colspan="2" ><img src="${myTopRecipe.result_img}" alt="Recipe Image"  /></td>
+					<td colspan="2" ><img src="${myTopRecipe.result_img}" onerror="this.src='https://image.flaticon.com/icons/svg/1609/1609793.svg'"  /></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="ingre">&nbsp; ${myTopRecipe.ingredientsName}</td>
