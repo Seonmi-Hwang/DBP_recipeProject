@@ -1,0 +1,10 @@
+1573965838576	Delete element
+1573966011353	Rename type 'UserManager'
+1573966262868	Rename type 'ExistingUserException'
+1573968343558	Rename type 'UserNotFoundException'
+1573969099231	Rename type 'MemberSessionUtil'
+1574470038293	Delete element
+1574508237074	Move 'list.jsp' to 'trash'
+1574508242715	Move 'view.jsp' to 'trash'
+1574519265230	Move 'list.jsp' to 'member'
+1574519267954	Move 'view.jsp' to 'member'

@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1478302193.index
+4151983125.index
+960630696.index
+2138735871.index
+2200112821.index
+2924734808.index

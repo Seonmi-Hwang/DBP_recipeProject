@@ -1,0 +1,11 @@
+INDEX VERSION 1.130
+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1382044814.index
+\recipe_project\src
+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4161544129.index
+\recipe_project\src
+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2539078799.index
+\recipe_project\src
+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3510114781.index
+\recipe_project\src
+C:\DBP\DBP_recipeProject\t4_project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3851936917.index
+\recipe_project\src

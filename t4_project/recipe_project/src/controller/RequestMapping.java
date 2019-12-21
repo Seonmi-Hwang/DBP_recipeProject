@@ -40,12 +40,6 @@ public class RequestMapping {
         mappings.put("/recipe/delete", new DeleteRecipeController());
         
         mappings.put("/ingredient/list", new ListIngredientController());
-        
-
-//        mappings.put("", value);
-//        
-//        logger.info("Initialized Request Mapping!");
-//        mappings.put("/ingredient/list", new ListIngredientController());
     
     }
     

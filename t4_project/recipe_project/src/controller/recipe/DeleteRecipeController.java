@@ -24,21 +24,7 @@ public class DeleteRecipeController implements Controller {
 		// 레시피 삭제 수행
 		int rslt = rManager.remove(recipe_id);
 		
-//		// list.jsp 출력 준비 (return "/recipe/list.jsp" 할 경우)
-//		int category_id = Integer.parseInt(request.getParameter("category_id")); // 이 코드를 쓰려면 <c:param>에 category_id 실어줘야 함 
-//		List<Recipe> recipeList = manager.findRecipeList(category_id);
-//		
-//		MemberManager mManager = MemberManager.getInstance();
-//		String email_id = MemberSessionUtils.getLoginMemberId(request.getSession());
-//		String writer = mManager.findMember(email_id).getMname();
-//		request.setAttribute("curMemberId", 
-//				MemberSessionUtils.getLoginMemberId(request.getSession()));		
-//		request.setAttribute("memberName", writer);
-//		request.setAttribute("recipeList", recipeList);	
-//		request.setAttribute("category_id", category_id);
-//		request.setAttribute("currentPage", "listRecipe");
 		request.setAttribute("deleteComplete", rslt);	
-
 		
 		//마이 페이지로 가도록 수정
 		// for 멤버 정보 출력
@@ -60,8 +46,6 @@ public class DeleteRecipeController implements Controller {
 		request.setAttribute("email_id", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));	
 		return "/member/myPage.jsp";
-
-		//return "/recipe/list.jsp";
 
 	}
 
