@@ -79,8 +79,8 @@ public class AddRecipeController implements Controller {
 		
 		if(check) {//파일 전송이 포함된 상태가 맞다면
 			ServletContext context = request.getServletContext();
-			path = context.getRealPath("recipei");
-			dir = new File("../recipei/");//path);//new File(path);
+			path = context.getRealPath("images");
+			dir = new File(path);//path);//new File(path);
 			if(!dir.exists()) dir.mkdir();
 			//전송된 파일을 저장할 실제 경로를 만든다.
 			
@@ -234,7 +234,7 @@ public class AddRecipeController implements Controller {
 //				Integer.parseInt(request.getParameter("time")),
 				Integer.parseInt(time),
 //				request.getParameter("resultimg"),
-				"../recipei/"+filename,
+				"../images/"+filename,
 				0,
 				pList,
 				iList,
