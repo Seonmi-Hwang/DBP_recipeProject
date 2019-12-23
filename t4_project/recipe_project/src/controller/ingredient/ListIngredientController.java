@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.member.MemberSessionUtils;
 import model.Ingredient;
-import model.Member;
 import model.Recipe;
 import model.service.IngredientManager;
 import model.service.MemberManager;

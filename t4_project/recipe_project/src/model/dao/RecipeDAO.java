@@ -368,7 +368,6 @@ public class RecipeDAO {
 		String sql = "SELECT DISTINCT recipe_id " + "FROM ingredient,ingredient_info "
 				+ "WHERE ingredient.ingredient_id=ingredient_info.ingredient_id ";
 		int count = 0;
-		System.out.printf("%s\n", ingredients);
 		if (ingredients != null) {
 			for (String i : ingredients) {
 				if (i != "") {
