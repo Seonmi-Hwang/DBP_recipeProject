@@ -97,9 +97,6 @@ public class UpdateRecipeController implements Controller {
 			}
 			
 		});
-		/* result_img */
-		RecipeManager manager = RecipeManager.getInstance();
-		String result_img = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id"))).getResult_img();
 		
 		/* request로 받아온 parameter들로 recipe 객체 생성*/
 		Recipe updateRecipe = new Recipe(
@@ -107,7 +104,7 @@ public class UpdateRecipeController implements Controller {
 				30,
 				request.getParameter("rname"),
 				Integer.parseInt(request.getParameter("time")),
-				result_img,
+				null,	//result_img는 파일 업로드 하고..
 				0,
 				pList,
 				iList,
@@ -118,9 +115,11 @@ public class UpdateRecipeController implements Controller {
 		
 		log.debug("Update Recipe : {}", updateRecipe);
     	
+		RecipeManager manager = RecipeManager.getInstance();
 		manager.update(updateRecipe);
 		Recipe recipe = manager.findRecipe(Integer.parseInt(request.getParameter("recipe_id")));
 		request.setAttribute("recipe", recipe);
+		
 		request.setAttribute("memberName", writer);
 		request.setAttribute("curMemberId", 
 				MemberSessionUtils.getLoginMemberId(request.getSession()));		
